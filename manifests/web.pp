@@ -15,6 +15,18 @@ class phabricator::web {
     },
     use_default_location => false,
   }
+  nginx::resource::location { 'phabricator.joshuaspence.com/favicon.ico':
+    ensure      => 'present',
+    location    => '= /favicon.ico',
+    vhost       => 'phabricator.joshuaspence.com',
+    www_root    => '/usr/src/phabricator/webroot',
+  }
+  nginx::resource::location { 'phabricator.joshuaspence.com/rsrc/':
+    ensure      => 'present',
+    location    => '/rsrc/',
+    vhost       => 'phabricator.joshuaspence.com',
+    www_root    => '/usr/src/phabricator/webroot',
+  }
   nginx::resource::location { 'phabricator.joshuaspence.com/~.php':
     ensure              => 'present',
     location            => '~ .php$',
