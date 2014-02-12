@@ -8,7 +8,9 @@ class phabricator::web (
 
   include phabricator::install
 
-  class { 'nginx': }
+  class { 'nginx':
+    worker_processes => 'auto',
+  }
   nginx::resource::vhost { $hostname:
     ensure               => 'present',
     index_files          => ['index.php'],
