@@ -6,10 +6,6 @@ class phabricator::web (
 
   validate_string($hostname)
 
-  if ! ($environment in ['development', 'production']) {
-    fail('environment parameter must be "development" or "production"')
-  }
-
   include phabricator::install
 
   class { 'nginx': }
