@@ -13,5 +13,6 @@ class phabricator::db {
       Class['phabricator::install'],
       Class['mysql::server'],
     ],
+    subscribe => Vcsrepo['/usr/src/phabricator'],
   }
 }
