@@ -1,7 +1,14 @@
 # == Define: phabricator::install
 #
 class phabricator::install {
-  include phabricator
+  package { ['git', 'g++', 'make']:
+    ensure => installed,
+  }
+
+  php::ini { '/etc/php.ini': }
+  class { 'php::cli':
+    ensure => installed,
+  }
 
   vcsrepo { '/usr/src/arcanist':
     ensure   => latest,
