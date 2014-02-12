@@ -1,13 +1,28 @@
 # == Define: phabricator::db
 #
-class phabricator::db (
-  $environment = 'production',
-) {
-  validate_string($environment)
-
+class phabricator::db {
   include phabricator::install
 
-  class { 'mysql::server': }
+  if ! ($environment in ['development', 'production']) {
+    fail('environment parameter must be "development" or "production"')
+  }
+
+  case $phabricator::config::environment {
+    'production': {
+      $mysql_override = {}
+    }
+    default: {
+      $mysql_override = {
+        'mysqld' => {
+          'sql-mode' => 'STRICT_ALL_TABLES',
+        },
+      }
+    }
+  }
+
+  class { 'mysql::server':
+    override_options => $mysql_override,
+  }
 
   exec { 'storage-upgrade':
     command   => '/usr/src/phabricator/bin/storage upgrade --force',
