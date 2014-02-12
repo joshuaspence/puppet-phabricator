@@ -74,6 +74,7 @@ class phabricator::web (
   php::fpm::conf { 'www':
     listen  => '127.0.0.1:9000',
     user    => 'nginx',
+    env     => ['PATH'],
     require => [
       Class['nginx'],
       Php::Module['mysql'],
