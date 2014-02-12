@@ -55,10 +55,20 @@ class phabricator::web (
   }
 
   php::module { ['apc', 'curl', 'gd', 'mysql']: }
+  case $environment {
+    'production': {
+      $apc_settings = {
+        'apc.stat' => '0',
+      }
+    }
+    default: {
+      $apc_settings = {
+        'apc.stat' => '1',
+      }
+    }
+  }
   php::module::ini { 'apc':
-    settings => {
-      'apc.stat' => '0',
-    },
+    settings => $apc_settings,
   }
 
   php::fpm::conf { 'www':
