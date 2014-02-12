@@ -4,19 +4,19 @@ class phabricator::install {
   include phabricator
 
   vcsrepo { '/usr/src/arcanist':
-    ensure   => present,
+    ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/arcanist.git',
     require  => Class['php::cli'],
   }
   vcsrepo { '/usr/src/libphutil':
-    ensure   => present,
+    ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/libphutil.git',
     require  => Class['php::cli'],
   }
   vcsrepo { '/usr/src/phabricator':
-    ensure   => present,
+    ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/phabricator.git',
     require  => Class['php::cli'],
