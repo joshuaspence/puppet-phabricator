@@ -24,6 +24,7 @@ class phabricator::install {
 
   exec { 'build_xhpast':
     command   => '/usr/src/libphutil/scripts/build_xhpast.sh',
+    logoutput => true,
     subscribe => Vcsrepo['/usr/src/libphutil'],
     require   => [
       Package['g++'],
