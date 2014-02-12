@@ -7,7 +7,8 @@ class phabricator::install {
 
   php::ini { '/etc/php.ini': }
   class { 'php::cli':
-    ensure => installed,
+    ensure  => installed,
+    inifile => '/etc/php.ini',
   }
 
   vcsrepo { "${phabricator::config::base_dir}/arcanist":
