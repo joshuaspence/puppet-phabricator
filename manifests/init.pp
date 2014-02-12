@@ -1,9 +1,7 @@
 # == Define: phabricator
 #
 class phabricator {
-  include git
-
-  package { ['g++', 'make']:
+  package { ['git', 'g++', 'make']:
     ensure => installed,
   }
 
