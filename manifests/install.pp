@@ -5,7 +5,9 @@ class phabricator::install {
     ensure => installed,
   }
 
-  php::ini { '/etc/php.ini': }
+  php::ini { '/etc/php.ini':
+    date_timezone => 'UTC',
+  }
   class { 'php::cli':
     ensure  => installed,
     inifile => '/etc/php.ini',

@@ -74,11 +74,14 @@ class phabricator::web (
   }
 
   php::fpm::conf { 'www':
-    ensure  => present,
-    listen  => '127.0.0.1:9000',
-    user    => 'nginx',
-    env     => ['PATH'],
-    require => [
+    ensure    => present,
+    listen    => '127.0.0.1:9000',
+    user      => 'nginx',
+    env       => ['PATH'],
+    php_value => {
+      date_timezone => 'UTC',
+    },
+    require   => [
       Class['nginx'],
       Php::Module['mysql'],
     ],
