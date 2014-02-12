@@ -7,6 +7,7 @@ class phabricator::db {
 
   exec { 'storage-upgrade':
     command => '/usr/src/phabricator/bin/storage upgrade --force',
+    unless  => '/usr/src/phabricator/bin/storage status',
     require => [
       Class['phabricator::install'],
       Class['mysql::server'],
