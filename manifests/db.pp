@@ -1,6 +1,10 @@
 # == Define: phabricator::db
 #
-class phabricator::db {
+class phabricator::db (
+  $environment = 'production',
+) {
+  validate_string($environment)
+
   include phabricator::install
 
   class { 'mysql::server': }

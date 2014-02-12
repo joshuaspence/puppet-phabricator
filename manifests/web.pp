@@ -1,6 +1,11 @@
 # == Define: phabricator::web
 #
-class phabricator::web {
+class phabricator::web (
+  $environment = 'production',
+) {
+
+  validate_string($environment)
+
   include phabricator::install
 
   class { 'nginx': }
@@ -45,7 +50,7 @@ class phabricator::web {
     fastcgi             => 'localhost:9000',
     location_cfg_append => {
       'fastcgi_index' => 'index.php',
-      'fastcgi_param' => 'PHABRICATOR_ENV "development"',
+      'fastcgi_param' => "PHABRICATOR_ENV '${environment}'",
     },
   }
 
