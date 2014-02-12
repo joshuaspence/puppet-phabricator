@@ -45,7 +45,7 @@ class phabricator::web {
     fastcgi             => 'localhost:9000',
     location_cfg_append => {
       'fastcgi_index' => 'index.php',
-      'fastcgi_param' => 'PHABRICATOR_ENV "production"',
+      'fastcgi_param' => 'PHABRICATOR_ENV "development"',
     },
   }
 
