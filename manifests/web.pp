@@ -37,7 +37,7 @@ class phabricator::web {
     ],
   }
 
-  php::module { ['curl', 'mysql']: }
+  php::module { ['apc', 'curl', 'gd', 'mysql']: }
 
   php::fpm::conf { 'www':
     listen  => '127.0.0.1:9000',
