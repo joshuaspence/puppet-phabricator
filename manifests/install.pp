@@ -14,6 +14,7 @@ class phabricator::install {
     provider => git,
     source   => 'git://github.com/facebook/libphutil.git',
     require  => Class['php::cli'],
+    notify   => Exec['build_xhpast'],
   }
   vcsrepo { '/usr/src/phabricator':
     ensure   => latest,
