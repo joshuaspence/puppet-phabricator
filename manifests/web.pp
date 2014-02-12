@@ -50,6 +50,11 @@ class phabricator::web {
   }
 
   php::module { ['apc', 'curl', 'gd', 'mysql']: }
+  php::module::ini { 'apc':
+    settings => {
+      'apc.stat' => '0',
+    },
+  }
 
   php::fpm::conf { 'www':
     listen  => '127.0.0.1:9000',
