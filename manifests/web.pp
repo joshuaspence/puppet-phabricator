@@ -88,14 +88,15 @@ class phabricator::web (
   }
 
   php::fpm::conf { 'www':
-    ensure    => present,
-    listen    => '127.0.0.1:9000',
-    user      => 'nginx',
-    env       => ['PATH'],
-    php_value => {
+    ensure               => present,
+    listen               => '127.0.0.1:9000',
+    user                 => 'nginx',
+    catch_workers_output => 'yes',
+    env                  => ['PATH'],
+    php_value            => {
       date_timezone => 'UTC',
     },
-    require   => [
+    require              => [
       Class['nginx'],
       Php::Module['mysql'],
     ],
