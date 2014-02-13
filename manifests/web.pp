@@ -81,7 +81,7 @@ class phabricator::web (
   php::fpm::conf { 'www':
     ensure    => present,
     listen    => '127.0.0.1:9000',
-    user      => $nginx::params::nx_daemon_user,
+    user      => 'nginx',
     env       => ['PATH'],
     php_value => {
       date_timezone => 'UTC',
