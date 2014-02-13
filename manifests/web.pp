@@ -11,10 +11,11 @@ class phabricator::web (
   class { 'nginx':
     worker_processes => 'auto',
     http_cfg_append  => {
-      'charset'     => 'UTF-8',
-      'gzip_static' => 'on',
-      'gzip_vary'   => 'on',
-      'tcp_nopush'  => 'on',
+      'charset'         => 'UTF-8',
+      'gzip_comp_level' => '4',
+      'gzip_static'     => 'on',
+      'gzip_vary'       => 'on',
+      'tcp_nopush'      => 'on',
     }
   }
   nginx::resource::vhost { $hostname:
