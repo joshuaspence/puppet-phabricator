@@ -10,6 +10,9 @@ class phabricator::web (
 
   class { 'nginx':
     worker_processes => 'auto',
+    http_cfg_append  => {
+      'tcp_nopush' => 'on',
+    }
   }
   nginx::resource::vhost { $hostname:
     ensure               => 'present',
