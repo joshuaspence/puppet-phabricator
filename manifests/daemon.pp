@@ -23,6 +23,9 @@ class phabricator::daemon {
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
-    require    => File['/etc/init.d/phd'],
+    require    => [
+      Class['phabricator::db'],
+      File['/etc/init.d/phd'],
+    ],
   }
 }
