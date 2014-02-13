@@ -54,11 +54,17 @@ class phabricator::web (
     ensure              => 'present',
     location            => '~ .php$',
     vhost               => $hostname,
-    fastcgi             => 'localhost:9000',
+    fastcgi             => 'phabricator_rack_app',
     location_cfg_append => {
       'fastcgi_index' => 'index.php',
       'fastcgi_param' => "PHABRICATOR_ENV '${phabricator::config::environment}'",
     },
+  }
+  nginx::resource::upstream { 'phabricator_rack_app':
+    ensure  => present,
+    members => [
+      'localhost:9000',
+    ],
   }
 
   php::module { ['apc', 'curl', 'gd', 'mysql']: }
