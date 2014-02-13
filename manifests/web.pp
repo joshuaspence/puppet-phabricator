@@ -10,22 +10,33 @@ class phabricator::web {
     www_root             => '/usr/src/phabricator/webroot',
     access_log           => '/var/log/access.log',
     error_log            => '/var/log/error.log',
-    vhost_cfg_prepend    => {
-      try_files => '$uri $uri/ @rewrite',
-    },
     use_default_location => false,
   }
-  nginx::resource::location { 'phabricator.joshuaspence.com/favicon.ico':
-    ensure      => 'present',
-    location    => '= /favicon.ico',
-    vhost       => 'phabricator.joshuaspence.com',
-    www_root    => '/usr/src/phabricator/webroot',
+  nginx::resource::location { 'phabricator.joshuaspence.com/':
+    ensure        => 'present',
+    location      => '/',
+    vhost         => 'phabricator.joshuaspence.com',
+    www_root      => '/usr/src/phabricator/webroot',
+    index_files   => [],
+    rewrite_rules => [
+      '^/(.*)$ /index.php?__path__=/$1 last',
+    ],
   }
   nginx::resource::location { 'phabricator.joshuaspence.com/rsrc/':
-    ensure      => 'present',
-    location    => '/rsrc/',
-    vhost       => 'phabricator.joshuaspence.com',
-    www_root    => '/usr/src/phabricator/webroot',
+    ensure              => 'present',
+    location            => '/rsrc/',
+    vhost               => 'phabricator.joshuaspence.com',
+    location_custom_cfg => {
+      try_files => '$uri $uri/ =404',
+    },
+  }
+  nginx::resource::location { 'phabricator.joshuaspence.com/favicon.ico':
+    ensure              => 'present',
+    location            => '= /favicon.ico',
+    vhost               => 'phabricator.joshuaspence.com',
+    location_custom_cfg => {
+      try_files => '$uri =204',
+    },
   }
   nginx::resource::location { 'phabricator.joshuaspence.com/~.php':
     ensure              => 'present',
@@ -36,17 +47,6 @@ class phabricator::web {
       'fastcgi_index' => 'index.php',
       'fastcgi_param' => 'PHABRICATOR_ENV "production"',
     },
-  }
-  nginx::resource::location { 'phabricator.joshuaspence.com@rewrite':
-    ensure        => 'present',
-    location      => '@rewrite',
-    vhost         => 'phabricator.joshuaspence.com',
-    www_root      => '/usr/src/phabricator/webroot',
-    index_files   => [],
-
-    rewrite_rules => [
-      '^/(.*)$ /index.php?__path__=/$1 last',
-    ],
   }
 
   php::module { ['apc', 'curl', 'gd', 'mysql']: }
