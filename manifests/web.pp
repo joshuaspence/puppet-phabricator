@@ -13,6 +13,7 @@ class phabricator::web (
     http_cfg_append  => {
       'charset'     => 'UTF-8',
       'gzip_static' => 'on',
+      'gzip_vary'   => 'on',
       'tcp_nopush'  => 'on',
     }
   }
