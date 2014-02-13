@@ -16,19 +16,11 @@ class phabricator::web (
     }
   }
   nginx::resource::vhost { $hostname:
-    ensure               => 'present',
-    index_files          => ['index.php'],
-    www_root             => "${phabricator::config::base_dir}/phabricator/webroot",
-    access_log           => '/var/log/nginx/phabricator-access.log',
-    error_log            => '/var/log/nginx/phabricator-error.log',
-    use_default_location => false,
-  }
-  nginx::resource::location { "${hostname}/":
     ensure        => 'present',
-    location      => '/',
-    vhost         => $hostname,
+    index_files   => ['index.php'],
     www_root      => "${phabricator::config::base_dir}/phabricator/webroot",
-    index_files   => [],
+    access_log    => '/var/log/nginx/phabricator-access.log',
+    error_log     => '/var/log/nginx/phabricator-error.log',
     rewrite_rules => [
       '^/(.*)$ /index.php?__path__=/$1 last',
     ],
