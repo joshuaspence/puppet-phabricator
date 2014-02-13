@@ -1,15 +1,17 @@
 # == Define: phabricator::web
 #
 class phabricator::web (
+  $hostname = undef,
   $environment = 'production',
 ) {
 
+  validate_string($hostname)
   validate_string($environment)
 
   include phabricator::install
 
   class { 'nginx': }
-  nginx::resource::vhost { 'phabricator.joshuaspence.com':
+  nginx::resource::vhost { $hostname:
     ensure               => 'present',
     index_files          => ['index.php'],
     www_root             => '/usr/src/phabricator/webroot',
@@ -17,36 +19,36 @@ class phabricator::web (
     error_log            => '/var/log/error.log',
     use_default_location => false,
   }
-  nginx::resource::location { 'phabricator.joshuaspence.com/':
+  nginx::resource::location { "${hostname}/":
     ensure        => 'present',
     location      => '/',
-    vhost         => 'phabricator.joshuaspence.com',
+    vhost         => $hostname,
     www_root      => '/usr/src/phabricator/webroot',
     index_files   => [],
     rewrite_rules => [
       '^/(.*)$ /index.php?__path__=/$1 last',
     ],
   }
-  nginx::resource::location { 'phabricator.joshuaspence.com/rsrc/':
+  nginx::resource::location { "${hostname}/rsrc/":
     ensure              => 'present',
     location            => '/rsrc/',
-    vhost               => 'phabricator.joshuaspence.com',
+    vhost               => $hostname,
     location_custom_cfg => {
       try_files => '$uri $uri/ =404',
     },
   }
-  nginx::resource::location { 'phabricator.joshuaspence.com/favicon.ico':
+  nginx::resource::location { "${hostname}/favicon.ico":
     ensure              => 'present',
     location            => '= /favicon.ico',
-    vhost               => 'phabricator.joshuaspence.com',
+    vhost               => $hostname,
     location_custom_cfg => {
       try_files => '$uri =204',
     },
   }
-  nginx::resource::location { 'phabricator.joshuaspence.com/~.php':
+  nginx::resource::location { "${hostname}/~.php":
     ensure              => 'present',
     location            => '~ .php$',
-    vhost               => 'phabricator.joshuaspence.com',
+    vhost               => $hostname,
     fastcgi             => 'localhost:9000',
     location_cfg_append => {
       'fastcgi_index' => 'index.php',
