@@ -19,8 +19,8 @@ class phabricator::web (
     ensure               => 'present',
     index_files          => ['index.php'],
     www_root             => "${phabricator::config::base_dir}/phabricator/webroot",
-    access_log           => '/var/log/access.log',
-    error_log            => '/var/log/error.log',
+    access_log           => '/var/log/nginx/phabricator-access.log',
+    error_log            => '/var/log/nginx/phabricator-error.log',
     use_default_location => false,
   }
   nginx::resource::location { "${hostname}/":
