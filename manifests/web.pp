@@ -66,7 +66,7 @@ class phabricator::web (
   nginx::resource::upstream { 'phabricator_rack_app':
     ensure  => present,
     members => [
-      'localhost:9000',
+      'unix:/var/run/php5-fpm.socket',
     ],
   }
 
@@ -89,7 +89,7 @@ class phabricator::web (
 
   php::fpm::conf { 'www':
     ensure               => present,
-    listen               => '127.0.0.1:9000',
+    listen               => '/var/run/php5-fpm.socket',
     user                 => 'nginx',
     pm_status_path       => '/status',
     ping_path            => '/ping',
