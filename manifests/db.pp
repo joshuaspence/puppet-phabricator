@@ -34,4 +34,14 @@ class phabricator::db {
     ],
     subscribe => Vcsrepo['/usr/src/phabricator'],
   }
+
+  exec { 'phd-start':
+    command   => '/usr/src/phabricator/bin/phd start',
+    logoutput => true,
+    require   => [
+      Class['phabricator::install'],
+      Class['php::cli'],
+      Exec['storage-upgrade'],
+    ],
+  }
 }
