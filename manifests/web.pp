@@ -21,6 +21,7 @@ class phabricator::web (
       'charset'         => 'UTF-8',
       'gzip_comp_level' => '4',
       'gzip_static'     => 'on',
+      'gzip_types'      => 'application/javascript application/json application/rss+xml application/vnd.ms-fontobject application/xhtml+xml application/xml application/xml+rss application/x-font-opentype application/x-font-ttf application/x-javascript image/svg+xml image/x-icon text/css text/javascript text/plain text/xml',
       'gzip_vary'       => 'on',
       'tcp_nopush'      => 'on',
     }
