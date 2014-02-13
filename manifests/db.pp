@@ -25,13 +25,13 @@ class phabricator::db {
   }
 
   exec { 'storage-upgrade':
-    command   => '/usr/src/phabricator/bin/storage upgrade --force',
+    command   => "${phabricator::config::base_dir}/phabricator/bin/storage upgrade --force",
     logoutput => true,
-    unless    => '/usr/src/phabricator/bin/storage status',
+    unless    => "${phabricator::config::base_dir}/phabricator/bin/storage status",
     require   => [
       Class['phabricator::install'],
       Class['mysql::server'],
     ],
-    subscribe => Vcsrepo['/usr/src/phabricator'],
+    subscribe => Vcsrepo["${phabricator::config::base_dir}/phabricator"],
   }
 }

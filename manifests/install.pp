@@ -10,20 +10,20 @@ class phabricator::install {
     ensure => installed,
   }
 
-  vcsrepo { '/usr/src/arcanist':
+  vcsrepo { "${phabricator::config::base_dir}/arcanist":
     ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/arcanist.git',
     require  => Class['php::cli'],
   }
-  vcsrepo { '/usr/src/libphutil':
+  vcsrepo { "${phabricator::config::base_dir}/libphutil":
     ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/libphutil.git',
     require  => Class['php::cli'],
     notify   => Exec['build_xhpast'],
   }
-  vcsrepo { '/usr/src/phabricator':
+  vcsrepo { "${phabricator::config::base_dir}/phabricator":
     ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/phabricator.git',
@@ -31,9 +31,9 @@ class phabricator::install {
   }
 
   exec { 'build_xhpast':
-    command   => '/usr/src/libphutil/scripts/build_xhpast.sh',
+    command   => "${phabricator::config::base_dir}/libphutil/scripts/build_xhpast.sh",
     logoutput => true,
-    subscribe => Vcsrepo['/usr/src/libphutil'],
+    subscribe => Vcsrepo["${phabricator::config::base_dir}/libphutil"],
     require   => [
       Package['g++'],
       Package['make'],

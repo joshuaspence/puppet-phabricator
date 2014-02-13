@@ -10,7 +10,7 @@
 ### END INIT INFO
 
 NAME="phd"
-DAEMON=/usr/src/phabricator/bin/$NAME
+DAEMON="<%= scope.lookupvar('phabricator::config::base_dir') %>/phabricator/bin/$NAME"
 DESC="Phabricator Daemon launcher"
 
 # Exit if the package is not installed.
