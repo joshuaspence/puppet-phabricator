@@ -8,6 +8,12 @@ class phabricator::web (
 
   include phabricator::install
 
+  file { "${phabricator::config::base_dir}/phabricator/conf/local/local.json":
+    ensure  => present,
+    content => template('phabricator/config.json.erb'),
+    require => Vcsrepo["${phabricator::config::base_dir}/phabricator"],
+  }
+
   class { 'nginx':
     worker_processes => 'auto',
     http_cfg_append  => {
