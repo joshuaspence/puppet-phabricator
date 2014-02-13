@@ -91,6 +91,7 @@ class phabricator::web (
     ensure               => present,
     listen               => '127.0.0.1:9000',
     user                 => 'nginx',
+    pm_status_path       => '/status',
     ping_path            => '/ping',
     catch_workers_output => 'yes',
     env                  => ['PATH'],
