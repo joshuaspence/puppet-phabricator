@@ -16,6 +16,7 @@ class phabricator::web (
 
   class { 'nginx':
     worker_processes => 'auto',
+    server_tokens    => 'off',
     http_cfg_append  => {
       'charset'         => 'UTF-8',
       'gzip_comp_level' => '4',
