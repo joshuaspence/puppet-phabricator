@@ -2,11 +2,9 @@
 #
 class phabricator::web (
   $hostname = undef,
-  $environment = 'production',
 ) {
 
   validate_string($hostname)
-  validate_string($environment)
 
   include phabricator::install
 
@@ -52,7 +50,7 @@ class phabricator::web (
     fastcgi             => 'localhost:9000',
     location_cfg_append => {
       'fastcgi_index' => 'index.php',
-      'fastcgi_param' => "PHABRICATOR_ENV '${environment}'",
+      'fastcgi_param' => "PHABRICATOR_ENV '${phabricator::config::environment}'",
     },
   }
 
