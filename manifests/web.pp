@@ -70,6 +70,29 @@ class phabricator::web (
     ],
   }
 
+  nginx::resource::vhost { 'monitor':
+    ensure               => 'present',
+    listen_ip            => '127.0.0.1',
+    listen_port          => '8080',
+    location_allow       => ['127.0.0.1'],
+    index_files          => [],
+    access_log           => '/var/log/nginx/localhost-access.log',
+    error_log            => '/var/log/nginx/localhost-error.log',
+    use_default_location => false,
+  }
+  nginx::resource::location { 'monitor/ping':
+    ensure   => 'present',
+    location => '/ping',
+    vhost    => 'monitor',
+    fastcgi  => 'phabricator_rack_app',
+  }
+  nginx::resource::location { 'monitor/status':
+    ensure   => 'present',
+    location => '/status',
+    vhost    => 'monitor',
+    fastcgi  => 'phabricator_rack_app',
+  }
+
   php::module { ['apc', 'curl', 'gd', 'mysql']: }
   case $environment {
     'production': {
