@@ -27,5 +27,9 @@ class phabricator::daemon {
       Class['phabricator::db'],
       File['/etc/init.d/phd'],
     ],
+    subscribe  => [
+      Vcsrepo["${phabricator::config::base_dir}/libphutil"],
+      Vcsrepo["${phabricator::config::base_dir}/phabricator"],
+    ],
   }
 }
