@@ -1,6 +1,6 @@
-# == Define: phabricator::phd
+# == Define: phabricator::daemon
 #
-class phabricator::phd {
+class phabricator::daemon {
   include phabricator::install
   include phabricator::db
 
