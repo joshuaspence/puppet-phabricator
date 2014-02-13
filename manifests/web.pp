@@ -11,8 +11,9 @@ class phabricator::web (
   class { 'nginx':
     worker_processes => 'auto',
     http_cfg_append  => {
-      'charset'    => 'UTF-8',
-      'tcp_nopush' => 'on',
+      'charset'     => 'UTF-8',
+      'gzip_static' => 'on',
+      'tcp_nopush'  => 'on',
     }
   }
   nginx::resource::vhost { $hostname:
