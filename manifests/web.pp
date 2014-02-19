@@ -1,7 +1,7 @@
 # == Define: phabricator::web
 #
 class phabricator::web (
-  $hostname = undef,
+  $hostname = $::fqdn,
 ) {
 
   validate_string($hostname)
