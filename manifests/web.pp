@@ -103,7 +103,7 @@ class phabricator::web (
     fastcgi  => 'phabricator_rack_app',
   }
 
-  php::module { ['apc', 'curl', 'gd', 'mysql']: }
+  php::module { ['apc', 'curl', 'gd']: }
   case $environment {
     'production': {
       $apc_settings = {

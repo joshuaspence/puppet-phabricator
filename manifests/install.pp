@@ -12,6 +12,7 @@ class phabricator::install {
     ensure  => installed,
     inifile => '/etc/php.ini',
   }
+  php::module { ['mysql']: }
 
   vcsrepo { "${phabricator::config::base_dir}/arcanist":
     ensure   => latest,
