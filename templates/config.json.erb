@@ -1,3 +1,6 @@
 {
-  'phabricator.base-uri': 'http://<%= @hostname %>/'
+  'phabricator.base-uri': 'http://<%= @hostname %>/',
+
+  <%# MySQL settings %>
+  'mysql.host': 'phabricator-db.<%= @domain %>',
 }
