@@ -31,6 +31,10 @@ class phabricator::db {
     remove_default_accounts => true,
   }
 
+  mysql_user { "root@phabricator.${::domain}":
+    ensure  => present,
+    require => Class['mysql::server'],
+  }
   mysql_grant { "root@phabricator.${::domain}/`phabricator_%`.*":
     ensure     => present,
     options    => ['GRANT'],
