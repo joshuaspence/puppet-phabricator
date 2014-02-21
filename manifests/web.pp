@@ -1,10 +1,10 @@
 # == Define: phabricator::web
 #
 class phabricator::web (
-  $hostname = $::fqdn,
+  $domain = $::domain,
 ) {
 
-  validate_string($hostname)
+  validate_string($domain)
 
   include phabricator::install
 
@@ -29,7 +29,7 @@ class phabricator::web (
       'tcp_nopush'      => 'on',
     }
   }
-  nginx::resource::vhost { $hostname:
+  nginx::resource::vhost { "phabricator.${domain}":
     ensure               => 'present',
     index_files          => ['index.php'],
     www_root             => "${phabricator::config::base_dir}/phabricator/webroot",
@@ -37,36 +37,36 @@ class phabricator::web (
     error_log            => '/var/log/nginx/phabricator-error.log',
     use_default_location => false,
   }
-  nginx::resource::location { "${hostname}/":
+  nginx::resource::location { "phabricator.${domain}/":
     ensure        => 'present',
     location      => '/',
-    vhost         => $hostname,
+    vhost         => "phabricator.${domain}",
     www_root      => "${phabricator::config::base_dir}/phabricator/webroot",
     index_files   => [],
     rewrite_rules => [
       '^/(.*)$ /index.php?__path__=/$1 last',
     ],
   }
-  nginx::resource::location { "${hostname}/rsrc/":
+  nginx::resource::location { "phabricator.${domain}/rsrc/":
     ensure              => 'present',
     location            => '/rsrc/',
-    vhost               => $hostname,
+    vhost               => "phabricator.${domain}",
     location_custom_cfg => {
       try_files => '$uri $uri/ =404',
     },
   }
-  nginx::resource::location { "${hostname}/favicon.ico":
+  nginx::resource::location { "phabricator.${domain}/favicon.ico":
     ensure              => 'present',
     location            => '= /favicon.ico',
-    vhost               => $hostname,
+    vhost               => "phabricator.${domain}",
     location_custom_cfg => {
       try_files => '$uri =204',
     },
   }
-  nginx::resource::location { "${hostname}/~.php":
+  nginx::resource::location { "phabricator.${domain}/~.php":
     ensure              => 'present',
     location            => '~ .php$',
-    vhost               => $hostname,
+    vhost               => "phabricator.${domain}",
     fastcgi             => 'phabricator_rack_app',
     location_cfg_append => {
       'fastcgi_index' => 'index.php',
