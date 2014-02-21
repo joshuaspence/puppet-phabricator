@@ -137,4 +137,8 @@ class phabricator::web (
     ],
   }
   class { 'php::fpm::daemon': }
+
+  package { 'imagemagick':
+    ensure => installed,
+  }
 }
