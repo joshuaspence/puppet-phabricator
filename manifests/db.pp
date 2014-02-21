@@ -27,6 +27,7 @@ class phabricator::db {
 
   class { 'mysql::server':
     override_options => $mysql_override,
+    restart          => true,
     grants           => {
       "root@phabricator.${::domain}/`phabricator_%`.*" => {
         ensure     => 'present',
