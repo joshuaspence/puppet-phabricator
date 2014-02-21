@@ -1,7 +1,7 @@
 # == Define: phabricator::db
 #
 class phabricator::db {
-  include phabricator::install
+  include 'phabricator::install'
 
   if ! ($environment in ['development', 'production']) {
     fail('environment parameter must be "development" or "production"')
