@@ -9,11 +9,16 @@ class phabricator::db {
 
   case $phabricator::config::environment {
     'production': {
-      $mysql_override = {}
+      $mysql_override = {
+        'mysqld' => {
+          'bind-address' => $::ipaddress_eth1,
+        },
+      }
     }
     default: {
       $mysql_override = {
         'mysqld' => {
+          'bind-address' => $::ipaddress_eth1,
           'sql-mode' => 'STRICT_ALL_TABLES',
         },
       }
@@ -22,6 +27,15 @@ class phabricator::db {
 
   class { 'mysql::server':
     override_options => $mysql_override,
+    grants           => {
+      "root@phabricator.${::domain}/*.*" => {
+        ensure     => 'present',
+        options    => ['GRANT'],
+        privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
+        table      => '*.*',
+        user       => "root@phabricator.${::domain}",
+      },
+    },
   }
 
   exec { 'storage-upgrade':
