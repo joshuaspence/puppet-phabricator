@@ -1,6 +1,141 @@
 {
-  'phabricator.base-uri': 'http://<%= @hostname %>/',
+  "phabricator.base-uri": "http://<%= @hostname %>/",
+  "phabricator.production-uri": null,
+
+  <%# Security settings %>
+  "security.alternate-file-domain": null,
+  "security.require-https": false,
+  "security.allow-outbound-http": true,
+
+  <%# Access Policies %>
+  "policy.allow-public": false,
+
+  <%# Logging %>
+  "log.access.path": null,
+  "log.access.format": null,
+
+  <%# DarkConsole %>
+  "config.lock": [],
+  "config.hide": [],
+  "config.mask": [],
+  "config.ignore-issues": [],
 
   <%# MySQL settings %>
-  'mysql.host': 'phabricator-db.<%= @domain %>',
+  "mysql.user": "root",
+  "mysql.pass": "",
+  "mysql.host": "phabricator-db.<%= @domain %>",
+  "mysql.port": null,
+
+  <%# Notifications %>
+  "notification.enabled": false,
+  "notification.client-uri": "http://localhost:22280/",
+  "notification.server-uri": "http://localhost:22281/",
+  "notification.user": null,
+  "notification.debug": false,
+
+  <%# Email %>
+  "metamta.default-address": "noreply@example.com",
+  "metamta.domain": "example.com",
+  "metamta.can-send-as-user": false,
+  "metamta.maniphest.reply-handler-domain": null,
+  "metamta.single-reply-handler-prefix": null,
+  "metamta.pholio.reply-handler-domain": null,
+  "metamta.macro.reply-handler-domain": null,
+  "metamta.differential.reply-handler-domain": null,
+  "metamta.diffusion.reply-handler-domain": null,
+  "metamta.public-replies": false,
+  "metamta.maniphest.public-create-email": null,
+  "metamta.maniphest.default-public-author": null,
+  "metamta.herald.show-hints": true,
+  "metamta.reply.show-hints": true,
+  "metamta.recipients.show-hints": true,
+  "metamta.precedence-bulk": false,
+  "metamta.re-prefix": false,
+  "metamta.vary-subjects": true,
+
+  <%# Auth %>
+  "auth.require-email-verification": false,
+  "auth.email-domains": [],
+
+  <%# Accounts %>
+  "account.editable": true,
+
+  <%# Recaptcha %>
+  "recaptcha.enabled": false,
+  "recaptcha.public-key": null,
+  "recaptcha.private-key": null,
+
+  <%# Misc %>
+  "phabricator.timezone": null,
+  "phabricator.developer-mode": false,
+  "phabricator.serious-business": false,
+  "phabricator.show-beta-applications": false,
+  "phabricator.uninstalled-applications": [],
+  "phabricator.allow-email-users": false,
+
+  <%# Files %>
+  "files.enable-imagemagick": false,
+
+  <%# Storage %>
+  "storage.mysql-engine.max-size": 1000000,
+  "storage.local-disk.path": null,
+  "amazon-s3.access-key": null,
+  "amazon-s3.secret-key": null,
+  "amazon-s3.endpoint": null,
+  "storage.s3.bucket": null,
+  "storage.upload-size-limit": null,
+
+  <%# Search %>
+  "search.elastic.host": null,
+
+  <%# Differential %>
+  "differential.whitespace-matters": [],
+  "differential.show-host-field": false,
+  "differential.require-test-plan-field": false,
+  "differential.enable-email-accept": false,
+  "differential.generated-paths": [],
+  "differential.allow-self-accept": false,
+  "differential.always-allow-close": false,
+  "differential.allow-reopen": false,
+  "differential.days-fresh": 1,
+  "differential.days-stale": 3,
+
+  <%# Repositories %>
+  "repository.default-local-path": null,
+
+  <%# Maniphest %>
+
+  <%# Cache %>
+  "cache.enable-deflate": true,
+
+  <%# Garbage Collection %>
+
+  <%# Feed %>
+  "feed.public": false,
+  "feed.http-hooks": [],
+
+  <%# Drydock %>
+  "amazon-ec2.access-key": null,
+  "amazon-ec2.secret-key": null,
+
+  <%# Customization %>
+  "load-libraries": [],
+  "phd.verbose": false,
+  "phd.trace": false,
+  "celerity.minify": false,
+  "events.listeners": false,
+
+  <%# Syntax Highlighting %>
+  "pygments.enabled": false,
+  "syntax.filemap": [],
+
+  <%# Debugging %>
+  "debug.stop-on-redirect": false,
+  "debug.profile-rate": 0,
+
+  <%# Environment %>
+  "environment.append-paths": [],
+
+  <%# Audit %>
+  "audit.can-author-close-audit": false
 }
