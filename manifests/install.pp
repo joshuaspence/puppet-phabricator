@@ -18,12 +18,16 @@ class phabricator::install {
     ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/arcanist.git',
+    owner    => $phabricator::config::user,
+    group    => $phabricator::config::group,
     require  => Class['php::cli'],
   }
   vcsrepo { "${phabricator::config::base_dir}/libphutil":
     ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/libphutil.git',
+    owner    => $phabricator::config::user,
+    group    => $phabricator::config::group,
     require  => Class['php::cli'],
     notify   => Exec['build_xhpast'],
   }
@@ -31,6 +35,8 @@ class phabricator::install {
     ensure   => latest,
     provider => git,
     source   => 'git://github.com/facebook/phabricator.git',
+    owner    => $phabricator::config::user,
+    group    => $phabricator::config::group,
     require  => Class['php::cli'],
   }
 

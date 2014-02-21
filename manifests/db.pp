@@ -31,16 +31,16 @@ class phabricator::db {
     remove_default_accounts => true,
   }
 
-  mysql_user { "root@phabricator.${::domain}":
+  mysql_user { "${phabricator::config::user}@phabricator.${::domain}":
     ensure  => present,
     require => Class['mysql::server'],
   }
-  mysql_grant { "root@phabricator.${::domain}/`phabricator_%`.*":
+  mysql_grant { "${phabricator::config::user}@phabricator.${::domain}/`phabricator_%`.*":
     ensure     => present,
     options    => ['GRANT'],
     privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
     table      => '`phabricator_%`.*',
-    user       => "root@phabricator.${::domain}",
+    user       => "${phabricator::config::user}@phabricator.${::domain}",
     require    => Class['mysql::server'],
   }
 

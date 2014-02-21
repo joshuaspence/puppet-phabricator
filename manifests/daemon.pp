@@ -8,8 +8,8 @@ class phabricator::daemon {
           '/var/tmp/phd/pid',
           '/var/tmp/phd/log']:
     ensure => directory,
-    owner  => root,
-    group  => root,
+    owner  => $phabricator::config::user,
+    group  => $phabricator::config::group,
   }
 
   file { '/etc/init.d/phd':

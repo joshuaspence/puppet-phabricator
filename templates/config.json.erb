@@ -21,7 +21,7 @@
   "config.ignore-issues": [],
 
   <%# MySQL settings %>
-  "mysql.user": "root",
+  "mysql.user": "<%= scope.lookupvar('phabricator::config::user') %>",
   "mysql.pass": "",
   "mysql.host": "phabricator-db.<%= @domain %>",
   "mysql.port": null,
