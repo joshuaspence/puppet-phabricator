@@ -28,11 +28,11 @@ class phabricator::db {
   class { 'mysql::server':
     override_options => $mysql_override,
     grants           => {
-      "root@phabricator.${::domain}/*.*" => {
+      "root@phabricator.${::domain}/`phabricator_%`.*" => {
         ensure     => 'present',
         options    => ['GRANT'],
         privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
-        table      => '*.*',
+        table      => '`phabricator_%`.*',
         user       => "root@phabricator.${::domain}",
       },
     },
