@@ -29,15 +29,15 @@ class phabricator::db {
     override_options        => $mysql_override,
     restart                 => true,
     remove_default_accounts => true,
-    grants                  => {
-      "root@phabricator.${::domain}/`phabricator_%`.*" => {
-        ensure     => 'present',
-        options    => ['GRANT'],
-        privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
-        table      => '`phabricator_%`.*',
-        user       => "root@phabricator.${::domain}",
-      },
-    },
+  }
+
+  mysql_grant { "root@phabricator.${::domain}/`phabricator_%`.*":
+    ensure     => present,
+    options    => ['GRANT'],
+    privileges => ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
+    table      => '`phabricator_%`.*',
+    user       => "root@phabricator.${::domain}",
+    require    => Class['mysql::server'],
   }
 
   exec { 'storage-upgrade':
