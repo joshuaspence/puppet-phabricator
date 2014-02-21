@@ -141,4 +141,8 @@ class phabricator::web (
   package { 'imagemagick':
     ensure => installed,
   }
+
+  package { 'python-pygments':
+    ensure => installed,
+  }
 }
