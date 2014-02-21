@@ -26,9 +26,10 @@ class phabricator::db {
   }
 
   class { 'mysql::server':
-    override_options => $mysql_override,
-    restart          => true,
-    grants           => {
+    override_options        => $mysql_override,
+    restart                 => true,
+    remove_default_accounts => true,
+    grants                  => {
       "root@phabricator.${::domain}/`phabricator_%`.*" => {
         ensure     => 'present',
         options    => ['GRANT'],
