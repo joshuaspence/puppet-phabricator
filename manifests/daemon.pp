@@ -1,8 +1,8 @@
 # == Define: phabricator::daemon
 #
 class phabricator::daemon {
-  include 'phabricator::install'
-  include 'phabricator::db'
+  include '::phabricator::install'
+  include '::phabricator::db'
 
   file { ['/var/tmp/phd',
           '/var/tmp/phd/pid',

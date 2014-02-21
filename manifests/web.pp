@@ -6,7 +6,7 @@ class phabricator::web (
 
   validate_string($domain)
 
-  include 'phabricator::install'
+  include '::phabricator::install'
 
   file { "${phabricator::config::base_dir}/phabricator/conf/local/local.json":
     ensure  => present,
