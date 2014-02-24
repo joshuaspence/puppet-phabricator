@@ -32,7 +32,7 @@ class phabricator::daemon {
     hasrestart => true,
     hasstatus  => true,
     require    => [
-      Class['phabricator::db'],
+      Class['phabricator::install'],
       File['/etc/init.d/phd'],
     ],
     subscribe  => [
