@@ -1,4 +1,12 @@
-# == Define: phabricator::install
+# Class: phabricator::install
+#
+# This module installs Phabricator dependencies.
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
 #
 class phabricator::install {
   package { ['git', 'g++', 'make']:

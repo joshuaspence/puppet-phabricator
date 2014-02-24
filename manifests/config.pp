@@ -1,6 +1,16 @@
-# == Define: phabricator::config
+# Class: phabricator::config
 #
 # This module manages Phabricator configuration.
+#
+# Parameters:
+#   base_dir -
+#   environment -
+#   user -
+#   group -
+#
+# Actions:
+#
+# Requires:
 #
 class phabricator::config (
   $base_dir    = $phabricator::params::base_dir,

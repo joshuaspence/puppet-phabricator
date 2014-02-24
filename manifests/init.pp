@@ -1,4 +1,12 @@
-# == Define: phabricator
+# Class: phabricator
+#
+# This module initializes Phabricator.
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
 #
 class phabricator (
   $base_dir    = $phabricator::params::base_dir,

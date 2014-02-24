@@ -1,6 +1,12 @@
-# == Define: phabricator::params
+# Class: phabricator::params
 #
-# This module manages Phabricator parameters.
+# This module manages the default Phabricator parameters.
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
 #
 class phabricator::params {
   $base_dir    = '/usr/src'

@@ -1,4 +1,12 @@
-# == Define: phabricator::daemon
+# Class: phabricator::daemon
+#
+# This module manages the Phabricator Daemon (phd).
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
 #
 class phabricator::daemon {
   include '::phabricator::install'
