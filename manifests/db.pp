@@ -11,26 +11,13 @@
 class phabricator::db {
   include '::phabricator::install'
 
-  case $phabricator::config::environment {
-    'production': {
-      $mysql_override = {
-        'mysqld' => {
-          'bind-address' => $::ipaddress_eth1,
-        },
-      }
-    }
-    default: {
-      $mysql_override = {
-        'mysqld' => {
-          'bind-address' => $::ipaddress_eth1,
-          'sql-mode' => 'STRICT_ALL_TABLES',
-        },
-      }
-    }
-  }
-
   class { 'mysql::server':
-    override_options        => $mysql_override,
+    override_options        => {
+      'mysqld' => {
+        'bind-address' => $::ipaddress_eth1,
+        'sql-mode'     => 'STRICT_ALL_TABLES',
+      },
+    },
     restart                 => true,
     remove_default_accounts => true,
   }
