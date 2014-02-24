@@ -11,10 +11,6 @@
 class phabricator::db {
   include '::phabricator::install'
 
-  if ! ($environment in ['development', 'production']) {
-    fail('environment parameter must be "development" or "production"')
-  }
-
   case $phabricator::config::environment {
     'production': {
       $mysql_override = {
