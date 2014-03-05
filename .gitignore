@@ -1,2 +1,5 @@
+# Bundler
+/Gemfile.lock
+
 # Sublime Text
 /puppet-phabricator.sublime-workspace
