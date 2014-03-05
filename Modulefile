@@ -5,7 +5,7 @@ author 'Joshua Spence'
 license 'Apache 2.0'
 summary 'Phabricator module'
 description 'Phabricator module'
-project_page 'http://github.com/joshuaspence/puppet-phabricator'
+project_page 'https://github.com/joshuaspence/puppet-phabricator'
 
 dependency 'jfryman/nginx', '>= 0.0.7'
 dependency 'puppetlabs/mysql', '>= 2.2.1'
