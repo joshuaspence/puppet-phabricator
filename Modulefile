@@ -1,11 +1,11 @@
 name 'joshuaspence-phabricator'
 version '0.1.0'
-source 'http://github.com/joshuaspence/vagrant-phabricator/tree/master/puppet-phabricator'
+source 'http://github.com/joshuaspence/puppet-phabricator'
 author 'Joshua Spence'
 license 'Apache 2.0'
 summary 'Phabricator module'
 description 'Phabricator module'
-project_page 'http://github.com/joshuaspence/vagrant-phabricator'
+project_page 'http://github.com/joshuaspence/puppet-phabricator'
 
 dependency 'jfryman/nginx', '>= 0.0.7'
 dependency 'puppetlabs/mysql', '>= 2.2.1'
