@@ -4,6 +4,7 @@ require 'puppet_blacksmith/rake_tasks'
 
 PuppetLint.configuration.send('disable_class_inherits_from_params_class')
 PuppetLint.configuration.send('disable_80chars')
+PuppetLint.configuration.ignore_paths = ['pkg/**/*.pp']
 
 desc 'Validate manifests, templates, and ruby files in lib.'
 task :validate do
