@@ -29,7 +29,6 @@ class phabricator::web (
     server_tokens    => 'off',
     http_cfg_append  => {
       'charset'         => 'UTF-8',
-      'gzip'            => 'on',
       'gzip_comp_level' => '4',
       'gzip_proxied'    => 'any',
       'gzip_static'     => 'on',
