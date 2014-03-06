@@ -1,5 +1,7 @@
 # Bundler
 /Gemfile.lock
+
+# Puppet
 /pkg/
 
 # Sublime Text
