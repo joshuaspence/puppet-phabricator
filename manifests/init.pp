@@ -1,12 +1,15 @@
-# Class: phabricator
+# == Class: phabricator
 #
 # This module initializes Phabricator.
 #
-# Parameters:
+# === Parameters
 #
-# Actions:
+# [*base_dir*]
+# [*environment*]
 #
-# Requires:
+# === Variables
+#
+# === Examples
 #
 class phabricator (
   $base_dir    = $phabricator::params::base_dir,

@@ -1,12 +1,12 @@
-# Class: phabricator::daemon
+# == Class: phabricator::daemon
 #
 # This module manages the Phabricator Daemon (phd).
 #
-# Parameters:
+# === Parameters
 #
-# Actions:
+# === Variables
 #
-# Requires:
+# === Examples
 #
 class phabricator::daemon {
   include '::phabricator::install'

@@ -1,12 +1,12 @@
-# Class: phabricator::db
+# == Class: phabricator::db
 #
 # This module manages the Phabricator Database.
 #
-# Parameters:
+# === Parameters
 #
-# Actions:
+# === Variables
 #
-# Requires:
+# === Examples
 #
 class phabricator::db {
   include '::phabricator::install'

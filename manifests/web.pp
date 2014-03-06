@@ -1,13 +1,14 @@
-# Class: phabricator::web
+# == Class: phabricator::web
 #
 # This module manages the Phabricator web server.
 #
-# Parameters:
-#   - domain
+# === Parameters
 #
-# Actions:
+# [*domain*]
 #
-# Requires:
+# === Variables
+#
+# === Examples
 #
 class phabricator::web (
   $domain = $::domain,
