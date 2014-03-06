@@ -4,21 +4,12 @@
 #
 # === Parameters
 #
-# [*daemons*]
-#
 # === Variables
 #
 # === Examples
 #
-class phabricator::daemon(
-  $daemons = undef,
-) {
-
+class phabricator::daemon {
   include '::phabricator::install'
-
-  if ($daemons != undef) {
-    validate_array($daemons)
-  }
 
   file { ['/var/tmp/phd',
           '/var/tmp/phd/pid',
@@ -34,38 +25,18 @@ class phabricator::daemon(
     content => template('phabricator/phd.erb'),
   }
 
-  if ($daemons) {
-    $daemons = join($daemons, ' ')
-
-    service { 'phd':
-      ensure     => running,
-      enable     => true,
-      hasrestart => true,
-      hasstatus  => true,
-      start      => "launch ${daemons}",
-      require    => [
-        Class['phabricator::install'],
-        File['/etc/init.d/phd'],
-      ],
-      subscribe  => [
-        Vcsrepo["${phabricator::config::base_dir}/libphutil"],
-        Vcsrepo["${phabricator::config::base_dir}/phabricator"],
-      ],
-    }
-  } else {
-    service { 'phd':
-      ensure     => running,
-      enable     => true,
-      hasrestart => true,
-      hasstatus  => true,
-      require    => [
-        Class['phabricator::install'],
-        File['/etc/init.d/phd'],
-      ],
-      subscribe  => [
-        Vcsrepo["${phabricator::config::base_dir}/libphutil"],
-        Vcsrepo["${phabricator::config::base_dir}/phabricator"],
-      ],
-    }
+  service { 'phd':
+    ensure     => running,
+    enable     => true,
+    hasrestart => true,
+    hasstatus  => true,
+    require    => [
+      Class['phabricator::install'],
+      File['/etc/init.d/phd'],
+    ],
+    subscribe  => [
+      Vcsrepo["${phabricator::config::base_dir}/libphutil"],
+      Vcsrepo["${phabricator::config::base_dir}/phabricator"],
+    ],
   }
 }
