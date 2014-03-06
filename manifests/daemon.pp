@@ -15,7 +15,6 @@ class phabricator::daemon(
 ) {
 
   include '::phabricator::install'
-  include '::phabricator::db'
 
   if ($daemons != undef) {
     validate_array($daemons)
