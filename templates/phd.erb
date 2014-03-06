@@ -59,6 +59,9 @@ case "$1" in
     status)
         "$DAEMON" status && exit 0 || exit $?
         ;;
+    list)
+        "$DAEMON" list && exit 0 || exit $?
+        ;;
     restart)
         log_daemon_msg "Restarting $DESC" "$NAME"
         "$DAEMON" restart
@@ -69,7 +72,7 @@ case "$1" in
         esac
         ;;
     *)
-        echo "Usage: /etc/init.d/$NAME {start|launch|stop|status|restart}"
+        echo "Usage: /etc/init.d/$NAME {start|launch|stop|status|list|restart}"
         exit 1
         ;;
 esac
