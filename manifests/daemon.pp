@@ -4,12 +4,22 @@
 #
 # === Parameters
 #
+# [*service_ensure*]
+#
 # === Variables
 #
 # === Examples
 #
-class phabricator::daemon {
+class phabricator::daemon(
+  $service_ensure = 'running',
+) {
+
   include '::phabricator::install'
+
+  validate_string($service_ensure)
+  if ! ($service_ensure in ['stopped', 'running']) {
+    fail('service_ensure parameter must be "stopped" or "running"')
+  }
 
   file { ['/var/tmp/phd',
           '/var/tmp/phd/pid',
@@ -26,7 +36,7 @@ class phabricator::daemon {
   }
 
   service { 'phd':
-    ensure     => running,
+    ensure     => $service_ensure,
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
