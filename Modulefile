@@ -1,5 +1,5 @@
 name 'joshuaspence-phabricator'
-version '0.2.0'
+version '0.2.1'
 source 'git://github.com/joshuaspence/puppet-phabricator.git'
 author 'Joshua Spence'
 license 'Apache License, Version 2.0'
