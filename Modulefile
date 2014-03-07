@@ -9,6 +9,7 @@ project_page 'https://github.com/joshuaspence/puppet-phabricator'
 
 dependency 'jfryman/nginx', '>= 0.0.7'
 dependency 'puppetlabs/mysql', '>= 2.2.3'
+dependency 'puppetlabs/nodejs', '>= 0.4.0'
 dependency 'puppetlabs/stdlib', '>= 4.1.0'
 dependency 'puppetlabs/vcsrepo', '>= 0.2.0'
 dependency 'thias/php', '>= 0.3.9'
