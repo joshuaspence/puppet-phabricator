@@ -2,10 +2,12 @@
   "phabricator.base-uri": "http://phabricator.<%= @domain %>/",
   "phabricator.production-uri": null,
 
-  <%# Security settings %>
+  <%# Security %>
   "security.alternate-file-domain": null,
   "security.require-https": false,
   "security.allow-outbound-http": true,
+
+  <%# Internationalization %>
 
   <%# Access Policies %>
   "policy.allow-public": false,
@@ -20,7 +22,7 @@
   "config.mask": [],
   "config.ignore-issues": [],
 
-  <%# MySQL settings %>
+  <%# MySQL %>
   "mysql.user": "<%= scope.lookupvar('phabricator::config::user') %>",
   "mysql.pass": "",
   "mysql.host": "phabricator-db.<%= @domain %>",
@@ -104,6 +106,10 @@
   "repository.default-local-path": null,
 
   <%# Maniphest %>
+
+  <%# Phame %>
+
+  <%# Remarkup %>
 
   <%# Cache %>
   "cache.enable-deflate": true,
