@@ -29,7 +29,7 @@ define phabricator::daemon::launch(
   }
 
   exec { "phd-launch-${daemon}":
-    command   => "${phabricator::config::base_dir}/phabricator/bin/phd ${daemon} ${arguments}",
+    command   => "${phabricator::config::base_dir}/phabricator/bin/phd ${daemon} ${args}",
     require   => [
       Class['phabricator::install'],
     ],
