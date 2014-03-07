@@ -22,8 +22,8 @@ define phabricator::daemon::launch(
   validate_array($arguments)
 
   if (size($arguments)) {
-    $args = join($arguments, ' ')
-    $args = "-- ${args}"
+    $joined_args = join($arguments, ' ')
+    $args = "-- ${joined_args}"
   } else {
     $args = ''
   }
