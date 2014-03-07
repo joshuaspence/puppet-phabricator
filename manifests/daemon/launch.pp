@@ -32,6 +32,7 @@ define phabricator::daemon::launch(
     command   => "${phabricator::config::base_dir}/phabricator/bin/phd launch ${daemon} ${args}",
     logoutput => true,
     require   => [
+      Class['phabricator::daemon'],
       Class['phabricator::install'],
     ],
     subscribe => [
