@@ -28,14 +28,19 @@ define phabricator::daemon::launch(
     $args = ''
   }
 
-  exec { "phd-launch-${daemon}":
-    command   => "${phabricator::config::base_dir}/phabricator/bin/phd launch ${daemon} ${args}",
-    logoutput => true,
-    require   => [
+  service { "phd-launch-${daemon}":
+    ensure     => running,
+    binary     => "${phabricator::config::base_dir}/phabricator/bin/phd",
+    enable     => true,
+    hasrestart => true,
+    hasstatus  => true,
+    provider   => 'base',
+    start      => "${phabricator::config::base_dir}/phabricator/bin/phd launch ${daemon} ${args}",
+    require    => [
       Class['phabricator::daemon'],
       Class['phabricator::install'],
     ],
-    subscribe => [
+    subscribe  => [
       Vcsrepo["${phabricator::config::base_dir}/libphutil"],
       Vcsrepo["${phabricator::config::base_dir}/phabricator"],
     ],
