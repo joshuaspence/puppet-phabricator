@@ -3,6 +3,3 @@
 
 # Puppet
 /pkg/
-
-# Sublime Text
-/puppet-phabricator.sublime-workspace
