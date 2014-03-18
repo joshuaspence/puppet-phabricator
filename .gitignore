@@ -3,3 +3,6 @@
 
 # Puppet
 /pkg/
+
+# rspec
+/.rspec_system/
