@@ -1,4 +1,5 @@
 # Bundler
+/.bundle/
 /Gemfile.lock
 
 # Puppet
