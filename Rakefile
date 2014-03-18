@@ -24,3 +24,6 @@ task :validate do
 end
 
 task :default => [:lint, :spec, :validate]
+
+desc 'Run reasonably quick tests for CI'
+task :ci => [:lint, :spec, :validate]
