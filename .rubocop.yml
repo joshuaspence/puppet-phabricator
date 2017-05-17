@@ -74,6 +74,9 @@ Style/MethodCallWithArgsParentheses:
 Style/MethodCalledOnDoEndBlock:
   Enabled: true
 
+Style/NumericLiterals:
+  Enabled: false
+
 Style/OptionHash:
   Enabled: true
 
