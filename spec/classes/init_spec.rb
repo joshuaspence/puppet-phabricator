@@ -47,6 +47,7 @@ RSpec.describe 'phabricator', type: :class do
         context 'with defaults' do
           it do
             is_expected.to eq(
+              'diffusion.ssh-user' => 'vcs',
               'log.access.path' => '/var/log/phabricator/access.log',
               'log.ssh.path' => '/var/log/phabricator/ssh.log',
               'phd.log-directory' => '/var/log/phabricator',
@@ -73,6 +74,7 @@ RSpec.describe 'phabricator', type: :class do
 
           it do
             is_expected.to eq(
+              'diffusion.ssh-user' => 'vcs',
               'log.access.path' => '/var/log/phabricator/access.log',
               'log.ssh.path' => '/var/log/phabricator/ssh.log',
               'mysql.host' => config_hash['mysql.host'],

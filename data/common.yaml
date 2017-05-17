@@ -12,3 +12,4 @@ phabricator::repo_dir: '/var/repo'
 phabricator::storage_upgrade: false
 phabricator::storage_upgrade_password: null
 phabricator::storage_upgrade_user: null
+phabricator::vcs_user: 'vcs'

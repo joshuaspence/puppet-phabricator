@@ -82,6 +82,7 @@ RSpec.describe 'phabricator' do
 
       its(:content_as_json) do
         is_expected.to include(
+          'diffusion.ssh-user' => 'vcs',
           'log.access.path' => '/var/log/phabricator/access.log',
           'log.ssh.path' => '/var/log/phabricator/ssh.log',
           'phd.log-directory' => '/var/log/phabricator',
