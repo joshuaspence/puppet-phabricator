@@ -25,9 +25,7 @@ RSpec.configure do |config|
   # Set default options for `puppet apply`.
   config.before(:suite) do
     default[:default_apply_opts] ||= {}
-    default[:default_apply_opts].merge!(
-      order: 'random',
-      strict_variables: nil,
-    )
+    default[:default_apply_opts][:strict_variables] = nil
+    default[:default_apply_opts][:order] = ENV['ORDERING'] if ENV['ORDERING']
   end
 end
