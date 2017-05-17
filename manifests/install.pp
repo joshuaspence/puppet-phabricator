@@ -1,61 +1,61 @@
-# == Class: phabricator::install
+# Installs Phabricator.
 #
-# This module installs Phabricator dependencies.
-#
-# === Parameters
-#
-# === Variables
-#
-# === Examples
+# @summary Installs Arcanist, libphutil and Phabricator.
+# @private
 #
 class phabricator::install {
-  package { ['git', 'g++', 'make']:
-    ensure => installed,
+  # The `php::packages` class requires `Class['apt::update']` unconditionally,
+  # but the `apt::update` class may not have been defined. See
+  # https://github.com/voxpupuli/puppet-php/pull/323.
+  include apt
+  include php
+
+  php::extension {
+    'apcu':
+      package_prefix => 'php-';
+
+    ['curl', 'gd', 'mbstring']: ;
+
+    'mysql':
+      so_name => 'mysqli';
   }
 
-  php::ini { '/etc/php.ini':
-    date_timezone => 'UTC',
-  }
-  class { 'php::cli':
-    ensure  => installed,
-    inifile => '/etc/php.ini',
-  }
-  php::module { ['mysql']: }
+  # We need to ensure that `git` is installed or else the `git` provider for
+  # the `vcsrepo` type will not be functional.
+  ensure_packages(['git'])
 
-  vcsrepo { "${phabricator::config::base_dir}/arcanist":
-    ensure   => latest,
-    provider => git,
-    source   => 'git://github.com/facebook/arcanist.git',
-    owner    => $phabricator::config::user,
-    group    => $phabricator::config::group,
-    require  => Class['php::cli'],
-  }
-  vcsrepo { "${phabricator::config::base_dir}/libphutil":
-    ensure   => latest,
-    provider => git,
-    source   => 'git://github.com/facebook/libphutil.git',
-    owner    => $phabricator::config::user,
-    group    => $phabricator::config::group,
-    require  => Class['php::cli'],
-    notify   => Exec['build_xhpast'],
-  }
-  vcsrepo { "${phabricator::config::base_dir}/phabricator":
-    ensure   => latest,
-    provider => git,
-    source   => 'git://github.com/facebook/phabricator.git',
-    owner    => $phabricator::config::user,
-    group    => $phabricator::config::group,
-    require  => Class['php::cli'],
+  vcsrepo {
+    default:
+      ensure   => 'latest',
+      provider => 'git';
+
+    'arcanist':
+      path     => "${phabricator::install_dir}/arcanist",
+      source   => 'https://github.com/phacility/arcanist.git',
+      revision => $phabricator::arcanist_revision;
+
+    'libphutil':
+      path     => "${phabricator::install_dir}/libphutil",
+      source   => 'https://github.com/phacility/libphutil.git',
+      revision => $phabricator::libphutil_revision;
+
+    'phabricator':
+      path     => "${phabricator::install_dir}/phabricator",
+      source   => 'https://github.com/phacility/phabricator.git',
+      revision => $phabricator::phabricator_revision;
   }
 
-  exec { 'build_xhpast':
-    command   => "${phabricator::config::base_dir}/libphutil/scripts/build_xhpast.sh",
-    logoutput => true,
-    subscribe => Vcsrepo["${phabricator::config::base_dir}/libphutil"],
-    require   => [
+  # These packages are required in order to compile XHPAST.
+  ensure_packages(['g++', 'make'])
+
+  exec { 'build_xhpast.php':
+    command     => "${phabricator::install_dir}/libphutil/scripts/build_xhpast.php",
+    refreshonly => true,
+    require     => [
+      Class['php::cli'],
       Package['g++'],
       Package['make'],
-      Class['php::cli'],
-    ]
+    ],
+    subscribe   => Vcsrepo['libphutil'],
   }
 }

@@ -1,6 +1,11 @@
+---
 fixtures:
-  repositories:
-    'stdlib':
-      repo: 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
+  forge_modules:
+    apt: 'puppetlabs/apt'
+    archive: 'puppet/archive'
+    inifile: 'puppetlabs/inifile'
+    php: 'puppet/php'
+    stdlib: 'puppetlabs/stdlib'
+    vcsrepo: 'puppetlabs/vcsrepo'
   symlinks:
-    'phabricator': '#{source_dir}'
+    phabricator: '#{source_dir}'

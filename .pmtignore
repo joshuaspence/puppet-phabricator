@@ -1,0 +1,9 @@
+/bin/
+/doc/
+/Gemfile
+/Gemfile.lock
+/junit/
+/log/
+/Rakefile
+/spec/
+/vendor/

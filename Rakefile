@@ -1,29 +1,47 @@
-require 'bundler'
-Bundler.require(:default, :test)
-
 require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet_blacksmith/rake_tasks'
-require 'rspec-system/rake_task'
+require 'puppet-strings/tasks'
+require 'rubocop/rake_task'
 
-require 'puppet-lint/tasks/puppet-lint'
-PuppetLint.configuration.send('disable_class_inherits_from_params_class')
-PuppetLint.configuration.send('disable_80chars')
-PuppetLint.configuration.ignore_paths = ['pkg/**/*.pp']
-
-desc 'Validate manifests, templates, and ruby files in lib.'
-task :validate do
-  Dir['manifests/**/*.pp'].each do |manifest|
-    sh "puppet parser validate --noop #{manifest}"
-  end
-  Dir['lib/**/*.rb'].each do |lib_file|
-    sh "ruby -c #{lib_file}"
-  end
-  Dir['templates/**/*.erb'].each do |template|
-    sh "erb -P -x -T '-' #{template} | ruby -c"
-  end
+task :markdown_lint do
+  # `markdownlint` doesn't currently provide an API that can be used to
+  # properly construct a Rake task. See https://github.com/mivok/markdownlint/issues/131.
+  sh 'mdl --git-recurse .'
 end
 
-task :default => [:lint, :spec, :validate]
+require 'metadata-json-lint/rake_task'
+MetadataJsonLint.options[:strict_dependencies] = true
 
-desc 'Run reasonably quick tests for CI'
-task :ci => [:lint, :spec, :validate]
+require 'puppet-lint/tasks/puppet-lint'
+PuppetLint::RakeTask.new do |config|
+  config.fail_on_warnings = true
+  config.ignore_paths = ['pkg/**/*', 'spec/fixtures/**/*', 'vendor/**/*']
+  config.relative = true
+end
+
+require 'puppet-syntax/tasks/puppet-syntax'
+PuppetSyntax.exclude_paths = ['pkg/**/*', 'spec/fixtures/**/*', 'vendor/**/*']
+PuppetSyntax.check_hiera_keys = true
+
+task :travis_lint do
+  require 'travis'
+
+  # TODO: Ideally `exit_code` would be set to `true`, but `travis lint`
+  # currently generates bogus warnings for valid `matrix.include` keys.
+  # See https://github.com/travis-ci/travis.rb/issues/376.
+  lint = Travis::CLI::Lint.new(exit_code: false)
+  lint.run
+end
+
+Rake::Task[:default].clear
+task default: [
+  # Syntax
+  :syntax,
+
+  # Lint
+  :lint,
+  :rubocop,
+  :metadata_lint,
+  :markdown_lint,
+  :travis_lint,
+]

@@ -1,9 +1,20 @@
+# Beaker
+/junit/
+/log/
+/.vagrant/
+
 # Bundler
+/bin/
 /.bundle/
 /Gemfile.lock
+/vendor/
 
-# Puppet
+# puppetlabs_spec_helper
 /pkg/
 
-# rspec
-/.rspec_system/
+# puppet-strings
+/doc/
+/.yardoc/
+
+# rspec-puppet
+/spec/fixtures/

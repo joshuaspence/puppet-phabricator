@@ -1,0 +1,42 @@
+{
+  "name": "joshuaspence-phabricator",
+  "version": "0.3.0",
+  "author": "Joshua Spence",
+  "license": "MIT",
+  "summary": "Module to install and configure Phabricator, a suite of web-based software development collaboration tools.",
+  "source": "https://github.com/joshuaspence/puppet-phabricator",
+  "project_page": "https://github.com/joshuaspence/puppet-phabricator",
+  "issues_url": "https://github.com/joshuaspence/puppet-phabricator/issues",
+  "tags": ["arcanist", "libphutil", "phabricator"],
+
+  "dependencies": [
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 2.0.0 < 3.0.0"
+    },
+    {
+      "name": "puppet/php",
+      "version_requirement": "4.x"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.2.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/vcsrepo",
+      "version_requirement": "1.x"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": ["16.04"]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.9.0 < 5.0.0"
+    }
+  ]
+}

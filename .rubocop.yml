@@ -1,0 +1,87 @@
+---
+require: 'rubocop-rspec'
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'pkg/**/*'
+    - 'spec/fixtures/**/*'
+    - 'vendor/**/*'
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  # TODO: Reduce this value.
+  Max: 100
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/acceptance/**/*'
+    - 'spec/classes/**/*'
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+Style/CollectionMethods:
+  Enabled: true
+
+Style/DocumentationMethod:
+  Enabled: true
+
+Style/FirstArrayElementLineBreak:
+  Enabled: true
+
+Style/FirstHashElementLineBreak:
+  Enabled: true
+
+Style/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Style/FirstMethodParameterLineBreak:
+  Enabled: true
+
+Style/ImplicitRuntimeError:
+  Enabled: true
+
+Style/InlineComment:
+  Enabled: true
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+  IgnoredMethods:
+    - 'include'
+    - 'require'
+    - 'require_relative'
+
+    # RSpec
+    - 'context'
+    - 'describe'
+    - 'include_context'
+    - 'it'
+    - 'not_to'
+    - 'to'
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Style/OptionHash:
+  Enabled: true
+
+Style/StringMethods:
+  Enabled: true
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: 'comma'
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: 'comma'
