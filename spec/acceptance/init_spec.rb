@@ -7,8 +7,6 @@ RSpec.describe 'phabricator' do
         max_allowed_packet => '32M',
         sql_mode           => 'STRICT_ALL_TABLES',
       },
-      package_ensure          => 'latest',
-      purge_conf_dir          => true,
       remove_default_accounts => true,
       restart                 => true,
       root_password           => 'root',
