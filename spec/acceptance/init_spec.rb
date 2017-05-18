@@ -16,7 +16,6 @@ RSpec.describe 'phabricator' do
 
   # Dependencies may require multiple runs.
   apply_manifest(pp, catch_failures: true)
-  apply_manifest(pp, catch_failures: true)
   apply_manifest(pp, catch_changes: true)
 
   pp = <<-EOS
