@@ -3,8 +3,10 @@ fixtures:
   forge_modules:
     apt: 'puppetlabs/apt'
     archive: 'puppet/archive'
+    concat: 'puppetlabs/concat'
     inifile: 'puppetlabs/inifile'
     php: 'puppet/php'
+    sendmail: 'stm/sendmail'
     stdlib: 'puppetlabs/stdlib'
     vcsrepo: 'puppetlabs/vcsrepo'
   symlinks:

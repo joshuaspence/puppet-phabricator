@@ -23,9 +23,9 @@ RSpec.describe 'phabricator' do
       ensure       => 'latest',
       manage_repos => false,
       fpm          => false,
-      dev          => false,
+      dev          => true,
       composer     => false,
-      pear         => false,
+      pear         => true,
       settings     => {},
     }
 
@@ -39,6 +39,10 @@ RSpec.describe 'phabricator' do
       storage_upgrade          => true,
       storage_upgrade_user     => 'root',
       storage_upgrade_password => 'root',
+    }
+
+    class { 'phabricator::mail':
+      domain => 'example.com',
     }
   EOS
 
@@ -178,6 +182,21 @@ RSpec.describe 'phabricator' do
 
     context command('/usr/local/src/phabricator/bin/config list') do
       its(:exit_status) { is_expected.to eq(0) }
+    end
+  end
+
+  describe 'phabricator::mail' do
+    context command('php --modules') do
+      its(:stdout) { is_expected.to match(/^mailparse$/) }
+    end
+
+    context command("echo -e 'Subject: Testing inbound mail\n\nThis is a test' | sendmail phabriator") do
+      its(:exit_status) { is_expected.to be_zero }
+    end
+
+    context command('/usr/local/src/phabricator list-inbound') do
+      its(:exit_status) { is_expected.to be_zero }
+      its(:stdout) { is_expected.to contain('Testing inbound mail') }
     end
   end
 end
