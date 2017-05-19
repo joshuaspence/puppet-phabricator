@@ -20,12 +20,6 @@ matrix:
       rvm: 2.4.1
       script: 'bundle exec rake'
 
-    - env: 'DEPLOY=yes'
-      rvm: 2.4.1
-      script:
-        - 'bundle exec rake build'
-        - 'bundle exec rake strings:generate'
-
     # Beaker
     - bundler_args: '--with system_tests'
       env: 'PUPPET_INSTALL_TYPE=agent BEAKER_debug=true BEAKER_set=docker/ubuntu-1604'
@@ -38,18 +32,26 @@ matrix:
       script: 'bundle exec rake beaker'
       services: 'docker'
 
-deploy:
-  - provider: 'puppetforge'
-    user: 'joshuaspence'
-    password: '$PUPPET_FORGE_PASSWORD'
-    on:
-      condition: '$DEPLOY = yes'
-      tags: true
+jobs:
+  include:
+    - stage: 'deploy'
+      env: ''
+      rvm: 2.4.1
+      script:
+        - 'bundle exec rake build'
+        - 'bundle exec rake strings:generate'
+      deploy:
+        - provider: 'puppetforge'
+          user: 'joshuaspence'
+          password: '$PUPPET_FORGE_PASSWORD'
+          on:
+            condition: '$DEPLOY = yes'
+            tags: true
 
-  - provider: 'pages'
-    github_token: '$GITHUB_TOKEN'
-    local_dir: 'doc'
-    skip_cleanup: true
-    on:
-      condition: '$DEPLOY = yes'
-      tags: true
+        - provider: 'pages'
+          github_token: '$GITHUB_TOKEN'
+          local_dir: 'doc'
+          skip_cleanup: true
+          on:
+            condition: '$DEPLOY = yes'
+            tags: true
