@@ -112,7 +112,7 @@ RSpec.describe 'phabricator' do
     end
 
     context command('/usr/local/src/phabricator/bin/storage status') do
-      its(:exit_status) { is_expected.to eq(0) }
+      its(:exit_status) { is_expected.to be_zero }
       its(:stdout) { is_expected.not_to contain('Not Applied') }
     end
   end
@@ -169,7 +169,7 @@ RSpec.describe 'phabricator' do
     end
 
     context command('/usr/local/src/arcanist/bin/arc version') do
-      its(:exit_status) { is_expected.to eq(0) }
+      its(:exit_status) { is_expected.to be_zero }
     end
 
     context command('/usr/local/src/libphutil/src/parser/xhpast/bin/xhpast --version') do
@@ -177,7 +177,7 @@ RSpec.describe 'phabricator' do
     end
 
     context command('/usr/local/src/phabricator/bin/config list') do
-      its(:exit_status) { is_expected.to eq(0) }
+      its(:exit_status) { is_expected.to be_zero }
     end
   end
 end
