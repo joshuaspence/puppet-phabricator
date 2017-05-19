@@ -118,6 +118,15 @@ RSpec.describe 'phabricator' do
       its(:exit_status) { is_expected.to be_zero }
       its(:stdout) { is_expected.not_to contain('Not Applied') }
     end
+
+    context command('/usr/local/src/phabricator/bin/storage databases') do
+      its(:exit_status) { is_expected.to be_zero }
+
+      its(:stdout) { is_expected.to contain('phabricator_cache') }
+      its(:stdout) { is_expected.to contain('phabricator_meta_data') }
+      its(:stdout) { is_expected.to contain('phabricator_policy') }
+      its(:stdout) { is_expected.to contain('phabricator_system') }
+    end
   end
 
   describe 'phabricator::install' do
