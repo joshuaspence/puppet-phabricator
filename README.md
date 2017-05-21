@@ -15,6 +15,13 @@ software development collaboration tools.
 
 ## Usage
 
+In order to utilize this module it is necessary to configure Phabricator using
+the `$config_hash` parameter. Specifically, the following settings are required:
+
+- **`mysql.host`:** MySQL database hostname.
+- **`mysql.user`:** MySQL username to use when connecting to the database.
+- **`mysql.pass`:** MySQL password to use when connecting to the database.
+
 ```puppet
 class { 'phabricator':
   config_hash => {
@@ -37,7 +44,7 @@ See the [documentation](https://joshuaspence.github.io/puppet-phabricator/).
 
 This module has been tested on:
 
-* Ubuntu 16.04
+- Ubuntu 16.04
 
 Testing on other platforms has been minimal and cannot be guaranteed.
 
