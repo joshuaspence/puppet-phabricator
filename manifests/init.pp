@@ -2,7 +2,7 @@
 #
 # @summary This class configures and installs Phabricator.
 #
-# @example Usage
+# @example
 #   class { 'phabricator':
 #     config_hash => {
 #       'mysql.host' => 'localhost',
