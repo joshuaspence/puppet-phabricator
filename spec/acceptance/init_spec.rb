@@ -2,23 +2,6 @@ require_relative '../spec_helper_acceptance'
 
 RSpec.describe 'phabricator' do
   pp = <<-EOS
-    class { 'mysql::server':
-      override_options        => {
-        max_allowed_packet => '32M',
-        sql_mode           => 'STRICT_ALL_TABLES',
-      },
-      remove_default_accounts => true,
-      restart                 => true,
-      root_password           => 'root',
-      create_root_user        => true,
-    }
-  EOS
-
-  # Dependencies may require multiple runs.
-  apply_manifest(pp, catch_failures: true)
-  apply_manifest(pp, catch_changes: true)
-
-  pp = <<-EOS
     class { 'php':
       ensure       => 'latest',
       manage_repos => false,

@@ -28,4 +28,25 @@ RSpec.configure do |config|
     default[:default_apply_opts][:strict_variables] = nil
     default[:default_apply_opts][:order] = ENV['ORDERING'] if ENV['ORDERING']
   end
+
+  # Install and configure resources which are required for the acceptance tests.
+  config.before(:suite) do
+    hosts.each do
+      pp = <<-EOS
+        class { 'mysql::server':
+          override_options        => {
+            max_allowed_packet => '32M',
+            sql_mode           => 'STRICT_ALL_TABLES',
+          },
+          remove_default_accounts => true,
+          restart                 => true,
+          root_password           => 'root',
+          create_root_user        => true,
+        }
+      EOS
+
+      apply_manifest(pp, catch_failures: true)
+      apply_manifest(pp, catch_changes: true)
+    end
+  end
 end
