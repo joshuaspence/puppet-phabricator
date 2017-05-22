@@ -1,5 +1,7 @@
 # phabricator
 
+[![Build Status](https://travis-ci.org/joshuaspence/puppet-phabricator.svg?branch=master)](https://travis-ci.org/joshuaspence/puppet-phabricator)
+
 ## Table of Contents
 
 1. [Description](#description)
