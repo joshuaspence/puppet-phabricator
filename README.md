@@ -14,8 +14,18 @@
 
 ## Description
 
-This module installs, configures and manages Phabricator, a suite of web-based
-software development collaboration tools.
+This module installs, configures and manages [Phabricator][phabricator], a
+suite of web-based software development collaboration tools, including:
+
+- [Arcanist](https://www.phacility.com/phabricator/arcanist/)
+- [Differential](https://www.phacility.com/phabricator/differential/)
+- [Diffusion](https://www.phacility.com/phabricator/diffusion/)
+- [Maniphest](https://www.phacility.com/phabricator/maniphest/)
+- [Phriction](https://www.phacility.com/phabricator/phriction/)
+
+Phabricator is offered as a [hosted service](https://www.phacility.com/pricing/)
+by [Phacility](phacility), but can also be installed
+[on-premise][installation-guide].
 
 ## Usage
 
@@ -25,6 +35,13 @@ the `$config_hash` parameter. Specifically, the following settings are required:
 - **`mysql.host`:** MySQL database hostname.
 - **`mysql.user`:** MySQL username to use when connecting to the database.
 - **`mysql.pass`:** MySQL password to use when connecting to the database.
+
+There are many other settings that can be passed to the `$config_hash`
+parameter, but the above settings should be the minimal configuration that is
+required in order for Phabricator to be functional. The `$config_hash`
+parameter is JSON-encoded and written to `conf/local/local.json`. See
+[Advanced Configuration](advanced-configuration) for further information on
+configuring Phabricator.
 
 ```puppet
 class { 'phabricator':
@@ -69,6 +86,10 @@ being accepted and merged. Each of the steps that is executed in
 | Unit tests | `bundle exec rake spec` |
 | Acceptance tests | `bundle exec rake beaker` |
 
+[advanced-configuration]: https://secure.phabricator.com/book/phabricator/article/advanced_configuration/
 [beaker-rspec]: https://github.com/puppetlabs/beaker-rspec
+[installation-guide]: https://secure.phabricator.com/book/phabricator/article/installation_guide/
+[phabricator]: https://www.phacility.com/phabricator/
+[phacility]: https://www.phacility.com/
 [rspec-puppet]: http://rspec-puppet.com/
 [travis]: https://travis-ci.org/joshuaspence/puppet-phabricator/
