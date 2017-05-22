@@ -3,7 +3,7 @@ require: 'rubocop-rspec'
 
 AllCops:
   Exclude:
-    - 'bin/**/*'
+    - 'bin/*'
     - 'pkg/**/*'
     - 'spec/fixtures/**/*'
     - 'vendor/**/*'
