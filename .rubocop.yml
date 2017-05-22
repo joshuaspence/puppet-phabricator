@@ -27,7 +27,7 @@ RSpec/MultipleExpectations:
   Enabled: false
 
 RSpec/NestedGroups:
-  Enabled: false
+  Max: 4
 
 Style/CollectionMethods:
   Enabled: true
