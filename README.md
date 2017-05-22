@@ -55,6 +55,8 @@ class { 'phabricator':
   storage_upgrade_user     => 'admin',
   storage_upgrade_password => 'password',
 }
+
+include phabricator::daemons
 ```
 
 ## Reference
