@@ -1,6 +1,8 @@
 # phabricator
 
 [![Build Status](https://travis-ci.org/joshuaspence/puppet-phabricator.svg?branch=master)](https://travis-ci.org/joshuaspence/puppet-phabricator)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/joshuaspence/phabricator.svg)](https://forge.puppet.com/joshuaspence/phabricator)
+[![Puppet Forge](https://img.shields.io/puppetforge/dt/joshuaspence/phabricator.svg)](https://forge.puppet.com/joshuaspence/phabricator)
 
 ## Table of Contents
 
