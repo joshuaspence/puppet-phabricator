@@ -44,6 +44,7 @@ See the [documentation](https://joshuaspence.github.io/puppet-phabricator/).
 
 This module has been tested on:
 
+- CentOS 7
 - Ubuntu 16.04
 
 Testing on other platforms has been minimal and cannot be guaranteed.

@@ -1,0 +1,12 @@
+---
+HOSTS:
+  centos-7-x64:
+    docker_cmd: '["/usr/sbin/init"]'
+    docker_image_commands:
+      - 'yum install -y crontabs tar wget openssl sysvinit-tools iproute which initscripts'
+    docker_preserve_image: true
+    hypervisor: 'docker'
+    image: 'centos:7'
+    platform: 'el-7-x86_64'
+CONFIG:
+  trace_limit: 200

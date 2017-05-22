@@ -7,13 +7,25 @@ class phabricator::install {
   # The `php::packages` class requires `Class['apt::update']` unconditionally,
   # but the `apt::update` class may not have been defined. See
   # https://github.com/voxpupuli/puppet-php/pull/323.
-  include apt
+  if $facts['os']['family'] == 'Debian' {
+    include apt
+  }
   include php
+  include php::globals
+
+  if versioncmp($php::globals::globals_php_version, '7.0') >= 0 {
+    php::extension { 'apcu': }
+  } else {
+    php::extension { 'apc': }
+  }
+
+  if $facts['os']['name'] != 'CentOS' {
+    Php::Extension <| title == 'apcu' or title == 'apc' |> {
+      package_prefix => 'php-',
+    }
+  }
 
   php::extension {
-    'apcu':
-      package_prefix => 'php-';
-
     ['curl', 'gd', 'mbstring']: ;
 
     'mysql':
@@ -47,6 +59,12 @@ class phabricator::install {
 
   # These packages are required in order to compile XHPAST.
   ensure_packages(['g++', 'make'])
+
+  if $facts['os']['name'] == 'CentOS' {
+    Package['g++'] {
+      name => 'gcc-c++',
+    }
+  }
 
   exec { 'build_xhpast.php':
     command     => "${phabricator::install_dir}/libphutil/scripts/build_xhpast.php",

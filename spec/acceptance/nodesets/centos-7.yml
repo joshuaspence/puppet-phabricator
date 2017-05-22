@@ -1,0 +1,8 @@
+---
+HOSTS:
+  centos-7-x64:
+    box: 'puppetlabs/centos-7.2-64-nocm'
+    hypervisor: 'vagrant'
+    platform: 'el-7-x86_64'
+CONFIG:
+  trace_limit: 200
