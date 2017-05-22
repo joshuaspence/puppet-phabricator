@@ -11,15 +11,9 @@ AllCops:
 Metrics/BlockLength:
   Enabled: false
 
-Metrics/ClassLength:
-  Enabled: false
-
 Metrics/LineLength:
   # TODO: Reduce this value.
   Max: 100
-
-Metrics/MethodLength:
-  Enabled: false
 
 RSpec/DescribeClass:
   Exclude:
