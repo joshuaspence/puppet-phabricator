@@ -3,13 +3,10 @@ require_relative '../spec_helper_acceptance'
 RSpec.describe 'phabricator' do
   pp = <<-EOS
     class { 'php':
-      ensure       => 'latest',
-      manage_repos => false,
-      fpm          => false,
-      dev          => false,
-      composer     => false,
-      pear         => false,
-      settings     => {},
+      fpm      => false,
+      dev      => false,
+      composer => false,
+      pear     => false,
     }
 
     class { 'phabricator':
