@@ -6,6 +6,7 @@ fixtures:
     inifile: 'puppetlabs/inifile'
     php: 'puppet/php'
     stdlib: 'puppetlabs/stdlib'
+    systemd: 'camptocamp/systemd'
     vcsrepo: 'puppetlabs/vcsrepo'
   symlinks:
     phabricator: '#{source_dir}'

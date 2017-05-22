@@ -43,6 +43,9 @@ RSpec.configure do |config|
           root_password           => 'root',
           create_root_user        => true,
         }
+
+        # These packages are required for serverspec tests.
+        ensure_packages(['login', 'sudo'])
       EOS
 
       apply_manifest(pp, catch_failures: true)

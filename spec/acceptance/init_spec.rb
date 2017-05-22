@@ -171,9 +171,5 @@ RSpec.describe 'phabricator' do
     context command('/usr/local/src/phabricator/bin/config list') do
       its(:exit_status) { is_expected.to be_zero }
     end
-
-    context command('/usr/local/src/phabricator/bin/phd status') do
-      its(:exit_status) { is_expected.not_to be_zero }
-    end
   end
 end
