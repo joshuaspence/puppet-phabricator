@@ -6,7 +6,7 @@ require 'rubocop/rake_task'
 task :markdown_lint do
   # `markdownlint` doesn't currently provide an API that can be used to
   # properly construct a Rake task. See https://github.com/mivok/markdownlint/issues/131.
-  sh 'mdl --git-recurse .'
+  sh 'mdl --git-recurse --rules ~MD024 .'
 end
 
 require 'metadata-json-lint/rake_task'
