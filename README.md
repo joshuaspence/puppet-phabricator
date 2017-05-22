@@ -54,4 +54,21 @@ Testing on other platforms has been minimal and cannot be guaranteed.
 
 ## Development
 
-For developing this module, `bundle exec rake` should be all is required.
+Contributions to this module are welcome, but must be accompanied by
+documentation, unit test coverage (with [`rspec-puppet`][rspec-puppet]) and
+acceptance test coverage (with [`beaker-rspec`][beaker-rspec]). Refactoring
+existing code and documentation changes do not require additional tests.
+
+All pull requests must pass successfully through [Travis CI][travis] before
+being accepted and merged. Each of the steps that is executed in
+[Travis CI][travis] should be reproducible locally using the following commands:
+
+| Task | Command |
+|------|---------|
+| Syntax Checks and Linting | `bundle exec rake` |
+| Unit tests | `bundle exec rake spec` |
+| Acceptance tests | `bundle exec rake beaker` |
+
+[beaker-rspec]: https://github.com/puppetlabs/beaker-rspec
+[rspec-puppet]: http://rspec-puppet.com/
+[travis]: https://travis-ci.org/joshuaspence/puppet-phabricator/
