@@ -30,6 +30,20 @@ RSpec.describe 'phabricator' do
     apply_manifest(pp, catch_changes: true)
   end
 
+  # Detect unsupported PHP versions.
+  #
+  # Phabricator doesn't support PHP 7.0, although it _does_ support PHP 7.1
+  # (which implements [async signals](https://wiki.php.net/rfc/async_signals)).
+  # See https://secure.phabricator.com/T9640, https://secure.phabricator.com/T11270
+  # and https://secure.phabricator.com/T12101.
+  #
+  # TODO: If https://secure.phabricator.com/T2383 is resolved then we should be
+  # able to run `./bin/config check` instead.
+  context command('php --version') do
+    its(:exit_status) { is_expected.to be_zero }
+    its(:stdout) { is_expected.not_to start_with('PHP 7.0.'), 'Unsupported PHP version.' }
+  end
+
   describe 'phabricator::config' do
     context group('phabricator') do
       it { is_expected.to exist }
