@@ -1,8 +1,12 @@
 # Changelog
 
-## 0.3.1
+## 0.3.2
 
-### Summary
+### Bug Fixes
+
+- Added a warning if the installed PHP version is incompatible with Phabricator.
+
+## 0.3.1
 
 ### Features
 
