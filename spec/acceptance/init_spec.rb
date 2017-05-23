@@ -2,11 +2,22 @@ require_relative '../spec_helper_acceptance'
 
 RSpec.describe 'phabricator' do
   pp = <<-EOS
+    include apt
+
+    Apt::Ppa {
+      package_manage => true,
+    }
+
+    class { 'php::globals':
+      php_version => '7.1',
+    }
+
     class { 'php':
-      fpm      => false,
-      dev      => false,
-      composer => false,
-      pear     => false,
+      manage_repos => true,
+      fpm          => false,
+      dev          => false,
+      composer     => false,
+      pear         => false,
     }
 
     class { 'phabricator':

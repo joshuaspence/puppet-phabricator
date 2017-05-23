@@ -1,12 +1,25 @@
 require_relative '../spec_helper_acceptance'
 
 RSpec.describe 'phabricator::daemons' do
+  # TODO: This is mostly copied from `spec/acceptance/init_spec.rb` and should
+  # be consolidated.
   pp = <<-EOS
+    include apt
+
+    Apt::Ppa {
+      package_manage => true,
+    }
+
+    class { 'php::globals':
+      php_version => '7.1',
+    }
+
     class { 'php':
-      fpm      => false,
-      dev      => false,
-      composer => false,
-      pear     => false,
+      manage_repos => true,
+      fpm          => false,
+      dev          => false,
+      composer     => false,
+      pear         => false,
     }
 
     class { 'phabricator':
