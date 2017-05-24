@@ -1,0 +1,18 @@
+<%- | Stdlib::Unixpath $command, String $user, String $group | -%>
+[Unit]
+Description=Aphlict
+Documentation=https://secure.phabricator.com/book/phabricator/article/notifications/
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=<%= $command %> start
+ExecReload=<%= $command %> restart
+ExecStop=<%= $command %> stop
+Restart=on-failure
+User=<%= $user %>
+Group=<%= $group %>
+
+[Install]
+WantedBy=multi-user.target
