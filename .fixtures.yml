@@ -4,6 +4,7 @@ fixtures:
     apt: 'puppetlabs/apt'
     archive: 'puppet/archive'
     inifile: 'puppetlabs/inifile'
+    nodejs: 'puppet/nodejs'
     php: 'puppet/php'
     stdlib: 'puppetlabs/stdlib'
     systemd: 'camptocamp/systemd'

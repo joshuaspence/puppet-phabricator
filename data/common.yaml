@@ -1,4 +1,5 @@
 ---
+phabricator::aphlict::user: 'aphlict'
 phabricator::arcanist_revision: 'stable'
 phabricator::config_hash: {}
 phabricator::daemon_user: 'phd'
@@ -13,3 +14,13 @@ phabricator::storage_upgrade: false
 phabricator::storage_upgrade_password: null
 phabricator::storage_upgrade_user: null
 phabricator::vcs_user: 'vcs'
+
+# Default servers for Aphlict configuration. This has been copied from
+# `conf/aphlict/aphlict.default.json`.
+phabricator::aphlict::servers:
+  - listen: '0.0.0.0'
+    port: 22280
+    type: 'client'
+  - listen: '127.0.0.1'
+    port: 22281
+    type: 'admin'

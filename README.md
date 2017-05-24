@@ -56,6 +56,7 @@ class { 'phabricator':
   storage_upgrade_password => 'password',
 }
 
+include phabricator::aphlict
 include phabricator::daemons
 ```
 

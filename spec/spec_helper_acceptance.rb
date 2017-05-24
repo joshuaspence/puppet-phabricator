@@ -45,7 +45,7 @@ RSpec.configure do |config|
         }
 
         # These packages are required for serverspec tests.
-        ensure_packages(['login', 'sudo'])
+        ensure_packages(['login', 'net-tools', 'sudo'])
       EOS
 
       apply_manifest(pp, catch_failures: true)
