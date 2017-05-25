@@ -37,6 +37,12 @@ class phabricator::daemons {
     system     => true,
   }
 
+  if $phabricator::run_daemon {
+    $daemon_command = "${phabricator::install_dir}/phabricator/bin/phd launch ${phabricator::run_daemon}"
+  } else {
+    $daemon_command = "${phabricator::install_dir}/phabricator/bin/phd"
+  }
+
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
   #
@@ -44,7 +50,7 @@ class phabricator::daemons {
   systemd::unit_file { 'phd.service':
     ensure  => 'file',
     content => epp('phabricator/daemons.systemd.epp', {
-      command => "${phabricator::install_dir}/phabricator/bin/phd",
+      command => $daemon_command,
       user    => $phabricator::daemon_user,
       group   => $phabricator::group,
     }),

@@ -42,6 +42,7 @@ class phabricator(
   Phabricator::Revision $libphutil_revision,
   Phabricator::Revision $phabricator_revision,
   Hash[String, Data] $config_hash,
+  Optional[String] $run_daemon,
   Boolean $storage_upgrade,
   Optional[String] $storage_upgrade_user,
   Optional[String] $storage_upgrade_password,

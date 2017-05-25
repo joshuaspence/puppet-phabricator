@@ -14,6 +14,7 @@ phabricator::logs_dir: '/var/log/phabricator'
 phabricator::phabricator_revision: 'stable'
 phabricator::pid_dir: '/run/phabricator'
 phabricator::repo_dir: '/var/repo'
+phabricator::run_daemon: null
 phabricator::storage_upgrade: false
 phabricator::storage_upgrade_password: null
 phabricator::storage_upgrade_user: null

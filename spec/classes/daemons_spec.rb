@@ -77,6 +77,19 @@ RSpec.describe 'phabricator::daemons', type: :class do
             .that_requires('Exec[bin/storage upgrade]')
         end
       end
+
+      context 'when $run_daemon is set' do
+        let(:module_params) do
+          {
+            run_daemon: 'repo_pull',
+          }
+        end
+
+        it do
+          is_expected.to contain_service('phd')
+            .with_command("/usr/local/src/phabricator/bin/phd launch repo_pull")
+        end
+      end
     end
   end
 end
