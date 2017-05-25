@@ -28,6 +28,7 @@
 #   `bin/storage upgrade`.
 # @param storage_upgrade_password The MySQL password for the storage upgrade
 #   user.
+# @param register_almanac_device
 #
 # @param daemon_user
 # @param group
@@ -45,6 +46,7 @@ class phabricator(
   Boolean $storage_upgrade,
   Optional[String] $storage_upgrade_user,
   Optional[String] $storage_upgrade_password,
+  Boolean $register_almanac_device,
 
   String $daemon_user,
   String $group,
@@ -80,4 +82,8 @@ class phabricator(
 
   include phabricator::config
   include phabricator::install
+
+  if $register_almanac_device {
+    include phabricator::almanac
+  }
 }

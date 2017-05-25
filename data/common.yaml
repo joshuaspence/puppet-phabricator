@@ -1,4 +1,5 @@
 ---
+phabricator::register_almanac_device: false
 phabricator::aphlict::user: 'aphlict'
 phabricator::arcanist_revision: 'stable'
 phabricator::config_hash: {}
