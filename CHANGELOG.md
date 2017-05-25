@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+### Features
+
+- Added support for registering [Almanac devices][almanac].
+
 ## 0.3.2
 
 ### Features
@@ -26,5 +32,6 @@ and starting again from scratch. The rewritten module has comprehensive unit
 tests (with [`rspec-puppet`](http://rspec-puppet.com)) and acceptance tests
 (with [`beaker-rspec`](https://github.com/puppetlabs/beaker-rspec)).
 
+[almanac]: https://secure.phabricator.com/book/phabricator/article/almanac/
 [aphlict]: https://secure.phabricator.com/book/phabricator/article/notifications/
 [phd]: https://secure.phabricator.com/book/phabricator/article/managing_daemons/
