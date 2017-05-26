@@ -1,4 +1,9 @@
-<%- | Stdlib::Unixpath $command, String $user, String $group | -%>
+<%- |
+  Stdlib::Unixpath $command,
+  String $user,
+  String $group,
+  String $start_command
+| -%>
 [Unit]
 Description=Phabricator Daemons
 Documentation=https://secure.phabricator.com/book/phabricator/article/managing_daemons/
@@ -7,7 +12,7 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=<%= $command %> start
+ExecStart=<%= $command %> <%= $start_command %>
 <%#
 # TODO: We should probably use `bin/phd reload`, although certain resources
 # (such as `Class['php::cli']`) should trigger a `restart` rather than a `reload`.
