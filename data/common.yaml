@@ -1,4 +1,8 @@
 ---
+lookup_options:
+  phabricator::config_hash:
+    merge:
+      strategy: 'deep'
 phabricator::aphlict::user: 'aphlict'
 phabricator::arcanist_revision: 'stable'
 phabricator::config_hash: {}
