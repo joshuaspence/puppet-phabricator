@@ -19,9 +19,10 @@
 #
 #   include phabricator::daemons
 #
-# @param run_daemon A single daemon to run instead of the default daemons.
+# @param daemon A single daemon to run instead of the default daemons.
+
 class phabricator::daemons(
-  Optional[String] $run_daemon = undef,
+  Optional[String] $daemon,
 ) {
   file { $phabricator::repo_dir:
     ensure => 'directory',
@@ -50,7 +51,7 @@ class phabricator::daemons(
       command       => "${phabricator::install_dir}/phabricator/bin/phd",
       user          => $phabricator::daemon_user,
       group         => $phabricator::group,
-      start_command => $run_daemon,
+      start_command => $daemon,
     }),
     notify  => Service['phd'],
   }
