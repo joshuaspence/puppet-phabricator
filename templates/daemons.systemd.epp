@@ -12,7 +12,10 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=<%= $command %> <%= $start_command %>
+ExecStart=<%= $command %> <% if $start_command { -%><%= $start_command -%>
+<%- } else { -%>start
+<%- } -%>
+
 <%#
 # TODO: We should probably use `bin/phd reload`, although certain resources
 # (such as `Class['php::cli']`) should trigger a `restart` rather than a `reload`.

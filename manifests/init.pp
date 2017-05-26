@@ -21,7 +21,6 @@
 # @param config_hash Phabricator configuration. See
 #   {https://secure.phabricator.com/book/phabricator/article/advanced_configuration/
 #   Configuration User Guide: Advanced Configuration}.
-# @param run_daemon A single daemon to run instead of the default daemons.
 # @param storage_upgrade A flag to enable storage upgrades. See
 #   {https://secure.phabricator.com/book/phabricator/article/configuration_guide/#storage-configuring-mysql
 #   Storage: Configuring MySQL}.
@@ -43,7 +42,6 @@ class phabricator(
   Phabricator::Revision $libphutil_revision,
   Phabricator::Revision $phabricator_revision,
   Hash[String, Data] $config_hash,
-  Optional[String] $run_daemon,
   Boolean $storage_upgrade,
   Optional[String] $storage_upgrade_user,
   Optional[String] $storage_upgrade_password,
