@@ -19,7 +19,10 @@
 #
 #   include phabricator::daemons
 #
-class phabricator::daemons {
+# @param run_daemon A single daemon to run instead of the default daemons.
+class phabricator::daemons(
+  Optional[String] $run_daemon = undef,
+) {
   file { $phabricator::repo_dir:
     ensure => 'directory',
     owner  => $phabricator::daemon_user,
@@ -37,8 +40,8 @@ class phabricator::daemons {
     system     => true,
   }
 
-  if $phabricator::run_daemon {
-    $start_command = "launch ${phabricator::run_daemon}"
+  if $run_daemon {
+    $start_command = "launch ${run_daemon}"
   } else {
     $start_command = 'start'
   }
