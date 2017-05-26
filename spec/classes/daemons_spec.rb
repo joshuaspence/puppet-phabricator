@@ -86,8 +86,8 @@ RSpec.describe 'phabricator::daemons', type: :class do
         end
 
         it do
-          is_expected.to contain_service('phd')
-            .with_command("/usr/local/src/phabricator/bin/phd launch repo_pull")
+          is_expected.to contain_systemd__unit_file('phd')
+            .with_content(%r{^ExecStart=/usr/local/src/phabricator/bin/phd launch repo_pull$})
         end
       end
     end
