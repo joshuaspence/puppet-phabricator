@@ -81,14 +81,14 @@ RSpec.describe 'phabricator::daemons', type: :class do
       context 'when $run_daemon is set' do
         let(:params) do
           {
-            run_daemon: 'repo_pull',
+            daemon: 'repo',
           }
         end
 
         it do
           is_expected.to contain_systemd__unit_file('phd.service')
             .with_content(
-              %r{^ExecStart=/usr/local/src/phabricator/bin/phd launch repo_pull$},
+              %r{^ExecStart=/usr/local/src/phabricator/bin/phd launch repo$},
             )
         end
       end
