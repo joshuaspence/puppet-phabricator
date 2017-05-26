@@ -40,12 +40,6 @@ class phabricator::daemons(
     system     => true,
   }
 
-  if $run_daemon {
-    $start_command = "launch ${run_daemon}"
-  } else {
-    $start_command = 'start'
-  }
-
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
   #
@@ -56,7 +50,7 @@ class phabricator::daemons(
       command       => "${phabricator::install_dir}/phabricator/bin/phd",
       user          => $phabricator::daemon_user,
       group         => $phabricator::group,
-      start_command => $start_command,
+      start_command => $run_daemon,
     }),
     notify  => Service['phd'],
   }
