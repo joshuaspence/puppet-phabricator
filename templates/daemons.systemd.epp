@@ -2,7 +2,7 @@
   Stdlib::Unixpath $command,
   String $user,
   String $group,
-  Optional[String] $start_command,
+  Optional[String] $daemon,
 | -%>
 [Unit]
 Description=Phabricator Daemons
@@ -12,7 +12,7 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=<%= $command %> <% if $start_command { %>launch <%= $start_command %>
+ExecStart=<%= $command %> <% if $daemon { %>launch <%= $daemon %>
 <%- } else { -%>start
 <%- } -%>
 <%#
