@@ -7,7 +7,7 @@
 - Fixes the `systemd` unit file for the `phd` service, which was broken in
   v0.3.3.
 
-## 0.3.3
+## 0.3.3 (deleted)
 
 ### Features
 
