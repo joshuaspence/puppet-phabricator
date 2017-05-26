@@ -1,8 +1,8 @@
-<%- |
+<% |
   Stdlib::Unixpath $command,
+  Optional[String] $daemon,
   String $user,
   String $group,
-  Optional[String] $daemon,
 | -%>
 [Unit]
 Description=Phabricator Daemons
@@ -12,9 +12,12 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=<%= $command %> <% if $daemon { %>launch <%= $daemon %>
-<%- } else { -%>start
-<%- } -%>
+ExecStart=<%= $command %>
+<% if $daemon { -%>
+ExecStart=<%= $command %> launch <%= $daemon %>
+<% } else { -%>
+ExecStart=<%= $command %> start
+<% } -%>
 <%#
 # TODO: We should probably use `bin/phd reload`, although certain resources
 # (such as `Class['php::cli']`) should trigger a `restart` rather than a `reload`.

@@ -6,6 +6,8 @@
 
 - Added support for registering [Almanac devices][almanac].
 - The `$config_hash` parameter is now deep-merged by default.
+- Added support for launch a specific Phabricator daemon using `./bin/phd
+  launch`.
 
 ## 0.3.2
 

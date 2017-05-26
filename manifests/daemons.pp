@@ -19,8 +19,9 @@
 #
 #   include phabricator::daemons
 #
-# @param daemon A single daemon to run instead of the default daemons.
-
+# @param daemon Launch the specified daemon using `./bin/phd launch` instead of
+#   starting all of the daemon daemons.
+#
 class phabricator::daemons(
   Optional[String] $daemon,
 ) {
@@ -49,9 +50,9 @@ class phabricator::daemons(
     ensure  => 'file',
     content => epp('phabricator/daemons.systemd.epp', {
       command => "${phabricator::install_dir}/phabricator/bin/phd",
+      daemon  => $daemon,
       user    => $phabricator::daemon_user,
       group   => $phabricator::group,
-      daemon  => $daemon,
     }),
     notify  => Service['phd'],
   }
