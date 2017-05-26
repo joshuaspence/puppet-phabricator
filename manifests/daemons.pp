@@ -38,9 +38,9 @@ class phabricator::daemons {
   }
 
   if $phabricator::run_daemon {
-    $daemon_command = "${phabricator::install_dir}/phabricator/bin/phd launch ${phabricator::run_daemon}"
+    $start_command = "launch ${phabricator::run_daemon}"
   } else {
-    $daemon_command = "${phabricator::install_dir}/phabricator/bin/phd"
+    $start_command = 'start'
   }
 
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
@@ -50,9 +50,10 @@ class phabricator::daemons {
   systemd::unit_file { 'phd.service':
     ensure  => 'file',
     content => epp('phabricator/daemons.systemd.epp', {
-      command => $daemon_command,
-      user    => $phabricator::daemon_user,
-      group   => $phabricator::group,
+      command       => "${phabricator::install_dir}/phabricator/bin/phd",
+      user          => $phabricator::daemon_user,
+      group         => $phabricator::group,
+      start_command => $start_command,
     }),
     notify  => Service['phd'],
   }
