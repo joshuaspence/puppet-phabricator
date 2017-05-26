@@ -5,6 +5,7 @@
 ### Features
 
 - Added support for registering [Almanac devices][almanac].
+- The `$config_hash` parameter is now deep-merged by default.
 
 ## 0.3.2
 
