@@ -3,6 +3,7 @@ fixtures:
   forge_modules:
     apt: 'puppetlabs/apt'
     archive: 'puppet/archive'
+    git: 'puppetlabs/git'
     inifile: 'puppetlabs/inifile'
     nodejs: 'puppet/nodejs'
     php: 'puppet/php'

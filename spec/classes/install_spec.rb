@@ -11,6 +11,7 @@ RSpec.describe 'phabricator::install', type: :class do
 
       it { is_expected.to compile.with_all_deps }
 
+      it { is_expected.to contain_class('git') }
       it { is_expected.to contain_class('php') }
       it { is_expected.to contain_php__extension('apcu').with_package_prefix('php-') }
       it { is_expected.to contain_php__extension('curl') }

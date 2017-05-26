@@ -140,6 +140,10 @@ RSpec.describe 'phabricator' do
   end
 
   describe 'phabricator::install' do
+    context command('git --version') do
+      its(:exit_status) { is_expected.to be_zero }
+    end
+
     context command('php --version') do
       its(:exit_status) { is_expected.to be_zero }
     end

@@ -8,6 +8,7 @@ class phabricator::install {
   # but the `apt::update` class may not have been defined. See
   # https://github.com/voxpupuli/puppet-php/pull/323.
   include apt
+  include git
   include php
 
   php::extension {
@@ -19,10 +20,6 @@ class phabricator::install {
     'mysql':
       so_name => 'mysqli';
   }
-
-  # We need to ensure that `git` is installed or else the `git` provider for
-  # the `vcsrepo` type will not be functional.
-  ensure_packages(['git'])
 
   vcsrepo {
     default:
