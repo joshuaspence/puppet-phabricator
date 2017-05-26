@@ -12,7 +12,6 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStart=<%= $command %>
 <% if $daemon { -%>
 ExecStart=<%= $command %> launch <%= $daemon %>
 <% } else { -%>
