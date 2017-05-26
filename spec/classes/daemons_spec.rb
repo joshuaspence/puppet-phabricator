@@ -78,7 +78,7 @@ RSpec.describe 'phabricator::daemons', type: :class do
         end
       end
 
-      context 'when $run_daemon is set' do
+      context 'when $daemon is set' do
         let(:params) do
           {
             daemon: 'repo',

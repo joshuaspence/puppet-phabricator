@@ -48,10 +48,10 @@ class phabricator::daemons(
   systemd::unit_file { 'phd.service':
     ensure  => 'file',
     content => epp('phabricator/daemons.systemd.epp', {
-      command       => "${phabricator::install_dir}/phabricator/bin/phd",
-      user          => $phabricator::daemon_user,
-      group         => $phabricator::group,
-      start_command => $daemon,
+      command => "${phabricator::install_dir}/phabricator/bin/phd",
+      user    => $phabricator::daemon_user,
+      group   => $phabricator::group,
+      daemon  => $daemon,
     }),
     notify  => Service['phd'],
   }
