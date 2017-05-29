@@ -40,6 +40,7 @@ class phabricator::almanac(
       "--private-key ${private_key_path}",
     ], ' '),
     creates => $device_id_path,
+    before  => Service['phd'],
     require => [
       Class['php::cli'],
       File['phabricator/conf/local.json'],

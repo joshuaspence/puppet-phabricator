@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.5
+
+### Bug Fixes
+
+- Ensure that `./bin/almanac register` is executed before the `phd` service is
+  started.
+
 ## 0.3.4
 
 ### Bug Fixes
