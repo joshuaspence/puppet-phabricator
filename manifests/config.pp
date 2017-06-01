@@ -4,6 +4,8 @@
 # @private
 #
 class phabricator::config {
+  assert_private()
+
   group { $phabricator::group:
     ensure => 'present',
     system => true,

@@ -17,7 +17,6 @@ class phabricator::aphlict(
   Array[Phabricator::Aphlict::Server] $servers,
   String $user,
 ) {
-
   $config = {
     servers => $servers,
     logs    => [

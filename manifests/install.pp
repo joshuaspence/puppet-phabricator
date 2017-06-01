@@ -4,6 +4,8 @@
 # @private
 #
 class phabricator::install {
+  assert_private()
+
   # The `php::packages` class requires `Class['apt::update']` unconditionally,
   # but the `apt::update` class may not have been defined. See
   # https://github.com/voxpupuli/puppet-php/pull/323.

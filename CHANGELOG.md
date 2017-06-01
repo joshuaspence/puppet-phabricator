@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.5 (unreleased)
+
+### Features
+
+- Marked internal classes as private using [`assert_private`](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private).
+
 ## 0.3.4
 
 ### Bug Fixes
