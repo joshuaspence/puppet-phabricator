@@ -14,6 +14,8 @@ class phabricator::almanac(
   String $device,
   String $private_key,
 ) {
+  include phabricator::daemons
+
   $device_id_path   = "${phabricator::install_dir}/phabricator/conf/keys/device.id"
   $private_key_path = "${phabricator::install_dir}/phabricator/conf/keys/device.key"
 
@@ -40,6 +42,7 @@ class phabricator::almanac(
       "--private-key ${private_key_path}",
     ], ' '),
     creates => $device_id_path,
+    before  => Service['phd'],
     require => [
       Class['php::cli'],
       File['phabricator/conf/local.json'],

@@ -39,6 +39,7 @@ RSpec.describe 'phabricator::almanac', type: :class do
             '--private-key /usr/local/src/phabricator/conf/keys/device.key',
           ].join(' '))
           .with_creates('/usr/local/src/phabricator/conf/keys/device.id')
+          .that_comes_before('Service[phd]')
           .that_requires('Class[php::cli]')
           .that_requires('File[phabricator/conf/local.json]')
           .that_requires('Php::Extension[mysql]')

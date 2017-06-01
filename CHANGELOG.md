@@ -6,6 +6,11 @@
 
 - Marked internal classes as private using [`assert_private`](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private).
 
+### Bug Fixes
+
+- Ensure that `./bin/almanac register` is executed before the `phd` service is
+  started.
+
 ## 0.3.4
 
 ### Bug Fixes
