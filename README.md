@@ -60,6 +60,31 @@ include phabricator::aphlict
 include phabricator::daemons
 ```
 
+### Storage Upgrades and Adjustments
+Phabricator uses MySQL or another MySQL-compatible database (such as MariaDB or
+Amazon RDS). Phabricator consists of a `./bin/storage` script which can be used
+to manage the database schema and apply storage upgrades and adjustments. You
+can find more information about these processes in the official documentation
+(see [Storage: Configuring MySQL](storage-upgrades) and [Managing Storage Adjustments](storage-adjustments)).
+
+This module can, optionally, execute `./bin/storage upgrade` automatically in
+order to apply storage upgrades and adjustments. Whilst I haven't observed any
+issues using Puppet to apply storage upgrades and adjustments, I suspect that
+many (most?) users of this module would prefer to apply storage upgrades and
+adjustments using some other mechanism, perhaps as a step in a shell script
+used for deployments. As such, `$storage_upgrade` defaults to `false`.
+
+Users of this module that choose to set `$storage_upgrade` to `true` should be
+aware of the following caveats:
+
+- Storage upgrades can take a long time to complete. Generally the time taken
+  to apply storage upgrades will be proportional to the amount of data stored
+  in Phabricator. Whilst storage upgrades should be able to be applied multiple
+  times without adverse side effects, terminating the `./bin/storage upgrade`
+  workflow is strongly advised against.
+- It is strongly recommended that a Phabricator installation is taken offline
+  before storage upgrades are applied.
+
 ## Reference
 
 See the [documentation](https://joshuaspence.github.io/puppet-phabricator/).
@@ -95,4 +120,6 @@ being accepted and merged. Each of the steps that is executed in
 [phabricator]: https://www.phacility.com/phabricator/
 [phacility]: https://www.phacility.com/
 [rspec-puppet]: http://rspec-puppet.com/
+[storage-adjustments]: https://secure.phabricator.com/book/phabricator/article/storage_adjust/
+[storage-upgrades]: https://secure.phabricator.com/book/phabricator/article/configuration_guide/
 [travis]: https://travis-ci.org/joshuaspence/puppet-phabricator/

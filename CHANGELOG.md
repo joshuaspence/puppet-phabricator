@@ -5,6 +5,7 @@
 ### Features
 
 - Marked internal classes as private using [`assert_private`](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private).
+- Documentation improvements.
 
 ### Bug Fixes
 
