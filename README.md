@@ -61,6 +61,7 @@ include phabricator::daemons
 ```
 
 ### Storage Upgrades and Adjustments
+
 Phabricator uses MySQL or another MySQL-compatible database (such as MariaDB or
 Amazon RDS). Phabricator consists of a `./bin/storage` script which can be used
 to manage the database schema and apply storage upgrades and adjustments. You
