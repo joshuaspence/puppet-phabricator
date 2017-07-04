@@ -6,6 +6,7 @@
 
 - Marked internal classes as private using [`assert_private`](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private).
 - Documentation improvements.
+- Officially support Puppet 5.
 
 ### Bug Fixes
 
