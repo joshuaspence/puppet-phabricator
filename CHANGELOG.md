@@ -2,6 +2,13 @@
 
 ## 0.3.5 (unreleased)
 
+### Breaking Changes
+
+- The repository directory (`/var/repo` by default) is no longer managed by
+  this module. Instead, this directory should be created by
+  `PhabricatorRepositoryPullLocalDaemon`. Consequently, the `$repo_dir`
+  parameter has also been removed.
+
 ### Features
 
 - Marked internal classes as private using [`assert_private`](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private).
