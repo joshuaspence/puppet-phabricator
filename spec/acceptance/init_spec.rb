@@ -87,7 +87,7 @@ RSpec.describe 'phabricator' do
 
       its(:content_as_json) do
         is_expected.to eq(
-          'diffusion.ssh-user' => 'vcs',
+          'diffusion.ssh-user' => 'diffusion',
           'log.access.path' => '/var/log/phabricator/access.log',
           'log.ssh.path' => '/var/log/phabricator/ssh.log',
           'mysql.host' => 'localhost',
