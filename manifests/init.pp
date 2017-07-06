@@ -34,7 +34,6 @@
 # @param install_dir
 # @param logs_dir
 # @param pid_dir
-# @param repo_dir
 # @param vcs_user
 #
 class phabricator(
@@ -51,7 +50,6 @@ class phabricator(
   Stdlib::Unixpath $install_dir,
   Stdlib::Unixpath $logs_dir,
   Stdlib::Unixpath $pid_dir,
-  Stdlib::Unixpath $repo_dir,
   String $vcs_user,
 ) {
   if $storage_upgrade {
@@ -68,7 +66,6 @@ class phabricator(
       'phd.log-directory' => $logs_dir,
       'phd.pid-directory' => $pid_dir,
       'phd.user' => $daemon_user,
-      'repository.default-local-path' => $repo_dir,
     }
   )
 

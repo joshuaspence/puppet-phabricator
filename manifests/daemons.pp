@@ -25,13 +25,6 @@
 class phabricator::daemons(
   Optional[String] $daemon,
 ) {
-  file { $phabricator::repo_dir:
-    ensure => 'directory',
-    owner  => $phabricator::daemon_user,
-    group  => $phabricator::group,
-    mode   => '0755',
-  }
-
   user { $phabricator::daemon_user:
     ensure     => 'present',
     comment    => 'Phabricator Daemons',
@@ -68,7 +61,6 @@ class phabricator::daemons(
       Exec['systemctl-daemon-reload'],
       File[$phabricator::logs_dir],
       File[$phabricator::pid_dir],
-      File[$phabricator::repo_dir],
       Group[$phabricator::group],
       User[$phabricator::daemon_user],
     ],
