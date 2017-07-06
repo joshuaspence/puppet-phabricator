@@ -96,7 +96,6 @@ RSpec.describe 'phabricator' do
           'phd.log-directory' => '/var/log/phabricator',
           'phd.pid-directory' => '/run/phabricator',
           'phd.user' => 'phd',
-          'repository.default-local-path' => '/var/repo',
         )
       end
     end
