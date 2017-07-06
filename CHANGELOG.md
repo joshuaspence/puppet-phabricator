@@ -2,6 +2,10 @@
 
 ## 0.3.5 (unreleased)
 
+### Breaking Changes
+
+- The default value for `$vcs_user` has been changed from `vcs` to `diffusion`.
+
 ### Features
 
 - Marked internal classes as private using [`assert_private`](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private).
