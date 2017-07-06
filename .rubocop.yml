@@ -8,6 +8,18 @@ AllCops:
     - 'spec/fixtures/**/*'
     - 'vendor/**/*'
 
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+
 Metrics/BlockLength:
   Enabled: false
 
@@ -33,18 +45,6 @@ Style/CollectionMethods:
   Enabled: true
 
 Style/DocumentationMethod:
-  Enabled: true
-
-Style/FirstArrayElementLineBreak:
-  Enabled: true
-
-Style/FirstHashElementLineBreak:
-  Enabled: true
-
-Style/FirstMethodArgumentLineBreak:
-  Enabled: true
-
-Style/FirstMethodParameterLineBreak:
   Enabled: true
 
 Style/ImplicitRuntimeError:
