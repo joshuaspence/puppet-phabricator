@@ -50,13 +50,6 @@ RSpec.describe 'phabricator::daemons' do
     apply_manifest(pp, catch_changes: true)
   end
 
-  context file('/var/repo') do
-    it { is_expected.to be_directory }
-    it { is_expected.to be_owned_by('phd') }
-    it { is_expected.to be_grouped_into('phabricator') }
-    it { is_expected.to be_mode(755) }
-  end
-
   context user('phd') do
     it { is_expected.to exist }
     it { is_expected.to belong_to_primary_group('phabricator') }
