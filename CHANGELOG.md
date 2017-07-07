@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.5 (unreleased)
+## 0.4.0
 
 ### Breaking Changes
 
