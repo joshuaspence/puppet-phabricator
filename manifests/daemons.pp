@@ -25,16 +25,6 @@
 class phabricator::daemons(
   Optional[String] $daemon,
 ) {
-  user { $phabricator::daemon_user:
-    ensure     => 'present',
-    comment    => 'Phabricator Daemons',
-    gid        => $phabricator::group,
-    home       => $phabricator::pid_dir,
-    managehome => false,
-    shell      => '/usr/sbin/nologin',
-    system     => true,
-  }
-
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
   #

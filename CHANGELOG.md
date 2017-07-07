@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.1 (unreleased)
+
+### Bug Fixes
+
+- The daemon user (`phd`) is now created unconditionally. Previously, this user
+  would only be created if Phabricator daemons were configured on the host. It
+  was discovered that there are other cases in which the daemon user may be
+  required and, as such, it was decided to simply create the daemon user
+  unconditionally.
+
 ## 0.4.0
 
 ### Breaking Changes

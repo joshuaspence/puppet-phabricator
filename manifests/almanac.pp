@@ -14,8 +14,6 @@ class phabricator::almanac(
   String $device,
   String $private_key,
 ) {
-  include phabricator::daemons
-
   $device_id_path   = "${phabricator::install_dir}/phabricator/conf/keys/device.id"
   $private_key_path = "${phabricator::install_dir}/phabricator/conf/keys/device.key"
 
@@ -24,8 +22,8 @@ class phabricator::almanac(
     path    => $private_key_path,
     content => $private_key,
     owner   => $phabricator::daemon_user,
-    group   => 'root',
-    mode    => '0400',
+    group   => $phabricator::group,
+    mode    => '0440',
     notify  => Exec['almanac register'],
     require => Vcsrepo['phabricator'],
   }
@@ -42,7 +40,6 @@ class phabricator::almanac(
       "--private-key ${private_key_path}",
     ], ' '),
     creates => $device_id_path,
-    before  => Service['phd'],
     require => [
       Class['php::cli'],
       File['phabricator/conf/local.json'],
@@ -56,4 +53,12 @@ class phabricator::almanac(
   if $phabricator::storage_upgrade {
     Exec['bin/storage upgrade'] -> Exec['almanac register']
   }
+
+  # TODO: This is dirty, but there's no way that we can accurately determine
+  # whether `Class[phabricator::daemons]` exists in the catalogue. I think that
+  # the solution here is to make the `phabricator::almanac` and
+  # `phabricator::daemons` classes private (using `assert_private()`), and to
+  # instead use flags to determine whether these classes should be included
+  # (e.g. `$phabricator::almanac = true` and `$phabricator::daemons = true`).
+  Exec['almanac register'] -> Service <| title == 'phd' |>
 }

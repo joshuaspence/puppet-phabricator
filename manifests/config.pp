@@ -11,6 +11,16 @@ class phabricator::config {
     system => true,
   }
 
+  user { $phabricator::daemon_user:
+    ensure     => 'present',
+    comment    => 'Phabricator Daemons',
+    gid        => $phabricator::group,
+    home       => $phabricator::pid_dir,
+    managehome => false,
+    shell      => '/usr/sbin/nologin',
+    system     => true,
+  }
+
   file {
     default:
       owner => 'root',

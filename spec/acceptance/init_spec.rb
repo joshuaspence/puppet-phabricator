@@ -65,6 +65,18 @@ RSpec.describe 'phabricator' do
       it { is_expected.to exist }
     end
 
+    context user('phd') do
+      it { is_expected.to exist }
+      it { is_expected.to belong_to_primary_group('phabricator') }
+      it { is_expected.to have_home_directory('/run/phabricator') }
+      it { is_expected.to have_login_shell('/usr/sbin/nologin') }
+    end
+
+    context command('sudo --login --user=phd') do
+      its(:exit_status) { is_expected.not_to be_zero }
+      its(:stdout) { is_expected.to contain('This account is currently not available.') }
+    end
+
     context file('/var/log/phabricator') do
       it { is_expected.to be_directory }
       it { is_expected.to be_owned_by('root') }
