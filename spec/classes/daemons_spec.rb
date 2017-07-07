@@ -12,17 +12,6 @@ RSpec.describe 'phabricator::daemons', type: :class do
       it { is_expected.to compile.with_all_deps }
 
       it do
-        is_expected.to contain_user('phd')
-          .with_ensure('present')
-          .with_comment('Phabricator Daemons')
-          .with_gid('phabricator')
-          .with_home('/run/phabricator')
-          .with_managehome(false)
-          .with_shell('/usr/sbin/nologin')
-          .with_system(true)
-      end
-
-      it do
         is_expected.to contain_systemd__unit_file('phd.service')
           .with_ensure('file')
           .with_content(/^Requires=network\.target$/)

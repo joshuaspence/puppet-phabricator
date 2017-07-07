@@ -18,6 +18,17 @@ RSpec.describe 'phabricator::config', type: :class do
       end
 
       it do
+        is_expected.to contain_user('phd')
+          .with_ensure('present')
+          .with_comment('Phabricator Daemons')
+          .with_gid('phabricator')
+          .with_home('/run/phabricator')
+          .with_managehome(false)
+          .with_shell('/usr/sbin/nologin')
+          .with_system(true)
+      end
+
+      it do
         is_expected.to contain_file('/var/log/phabricator')
           .with_ensure('directory')
           .with_owner('root')
