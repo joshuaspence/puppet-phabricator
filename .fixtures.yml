@@ -3,12 +3,15 @@ fixtures:
   forge_modules:
     apt: 'puppetlabs/apt'
     archive: 'puppet/archive'
+    concat: 'puppetlabs/concat'
     git: 'puppetlabs/git'
     inifile: 'puppetlabs/inifile'
     logrotate: 'puppet/logrotate'
     nodejs: 'puppet/nodejs'
     php: 'puppet/php'
+    ssh: 'saz/ssh'
     stdlib: 'puppetlabs/stdlib'
+    sudo: 'saz/sudo'
     systemd: 'camptocamp/systemd'
     vcsrepo: 'puppetlabs/vcsrepo'
   symlinks:

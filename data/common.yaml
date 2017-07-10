@@ -10,8 +10,10 @@ phabricator::group: 'phabricator'
 phabricator::install_dir: '/usr/local/src'
 phabricator::libphutil_revision: 'stable'
 phabricator::logs_dir: '/var/log/phabricator'
+phabricator::manage_diffusion: false
 phabricator::phabricator_revision: 'stable'
 phabricator::pid_dir: '/run/phabricator'
+phabricator::repo_dir: '/var/repo'
 phabricator::storage_upgrade: false
 phabricator::storage_upgrade_password: null
 phabricator::storage_upgrade_user: null

@@ -31,6 +31,7 @@ RSpec.describe 'phabricator' do
         'mysql.pass' => 'root',
       },
 
+      manage_diffusion         => true,
       storage_upgrade          => true,
       storage_upgrade_user     => 'root',
       storage_upgrade_password => 'root',
@@ -72,6 +73,13 @@ RSpec.describe 'phabricator' do
       it { is_expected.to have_login_shell('/usr/sbin/nologin') }
     end
 
+    context user('diffusion') do
+      it { is_expected.to exist }
+      it { is_expected.to belong_to_primary_group('phabricator') }
+      it { is_expected.to have_home_directory('/var/repo') }
+      it { is_expected.to have_login_shell('/bin/sh') }
+    end
+
     context command('sudo --login --user=phd') do
       its(:exit_status) { is_expected.not_to be_zero }
       its(:stdout) { is_expected.to contain('This account is currently not available.') }
@@ -91,6 +99,13 @@ RSpec.describe 'phabricator' do
       it { is_expected.to be_mode(775) }
     end
 
+    context file('/var/repo') do
+      it { is_expected.to be_directory }
+      it { is_expected.to be_owned_by('phd') }
+      it { is_expected.to be_grouped_into('phabricator') }
+      it { is_expected.to be_mode(750) }
+    end
+
     context file('/usr/local/src/phabricator/conf/local/local.json') do
       it { is_expected.to be_file }
       it { is_expected.to be_owned_by('root') }
@@ -108,6 +123,7 @@ RSpec.describe 'phabricator' do
           'phd.log-directory' => '/var/log/phabricator',
           'phd.pid-directory' => '/run/phabricator',
           'phd.user' => 'phd',
+          'repository.default-local-path' => '/var/repo',
         )
       end
     end
@@ -147,6 +163,23 @@ RSpec.describe 'phabricator' do
       its(:stdout) { is_expected.to contain('phabricator_meta_data') }
       its(:stdout) { is_expected.to contain('phabricator_policy') }
       its(:stdout) { is_expected.to contain('phabricator_system') }
+    end
+
+    # TODO: We should also add tests for the `www-data` user.
+    sudo_commands = {
+      'diffusion' => [
+        '/usr/bin/git-receive-pack',
+        '/usr/bin/git-upload-pack',
+        '/usr/bin/ssh',
+      ],
+    }
+
+    sudo_commands.each do |user, commands|
+      commands.each do |command|
+        context command("sudo --list --other-user=#{user} --user=phd #{command}") do
+          its(:exit_status) { is_expected.to be_zero }
+        end
+      end
     end
   end
 
