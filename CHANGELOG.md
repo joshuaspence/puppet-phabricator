@@ -1,10 +1,17 @@
 # Changelog
 
-## 0.4.1 (unreleased)
+## 0.5.0 (unreleased)
+
+### Breaking Changes
+
+- The repository directory (`/var/repo` by default) is, once again, managed by
+  this module. This is a revert of #8.
 
 ### Features
 
-- Add a `logrotate` rule for Aphlict.
+- Added a `logrotate` rule for Aphlict.
+- Added support for Diffusion repository hosting. This functionality is
+  disabled by default, but can be enabled with `$phabricator::manage_diffusion`.
 
 ### Bug Fixes
 
