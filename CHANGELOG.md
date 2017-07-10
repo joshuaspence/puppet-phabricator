@@ -10,6 +10,10 @@
   required and, as such, it was decided to simply create the daemon user
   unconditionally.
 
+### Improvements
+
+- Refactor unit tests.
+
 ## 0.4.0
 
 ### Breaking Changes

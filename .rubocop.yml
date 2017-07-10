@@ -25,7 +25,7 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   # TODO: Reduce this value.
-  Max: 90
+  Max: 91
 
 RSpec/DescribeClass:
   Exclude:
@@ -39,7 +39,7 @@ RSpec/MultipleExpectations:
   Enabled: false
 
 RSpec/NestedGroups:
-  Max: 4
+  Max: 5
 
 Style/CollectionMethods:
   Enabled: true
