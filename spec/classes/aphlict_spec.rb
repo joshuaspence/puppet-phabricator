@@ -94,6 +94,22 @@ RSpec.describe 'phabricator::aphlict', type: :class do
           .that_subscribes_to('Class[nodejs::install]')
           .that_subscribes_to('Vcsrepo[phabricator]')
       end
+
+      it do
+        is_expected.to contain_logrotate__rule('aphlict')
+          .with_ensure('present')
+          .with_path(['/var/log/phabricator/aphlict.log'])
+          .with_compress(true)
+          .with_copytruncate(true)
+          .with_delaycompress(true)
+          .with_ifempty(false)
+          .with_missingok(true)
+          .with_rotate(7)
+          .with_rotate_every('day')
+          .with_su(true)
+          .with_su_owner('root')
+          .with_su_group('phabricator')
+      end
     end
   end
 end

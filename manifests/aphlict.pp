@@ -94,4 +94,19 @@ class phabricator::aphlict(
       Vcsrepo['phabricator'],
     ],
   }
+
+  logrotate::rule { 'aphlict':
+    ensure        => 'present',
+    path          => ["${phabricator::logs_dir}/aphlict.log"],
+    compress      => true,
+    copytruncate  => true,
+    delaycompress => true,
+    ifempty       => false,
+    missingok     => true,
+    rotate        => 7,
+    rotate_every  => 'day',
+    su            => true,
+    su_owner      => 'root',
+    su_group      => $phabricator::group,
+  }
 }
