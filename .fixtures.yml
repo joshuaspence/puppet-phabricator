@@ -5,6 +5,7 @@ fixtures:
     archive: 'puppet/archive'
     git: 'puppetlabs/git'
     inifile: 'puppetlabs/inifile'
+    logrotate: 'puppet/logrotate'
     nodejs: 'puppet/nodejs'
     php: 'puppet/php'
     stdlib: 'puppetlabs/stdlib'

@@ -2,6 +2,10 @@
 
 ## 0.4.1 (unreleased)
 
+### Features
+
+- Add a `logrotate` rule for Aphlict.
+
 ### Bug Fixes
 
 - The daemon user (`phd`) is now created unconditionally. Previously, this user
