@@ -22,6 +22,10 @@
       "version_requirement": "< 1.0.0"
     },
     {
+      "name": "puppet/logrotate",
+      "version_requirement": "2.x"
+    },
+    {
       "name": "puppet/nodejs",
       "version_requirement": "< 3.0.0"
     },

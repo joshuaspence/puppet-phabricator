@@ -131,4 +131,8 @@ RSpec.describe 'phabricator::aphlict' do
   context command('echo | wscat ws://127.0.0.1:22280') do
     its(:exit_status) { is_expected.to be_zero }
   end
+
+  context command('logrotate --debug /etc/logrotate.d/aphlict') do
+    its(:exit_status) { is_expected.to be_zero }
+  end
 end
