@@ -25,6 +25,13 @@
 class phabricator::daemons(
   Optional[String] $daemon,
 ) {
+  file { $phabricator::repo_dir:
+    ensure => 'directory',
+    owner  => $phabricator::daemon_user,
+    group  => $phabricator::group,
+    mode   => '0755',
+  }
+
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
   #
@@ -51,6 +58,7 @@ class phabricator::daemons(
       Exec['systemctl-daemon-reload'],
       File[$phabricator::logs_dir],
       File[$phabricator::pid_dir],
+      File[$phabricator::repo_dir],
       Group[$phabricator::group],
       User[$phabricator::daemon_user],
     ],
