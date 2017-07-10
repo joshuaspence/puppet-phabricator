@@ -12,6 +12,14 @@ RSpec.describe 'phabricator::daemons', type: :class do
       it { is_expected.to compile.with_all_deps }
 
       it do
+        is_expected.to contain_file('/var/repo')
+          .with_ensure('directory')
+          .with_owner('phd')
+          .with_group('phabricator')
+          .with_mode('0755')
+      end
+
+      it do
         is_expected.to contain_systemd__unit_file('phd.service')
           .with_ensure('file')
           .with_content(/^Requires=network\.target$/)
@@ -33,6 +41,7 @@ RSpec.describe 'phabricator::daemons', type: :class do
           .that_requires('Exec[systemctl-daemon-reload]')
           .that_requires('File[/var/log/phabricator]')
           .that_requires('File[/run/phabricator]')
+          .that_requires('File[/var/repo]')
           .that_requires('Group[phabricator]')
           .that_requires('User[phd]')
           .that_subscribes_to('Class[php::cli]')

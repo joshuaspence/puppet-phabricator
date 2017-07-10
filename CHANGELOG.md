@@ -19,10 +19,6 @@
 ### Breaking Changes
 
 - The default value for `$vcs_user` has been changed from `vcs` to `diffusion`.
-- The repository directory (`/var/repo` by default) is no longer managed by
-  this module. Instead, this directory should be created by
-  `PhabricatorRepositoryPullLocalDaemon`. Consequently, the `$repo_dir`
-  parameter has also been removed.
 
 ### Features
 
