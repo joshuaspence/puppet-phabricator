@@ -11,14 +11,22 @@ class phabricator::config {
     system => true,
   }
 
-  user { $phabricator::daemon_user:
-    ensure     => 'present',
-    comment    => 'Phabricator Daemons',
-    gid        => $phabricator::group,
-    home       => $phabricator::pid_dir,
-    managehome => false,
-    shell      => '/usr/sbin/nologin',
-    system     => true,
+  user {
+    default:
+      ensure     => 'present',
+      gid        => $phabricator::group,
+      managehome => false,
+      system     => true;
+
+    $phabricator::daemon_user:
+      comment => 'Phabricator Daemons',
+      home    => $phabricator::pid_dir,
+      shell   => '/usr/sbin/nologin';
+
+    $phabricator::vcs_user:
+      comment => 'Phabricator VCS',
+      home    => '/var/repo',
+      shell   => '/bin/sh';
   }
 
   file {
@@ -33,6 +41,11 @@ class phabricator::config {
     $phabricator::pid_dir:
       ensure => 'directory',
       mode   => '0775';
+
+    $phabricator::repo_dir:
+      ensure => 'directory',
+      owner  => $phabricator::daemon_user,
+      mode   => '0750';
 
     'phabricator/conf/local.json':
       ensure  => 'file',
@@ -67,5 +80,46 @@ class phabricator::config {
       ],
       subscribe   => Vcsrepo['phabricator'],
     }
+  }
+
+  if $phabricator::manage_diffusion {
+    sudo::conf { 'vcs-daemon':
+      ensure  => 'present',
+      content => sprintf(
+        '%s ALL=(%s) SETENV: NOPASSWD: %s',
+        $phabricator::vcs_user,
+        "${phabricator::daemon_user}:${phabricator::group}",
+        join([
+          '/usr/bin/git-receive-pack',
+          '/usr/bin/git-upload-pack',
+          '/usr/bin/ssh',
+        ], ', '),
+      ),
+    }
+
+    sudo::conf { 'www-daemon':
+      ensure  => 'present',
+      content => sprintf(
+        '%s ALL=(%s) SETENV: NOPASSWD: %s',
+        #$php::fpm::config::user,
+        'www-data',
+        "${phabricator::daemon_user}:${phabricator::group}",
+        join([
+          '/usr/bin/ssh',
+          '/usr/lib/git-core/git-http-backend',
+        ], ', '),
+      ),
+    }
+
+    ssh::server::config::setting { $phabricator::vcs_user:
+      key   => "Match User ${phabricator::vcs_user}",
+      value => join([
+        '',
+        "AllowUsers ${phabricator::vcs_user}",
+        "AuthorizedKeysCommand ${phabricator::install_dir}/phabricator/bin/ssh-auth",
+        "AuthorizedKeysCommandUser ${phabricator::vcs_user}",
+      ], "\n  "),
+    }
+
   }
 }

@@ -33,6 +33,7 @@ RSpec.describe 'phabricator::daemons', type: :class do
           .that_requires('Exec[systemctl-daemon-reload]')
           .that_requires('File[/var/log/phabricator]')
           .that_requires('File[/run/phabricator]')
+          .that_requires('File[/var/repo]')
           .that_requires('Group[phabricator]')
           .that_requires('User[phd]')
           .that_subscribes_to('Class[php::cli]')

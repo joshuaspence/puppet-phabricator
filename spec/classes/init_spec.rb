@@ -28,6 +28,17 @@ RSpec.describe 'phabricator', type: :class do
         end
 
         it do
+          is_expected.to contain_user('diffusion')
+            .with_ensure('present')
+            .with_comment('Phabricator VCS')
+            .with_gid('phabricator')
+            .with_home('/var/repo')
+            .with_managehome(false)
+            .with_shell('/bin/sh')
+            .with_system(true)
+        end
+
+        it do
           is_expected.to contain_file('/var/log/phabricator')
             .with_ensure('directory')
             .with_owner('root')
@@ -41,6 +52,14 @@ RSpec.describe 'phabricator', type: :class do
             .with_owner('root')
             .with_group('phabricator')
             .with_mode('0775')
+        end
+
+        it do
+          is_expected.to contain_file('/var/repo')
+            .with_ensure('directory')
+            .with_owner('phd')
+            .with_group('phabricator')
+            .with_mode('0750')
         end
 
         it do
@@ -123,6 +142,28 @@ RSpec.describe 'phabricator', type: :class do
           end
         end
 
+        context 'when $manage_diffusion is true' do
+          let(:params) do
+            {
+              manage_diffusion: true,
+            }
+          end
+
+          it do
+            is_expected.to contain_sudo__conf('vcs-daemon')
+              .with_ensure('present')
+          end
+
+          it do
+            is_expected.to contain_sudo__conf('www-daemon')
+              .with_ensure('present')
+          end
+
+          it do
+            is_expected.to contain_ssh__server__config__setting('diffusion')
+          end
+        end
+
         describe 'File[phabricator/conf/local.json]' do
           subject do
             resource = catalogue.resource('file', 'phabricator/conf/local.json')
@@ -139,6 +180,7 @@ RSpec.describe 'phabricator', type: :class do
                 'phd.log-directory' => '/var/log/phabricator',
                 'phd.pid-directory' => '/run/phabricator',
                 'phd.user' => 'phd',
+                'repository.default-local-path' => '/var/repo',
               )
             end
           end
@@ -168,6 +210,7 @@ RSpec.describe 'phabricator', type: :class do
                 'phd.log-directory' => '/var/log/phabricator',
                 'phd.pid-directory' => '/run/phabricator',
                 'phd.user' => 'phd',
+                'repository.default-local-path' => '/var/repo',
               )
             end
           end
