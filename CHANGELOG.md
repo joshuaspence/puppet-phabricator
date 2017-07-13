@@ -6,6 +6,8 @@
 
 - The repository directory (`/var/repo` by default) is, once again, managed by
   this module. This is a revert of #8.
+- The Almanac device key (`/usr/local/src/phabricator/conf/keys/device.key`) is
+  no longer group-readable.
 
 ### Features
 

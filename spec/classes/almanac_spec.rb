@@ -25,7 +25,7 @@ RSpec.describe 'phabricator::almanac', type: :class do
           .with_content(params[:private_key])
           .with_owner('phd')
           .with_group('phabricator')
-          .with_mode('0440')
+          .with_mode('0400')
           .that_notifies('Exec[almanac register]')
           .that_requires('Vcsrepo[phabricator]')
       end

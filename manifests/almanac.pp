@@ -23,7 +23,7 @@ class phabricator::almanac(
     content => $private_key,
     owner   => $phabricator::daemon_user,
     group   => $phabricator::group,
-    mode    => '0440',
+    mode    => '0400',
     notify  => Exec['almanac register'],
     require => Vcsrepo['phabricator'],
   }
