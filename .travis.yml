@@ -39,10 +39,6 @@ matrix:
       script: 'bundle exec rake beaker'
       services: 'docker'
 
-branches:
-  only:
-    - 'master'
-
 deploy:
   - provider: 'puppetforge'
     user: 'joshuaspence'
