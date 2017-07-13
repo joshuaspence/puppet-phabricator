@@ -20,7 +20,7 @@ class phabricator::config {
 
     $phabricator::daemon_user:
       comment => 'Phabricator Daemons',
-      home    => $phabricator::pid_dir,
+      home    => '/nonexistent',
       shell   => '/usr/sbin/nologin';
 
     $phabricator::vcs_user:

@@ -21,7 +21,7 @@ RSpec.describe 'phabricator', type: :class do
             .with_ensure('present')
             .with_comment('Phabricator Daemons')
             .with_gid('phabricator')
-            .with_home('/run/phabricator')
+            .with_home('/nonexistent')
             .with_managehome(false)
             .with_shell('/usr/sbin/nologin')
             .with_system(true)

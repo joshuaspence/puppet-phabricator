@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1 (UNRELEASED)
+
+### Bug Fixes
+
+- Change the home directory for the daemon user to be `/nonexistent`.
+
 ## 0.5.0
 
 ### Breaking Changes
