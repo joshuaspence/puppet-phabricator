@@ -8,6 +8,8 @@
   this module. This is a revert of #8.
 - The Almanac device key (`/usr/local/src/phabricator/conf/keys/device.key`) is
   no longer group-readable.
+- This module now overrides the configuration value for
+  `environment.append-paths`.
 
 ### Features
 
@@ -22,6 +24,8 @@
   was discovered that there are other cases in which the daemon user may be
   required and, as such, it was decided to simply create the daemon user
   unconditionally.
+- Added `/usr/lib/git-core` to `environment.append-paths` so that
+  `git-http-backend` works.
 
 ### Improvements
 
