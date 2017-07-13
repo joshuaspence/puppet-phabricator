@@ -130,6 +130,8 @@ class phabricator::config {
         '',
         "AuthorizedKeysCommand ${phabricator::install_dir}/phabricator/bin/ssh-auth",
         "AuthorizedKeysCommandUser ${phabricator::vcs_user}",
+        'PasswordAuthentication no',
+        'PubkeyAuthentication yes',
       ], "\n  "),
     }
     # lint:endignore
