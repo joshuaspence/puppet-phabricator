@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.3 (UNRELEASED)
+
+## Bug Fixes
+
+- Fix a typo in Hiera data.
+
 ## 0.5.2
 
 ## Features
