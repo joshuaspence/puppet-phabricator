@@ -30,21 +30,26 @@ class phabricator::almanac(
     require => Vcsrepo['phabricator'],
   }
 
-  # lint:ignore:strict_indent
-  $flags = phabricator::command_flags({
-    'device'      => $device,
-    'force'       => true,
-    'identify-as' => $identity,
-    'private-key' => $private_key_path,
-  })
-  # lint:endignore
+  $_options = [
+    "--device ${device}",
+    '--force',
+    "--private-key ${private_key_path}",
+  ]
+
+  if $identity == undef {
+    $identity_option = undef
+  } else {
+    $identity_option = "--identify-as ${identity}"
+  }
+
+  $options = delete_undef_values(concat($_options, [$identity_option]))
 
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
   #
   # lint:ignore:strict_indent
   exec { 'almanac register':
-    command => "${phabricator::install_dir}/phabricator/bin/almanac register ${flags}",
+    command => "${phabricator::install_dir}/phabricator/bin/almanac register ${join($options, ' ')}",
     creates => $device_id_path,
     require => [
       Class['php::cli'],

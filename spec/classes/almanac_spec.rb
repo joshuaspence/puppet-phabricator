@@ -55,8 +55,8 @@ RSpec.describe 'phabricator::almanac', type: :class do
               '/usr/local/src/phabricator/bin/almanac register',
               "--device #{params[:device]}",
               '--force',
-              "--identify-as #{params[:identity]}",
               '--private-key /usr/local/src/phabricator/conf/keys/device.key',
+              "--identify-as #{params[:identity]}",
             ].join(' '))
         end
       end
