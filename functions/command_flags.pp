@@ -1,4 +1,5 @@
 function phabricator::command_flags(Hash[String, Data] $flags) >> String {
+  # lint:ignore:strict_indent
   $flags
     .filter |$key, $value| { $value != undef }
     .map |$key, $value| {
@@ -9,4 +10,5 @@ function phabricator::command_flags(Hash[String, Data] $flags) >> String {
       }
     }
     .join(' ')
+  # lint:endignore
 }

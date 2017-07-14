@@ -13,7 +13,7 @@
 #
 class phabricator::almanac(
   String $device,
-  Optional[String] $identity = undef,
+  Optional[String] $identity,
   String $private_key,
 ) {
   $device_id_path   = "${phabricator::install_dir}/phabricator/conf/keys/device.id"
@@ -30,12 +30,14 @@ class phabricator::almanac(
     require => Vcsrepo['phabricator'],
   }
 
+  # lint:ignore:strict_indent
   $flags = phabricator::command_flags({
     'device'      => $device,
     'force'       => true,
     'identify-as' => $identity,
     'private-key' => $private_key_path,
   })
+  # lint:endignore
 
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
