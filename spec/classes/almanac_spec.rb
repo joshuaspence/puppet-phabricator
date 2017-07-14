@@ -11,8 +11,8 @@ RSpec.describe 'phabricator::almanac', type: :class do
 
       let(:params) do
         {
-          device: 'test',
-          private_key: 'test',
+          device: 'device',
+          private_key: 'private_key',
         }
       end
 
@@ -44,6 +44,21 @@ RSpec.describe 'phabricator::almanac', type: :class do
           .that_requires('Php::Extension[mysql]')
           .that_requires('Vcsrepo[libphutil]')
           .that_requires('Vcsrepo[phabricator]')
+      end
+
+      context 'when $identity is specified' do
+        let(:params) { super().merge(identity: 'identity') }
+
+        it do
+          is_expected.to contain_exec('almanac register')
+            .with_command([
+              '/usr/local/src/phabricator/bin/almanac register',
+              "--device #{params[:device]}",
+              '--force',
+              "--identify-as #{params[:identity]}",
+              '--private-key /usr/local/src/phabricator/conf/keys/device.key',
+            ].join(' '))
+        end
       end
 
       context 'when $storage_upgrade is enabled' do

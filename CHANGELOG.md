@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.2 (UNRELEASED)
+
+## Features
+
+- Allow `--identify-as` to be passed to `bin/almanac register`.
+
 ## 0.5.1
 
 ### Bug Fixes

@@ -6,12 +6,14 @@
 # Almanac User Guide} for further information.
 #
 # @param device The name of the Almanac device to register.
+# @param identity The name of the Almanac device to identify as.
 # @param private_key The contents of an SSH private key that has been associated
 #   with the specified Almanac device. This SSH key must be manually marked as
 #   trusted using the `./bin/almanac trust-key` command.
 #
 class phabricator::almanac(
   String $device,
+  Optional[String] $identity = undef,
   String $private_key,
 ) {
   $device_id_path   = "${phabricator::install_dir}/phabricator/conf/keys/device.id"
@@ -28,17 +30,19 @@ class phabricator::almanac(
     require => Vcsrepo['phabricator'],
   }
 
+  $flags = phabricator::command_flags({
+    'device'      => $device,
+    'force'       => true,
+    'identify-as' => $identity,
+    'private-key' => $private_key_path,
+  })
+
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
   #
   # lint:ignore:strict_indent
   exec { 'almanac register':
-    command => join([
-      "${phabricator::install_dir}/phabricator/bin/almanac register",
-      "--device ${device}",
-      '--force',
-      "--private-key ${private_key_path}",
-    ], ' '),
+    command => "${phabricator::install_dir}/phabricator/bin/almanac register ${flags}",
     creates => $device_id_path,
     require => [
       Class['php::cli'],
