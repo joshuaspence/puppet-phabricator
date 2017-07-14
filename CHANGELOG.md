@@ -2,6 +2,11 @@
 
 ## 0.5.3 (UNRELEASED)
 
+## Breaking Changes
+
+- Changed the home directory for the daemon user to be
+  `/usr/local/src/phabricator/support/empty`.
+
 ## Bug Fixes
 
 - Fix a typo in Hiera data.
@@ -16,7 +21,7 @@
 
 ### Bug Fixes
 
-- Change the home directory for the daemon user to be `/nonexistent`.
+- Changed the home directory for the daemon user to be `/nonexistent`.
 
 ## 0.5.0
 

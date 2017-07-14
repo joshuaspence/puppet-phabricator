@@ -69,7 +69,7 @@ RSpec.describe 'phabricator' do
     context user('phd') do
       it { is_expected.to exist }
       it { is_expected.to belong_to_primary_group('phabricator') }
-      it { is_expected.to have_home_directory('/nonexistent') }
+      it { is_expected.to have_home_directory('/usr/local/src/phabricator/support/empty') }
       it { is_expected.to have_login_shell('/usr/sbin/nologin') }
     end
 
