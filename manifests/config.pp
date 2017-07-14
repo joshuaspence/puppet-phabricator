@@ -25,7 +25,7 @@ class phabricator::config {
 
     $phabricator::vcs_user:
       comment => 'Phabricator VCS',
-      home    => '/var/repo',
+      home    => $phabricator::repo_dir,
       shell   => '/bin/sh';
   }
 
