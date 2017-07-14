@@ -25,16 +25,16 @@
 
 ### Features
 
-- Added a `logrotate` rule for Aphlict.
-- Added support for Diffusion repository hosting. This functionality is
+- Added a `logrotate` rule for Aphlict (#12).
+- Added support for Diffusion repository hosting (#14). This functionality is
   disabled by default, but can be enabled with `$phabricator::manage_diffusion`.
 
 ### Bug Fixes
 
-- The daemon user (`phd`) is now created unconditionally. Previously, this user
-  would only be created if Phabricator daemons were configured on the host. It
-  was discovered that there are other cases in which the daemon user may be
-  required and, as such, it was decided to simply create the daemon user
+- The daemon user (`phd`) is now created unconditionally (#11). Previously,
+  this user would only be created if Phabricator daemons were configured on the
+  host. It was discovered that there are other cases in which the daemon user
+  may be required and, as such, it was decided to simply create the daemon user
   unconditionally.
 - Added `/usr/lib/git-core` to `environment.append-paths` so that
   `git-http-backend` works.
@@ -47,9 +47,10 @@
 
 ### Breaking Changes
 
-- The default value for `$vcs_user` has been changed from `vcs` to `diffusion`.
+- The default value for `$vcs_user` has been changed from `vcs` to `diffusion`
+  (#10).
 - The repository directory (`/var/repo` by default) is no longer managed by
-  this module. Instead, this directory should be created by
+  this module (#8). Instead, this directory should be created by
   `PhabricatorRepositoryPullLocalDaemon`. Consequently, the `$repo_dir`
   parameter has also been removed.
 
@@ -57,12 +58,12 @@
 
 - Marked internal classes as private using [`assert_private`](https://github.com/puppetlabs/puppetlabs-stdlib#assert_private).
 - Documentation improvements.
-- Officially support Puppet 5.
+- Officially support Puppet 5 (#9).
 
 ### Bug Fixes
 
 - Ensure that `./bin/almanac register` is executed before the `phd` service is
-  started.
+  started (#7).
 
 ## 0.3.4
 
@@ -75,27 +76,28 @@
 
 ### Features
 
-- Added support for registering [Almanac devices][almanac].
+- Added support for registering [Almanac devices][almanac] (#4).
 - The `$config_hash` parameter is now deep-merged by default.
-- Added support for launch a specific Phabricator daemon using `./bin/phd
-  launch`.
+- Added support for launching a specific Phabricator daemon using `./bin/phd
+  launch` (#5).
 
 ## 0.3.2
 
 ### Features
 
 - Added support for managing [Aphlict][aphlict], Phabricator's real-time
-  notifications service.
+  notifications service (#3).
 
 ### Bug Fixes
 
-- Added a warning if the installed PHP version is incompatible with Phabricator.
+- Added a warning if the installed PHP version is incompatible with Phabricator
+  (#2).
 
 ## 0.3.1
 
 ### Features
 
-- Added support for managing [Phabricator daemons][phd].
+- Added support for managing [Phabricator daemons][phd] (#1).
 
 ## 0.3.0
 
