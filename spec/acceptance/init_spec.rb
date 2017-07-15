@@ -80,7 +80,7 @@ RSpec.describe 'phabricator' do
       it { is_expected.to have_login_shell('/bin/sh') }
     end
 
-    context command('sudo --login --user=phd') do
+    context command('sudo su --login phd') do
       its(:exit_status) { is_expected.not_to be_zero }
       its(:stdout) { is_expected.to contain('This account is currently not available.') }
     end
