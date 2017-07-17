@@ -8,13 +8,14 @@
 # @param servers A list of servers to start. See
 #   {https://secure.phabricator.com/book/phabricator/article/notifications/#running-the-aphlict-serv
 #   Running the Aphlict Server}.
+# @param peers A list of cluster peers. See
+#   {https://secure.phabricator.com/book/phabricator/article/cluster_notifications/#configuring-aphlict
+#   Configuring Aphlict}.
 # @param user
 #
-# @todo Add a `$peers` parameter to support clustering. See
-#   {https://secure.phabricator.com/book/phabricator/article/cluster_notifications/
-#   Cluster: Notifications}.
 class phabricator::aphlict(
   Array[Phabricator::Aphlict::Server] $servers,
+  Array[Phabricator::Aphlict::Peer] $peers,
   String $user,
 ) {
   $config = {
@@ -24,6 +25,7 @@ class phabricator::aphlict(
         path => "${phabricator::logs_dir}/aphlict.log",
       },
     ],
+    cluster => $peers,
     pidfile => "${phabricator::pid_dir}/aphlict.pid",
   }
 

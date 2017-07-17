@@ -28,6 +28,7 @@ RSpec.describe 'phabricator::aphlict', type: :class do
               path: '/var/log/phabricator/aphlict.log',
             },
           ],
+          cluster: [],
           pidfile: '/run/phabricator/aphlict.pid',
         }
       end

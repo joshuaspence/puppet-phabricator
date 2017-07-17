@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.4 (UNRELEASED)
+
+## Features
+
+- Add support for specifying cluster peers in the Aphlict configuration file.
+
 ## 0.5.3
 
 ## Breaking Changes

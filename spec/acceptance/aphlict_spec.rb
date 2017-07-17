@@ -84,6 +84,7 @@ RSpec.describe 'phabricator::aphlict' do
             'path' => '/var/log/phabricator/aphlict.log',
           },
         ],
+        'cluster' => [],
         'pidfile' => '/run/phabricator/aphlict.pid',
       )
     end
