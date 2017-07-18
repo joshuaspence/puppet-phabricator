@@ -1,8 +1,7 @@
 ---
 lookup_options:
   phabricator::config_hash:
-    merge:
-      strategy: 'deep'
+    merge: 'hash'
 phabricator::almanac::identity: null
 phabricator::arcanist_revision: 'stable'
 phabricator::config_hash: {}

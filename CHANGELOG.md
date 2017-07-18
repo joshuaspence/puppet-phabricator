@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.5 (UNRELEASED)
+
+## Breaking Changes
+
+- Changed the `lookup_options` for `phabricator::config_hash` from `deep` to
+  `hash`.
+
 ## 0.5.4
 
 ## Features
