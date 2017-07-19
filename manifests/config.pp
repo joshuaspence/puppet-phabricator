@@ -91,6 +91,7 @@ class phabricator::config {
         $phabricator::vcs_user,
         "${phabricator::daemon_user}:${phabricator::group}",
         join([
+          '/usr/bin/git',
           '/usr/bin/git-receive-pack',
           '/usr/bin/git-upload-pack',
           '/usr/bin/ssh',
@@ -113,6 +114,7 @@ class phabricator::config {
           $php::params::fpm_user,
           "${phabricator::daemon_user}:${phabricator::group}",
           join([
+            '/usr/bin/git',
             '/usr/bin/ssh',
             '/usr/lib/git-core/git-http-backend',
           ], ', '),

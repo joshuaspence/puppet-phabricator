@@ -169,6 +169,7 @@ RSpec.describe 'phabricator' do
     # TODO: We should also add tests for the `www-data` user.
     sudo_commands = {
       'diffusion' => [
+        '/usr/bin/git',
         '/usr/bin/git-receive-pack',
         '/usr/bin/git-upload-pack',
         '/usr/bin/ssh',

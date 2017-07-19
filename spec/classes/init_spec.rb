@@ -158,6 +158,7 @@ RSpec.describe 'phabricator', type: :class do
                   'diffusion',
                   'phd:phabricator',
                   [
+                    '/usr/bin/git',
                     '/usr/bin/git-receive-pack',
                     '/usr/bin/git-upload-pack',
                     '/usr/bin/ssh',
@@ -175,6 +176,7 @@ RSpec.describe 'phabricator', type: :class do
                   'www-data',
                   'phd:phabricator',
                   [
+                    '/usr/bin/git',
                     '/usr/bin/ssh',
                     '/usr/lib/git-core/git-http-backend',
                   ].join(', '),

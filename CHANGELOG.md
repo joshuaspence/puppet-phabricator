@@ -7,6 +7,11 @@
 - Changed the `lookup_options` for `phabricator::config_hash` from `deep` to
   `hash`.
 
+## Bug Fixes
+
+- Grant `sudo` permissions to `/usr/bin/git` for the `diffusion` and `www-data`
+  users.
+
 ## 0.5.4
 
 ## Features
