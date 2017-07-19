@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.6 (UNRELEASED)
+
+## Features
+
+- Added a `logrotate` rule for `phd`.
+
 ## 0.5.5
 
 ## Breaking Changes

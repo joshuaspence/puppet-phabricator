@@ -41,6 +41,21 @@ RSpec.describe 'phabricator::daemons', type: :class do
           .that_subscribes_to('Vcsrepo[phabricator]')
       end
 
+      it do
+        is_expected.to contain_logrotate__rule('phd')
+          .with_ensure('present')
+          .with_path('/var/log/phabricator/daemons.log')
+          .with_compress(true)
+          .with_delaycompress(true)
+          .with_ifempty(false)
+          .with_missingok(true)
+          .with_rotate(4)
+          .with_rotate_every('week')
+          .with_su(true)
+          .with_su_owner('root')
+          .with_su_group('phabricator')
+      end
+
       context 'when $storage_upgrade is enabled' do
         let(:module_params) do
           {

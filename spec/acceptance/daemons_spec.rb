@@ -68,4 +68,8 @@ RSpec.describe 'phabricator::daemons' do
   context command('/usr/local/src/phabricator/bin/phd log') do
     its(:exit_status) { is_expected.to be_zero }
   end
+
+  context command('logrotate --debug /etc/logrotate.d/phd') do
+    its(:exit_status) { is_expected.to be_zero }
+  end
 end

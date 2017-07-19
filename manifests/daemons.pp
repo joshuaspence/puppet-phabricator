@@ -68,4 +68,18 @@ class phabricator::daemons(
   if $phabricator::storage_upgrade {
     Exec['bin/storage upgrade'] -> Service['phd']
   }
+
+  logrotate::rule { 'phd':
+    ensure        => 'present',
+    path          => "${phabricator::logs_dir}/daemons.log",
+    compress      => true,
+    delaycompress => true,
+    ifempty       => false,
+    missingok     => true,
+    rotate        => 4,
+    rotate_every  => 'week',
+    su            => true,
+    su_owner      => 'root',
+    su_group      => $phabricator::group,
+  }
 }

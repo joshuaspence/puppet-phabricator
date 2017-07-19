@@ -99,7 +99,7 @@ class phabricator::aphlict(
 
   logrotate::rule { 'aphlict':
     ensure        => 'present',
-    path          => ["${phabricator::logs_dir}/aphlict.log"],
+    path          => "${phabricator::logs_dir}/aphlict.log",
     compress      => true,
     copytruncate  => true,
     delaycompress => true,

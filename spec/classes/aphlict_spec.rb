@@ -99,7 +99,7 @@ RSpec.describe 'phabricator::aphlict', type: :class do
       it do
         is_expected.to contain_logrotate__rule('aphlict')
           .with_ensure('present')
-          .with_path(['/var/log/phabricator/aphlict.log'])
+          .with_path('/var/log/phabricator/aphlict.log')
           .with_compress(true)
           .with_copytruncate(true)
           .with_delaycompress(true)
