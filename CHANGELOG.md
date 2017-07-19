@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.5 (UNRELEASED)
+## 0.5.5
 
 ## Breaking Changes
 
