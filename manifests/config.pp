@@ -82,6 +82,14 @@ class phabricator::config {
     }
   }
 
+  # TODO: We should be able to tighten these permissions as follows:
+  #
+  # - `/usr/bin/git`, `/usr/bin/git-receive-pack`, `/usr/bin/git-upload-pack`
+  #   and `/usr/lib/git-core/git-http-backend` should only be required if the
+  #   node is //hosting// Diffusion repositories.
+  # - `/usr/bin/ssh` should only be required if the node is //serving// (either
+  #   directly or by proxy) Diffusion repositories.
+  #
   if $phabricator::manage_diffusion {
     # lint:ignore:strict_indent
     sudo::conf { "${phabricator::vcs_user}:${phabricator::daemon_user}":
