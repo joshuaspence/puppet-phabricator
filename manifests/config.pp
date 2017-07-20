@@ -145,4 +145,6 @@ class phabricator::config {
     # lint:endignore
 
   }
+
+  # TODO: Add `logrotate` rules for Phabricator's access and SSH logs.
 }
