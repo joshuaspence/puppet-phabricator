@@ -41,23 +41,25 @@
 # @param repo_dir
 # @param vcs_user
 #
+# TODO: Remove the default values after we drop support for Puppet 4.7.
+#
 class phabricator(
-  Phabricator::Revision $arcanist_revision,
-  Phabricator::Revision $libphutil_revision,
-  Phabricator::Revision $phabricator_revision,
-  Hash[String, Data] $config_hash,
-  Boolean $manage_diffusion,
-  Boolean $storage_upgrade,
-  Optional[String] $storage_upgrade_user,
-  Optional[String] $storage_upgrade_password,
+  Phabricator::Revision $arcanist_revision = 'stable',
+  Phabricator::Revision $libphutil_revision = 'stable',
+  Phabricator::Revision $phabricator_revision = 'stable',
+  Hash[String, Data] $config_hash = {},
+  Boolean $manage_diffusion = false,
+  Boolean $storage_upgrade = false,
+  Optional[String] $storage_upgrade_user = undef,
+  Optional[String] $storage_upgrade_password = undef,
 
-  String $daemon_user,
-  String $group,
-  Stdlib::Unixpath $install_dir,
-  Stdlib::Unixpath $logs_dir,
-  Stdlib::Unixpath $pid_dir,
-  Stdlib::Unixpath $repo_dir,
-  String $vcs_user,
+  String $daemon_user = 'phd',
+  String $group = 'phabricator',
+  Stdlib::Unixpath $install_dir = '/usr/local/src',
+  Stdlib::Unixpath $logs_dir = '/var/log/phabricator',
+  Stdlib::Unixpath $pid_dir = '/run/phabricator',
+  Stdlib::Unixpath $repo_dir = '/var/repo',
+  String $vcs_user = 'diffusion',
 ) {
   if $storage_upgrade {
     assert_type(String, $storage_upgrade_user)

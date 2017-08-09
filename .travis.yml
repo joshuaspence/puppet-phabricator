@@ -5,6 +5,8 @@ language: 'ruby'
 script: 'bundle exec rake spec'
 
 env:
+  - PUPPET_GEM_VERSION='~> 4.7.0'
+  - PUPPET_GEM_VERSION='~> 4.8.0'
   - PUPPET_GEM_VERSION='~> 4.9.0'
   - PUPPET_GEM_VERSION='~> 4.10.0'
   - PUPPET_GEM_VERSION='~> 5.0.0'
@@ -16,6 +18,9 @@ rvm:
 
 matrix:
   fast_finish: true
+  exclude:
+    - env: PUPPET_GEM_VERSION='~> 4.7.0'
+      rvm: 2.4.1
   include:
     - env: ''
       rvm: 2.4.1

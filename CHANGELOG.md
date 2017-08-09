@@ -5,6 +5,7 @@
 ## Features
 
 - Added a `logrotate` rule for `phd`.
+- Added support for Puppet 4.7 and 4.8.
 
 ## 0.5.5
 

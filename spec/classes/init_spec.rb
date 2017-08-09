@@ -136,7 +136,7 @@ RSpec.describe 'phabricator', type: :class do
 
               it do
                 is_expected.to compile
-                  .and_raise_error(/assert_type\(\): expects a String value, got Undef/)
+                  .and_raise_error(/assert_type\(\): expect(?:ed|s) a String value, got Undef/)
               end
             end
           end
