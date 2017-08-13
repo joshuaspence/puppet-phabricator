@@ -62,7 +62,7 @@ RSpec.describe 'phabricator::aphlict', type: :class do
 
       it do
         is_expected.to contain_nodejs__npm('ws')
-          .with_ensure('2.3.1')
+          .with_ensure('present')
           .with_target('/usr/local/src/phabricator/support/aphlict/server')
           .that_notifies('Service[aphlict]')
           .that_requires('Vcsrepo[phabricator]')

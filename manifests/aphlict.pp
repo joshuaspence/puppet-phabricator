@@ -67,10 +67,8 @@ class phabricator::aphlict(
 
   include nodejs
 
-  # NOTE: Aphlict is not currently compatible with version 3 of the `ws`
-  # package. See https://secure.phabricator.com/T12755.
   nodejs::npm { 'ws':
-    ensure  => '2.3.1',
+    ensure  => 'present',
     target  => "${phabricator::install_dir}/phabricator/support/aphlict/server",
     notify  => Service['aphlict'],
     require => Vcsrepo['phabricator'],
