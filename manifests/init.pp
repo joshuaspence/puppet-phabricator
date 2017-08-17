@@ -21,6 +21,7 @@
 # @param config_hash Phabricator configuration. See
 #   {https://secure.phabricator.com/book/phabricator/article/advanced_configuration/
 #   Configuration User Guide: Advanced Configuration}.
+# @param install_fonts Whether to install additional fonts.
 # @param manage_diffusion Whether to configure the host in order to be able to
 #   serve (either directly or by proxying to another host in the cluster). See
 #   {https://secure.phabricator.com/book/phabricator/article/diffusion_hosting/
@@ -48,6 +49,7 @@ class phabricator(
   Phabricator::Revision $libphutil_revision = 'stable',
   Phabricator::Revision $phabricator_revision = 'stable',
   Hash[String, Data] $config_hash = {},
+  Boolean $install_fonts = false,
   Boolean $manage_diffusion = false,
   Boolean $storage_upgrade = false,
   Optional[String] $storage_upgrade_user = undef,

@@ -8,6 +8,7 @@ phabricator::config_hash: {}
 phabricator::daemon_user: 'phd'
 phabricator::group: 'phabricator'
 phabricator::install_dir: '/usr/local/src'
+phabricator::install_fonts: false
 phabricator::libphutil_revision: 'stable'
 phabricator::logs_dir: '/var/log/phabricator'
 phabricator::manage_diffusion: false

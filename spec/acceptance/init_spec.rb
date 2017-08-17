@@ -31,6 +31,7 @@ RSpec.describe 'phabricator' do
         'mysql.pass' => 'root',
       },
 
+      install_fonts            => true,
       manage_diffusion         => true,
       storage_upgrade          => true,
       storage_upgrade_user     => 'root',
@@ -250,6 +251,14 @@ RSpec.describe 'phabricator' do
 
     context command('/usr/local/src/phabricator/bin/config list') do
       its(:exit_status) { is_expected.to be_zero }
+    end
+
+    context package('ttf-mscorefonts-installer') do
+      it { is_expected.to be_installed }
+    end
+
+    context file('/usr/local/src/phabricator/resources/font/impact.ttf') do
+      it { is_expected.to be_symlink }
     end
   end
 end
