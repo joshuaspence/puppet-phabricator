@@ -57,4 +57,28 @@ class phabricator::install {
     ],
     subscribe   => Vcsrepo['libphutil'],
   }
+
+  if $phabricator::install_fonts {
+    debconf { 'msttcorefonts/accepted-mscorefonts-eula':
+      ensure  => 'present',
+      package => 'ttf-mscorefonts-installer',
+      type    => 'select',
+      value   => bool2str(true),
+      before  => Package['ttf-mscorefonts-installer'],
+    }
+
+    package { 'ttf-mscorefonts-installer':
+      ensure  => 'latest',
+    }
+
+    $font_file_ensure = 'link'
+  } else {
+    $font_file_ensure = 'absent'
+  }
+
+  file { "${phabricator::install_dir}/phabricator/resources/font/impact.ttf":
+    ensure  => $font_file_ensure,
+    target  => '/usr/share/fonts/truetype/msttcorefonts/Impact.ttf',
+    require => Vcsrepo['phabricator'],
+  }
 }

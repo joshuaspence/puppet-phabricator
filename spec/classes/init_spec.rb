@@ -331,6 +331,49 @@ RSpec.describe 'phabricator', type: :class do
 
           it { is_expected.to contain_vcsrepo('phabricator').with_revision(revision) }
         end
+
+        context 'when $install_fonts is disabled' do
+          let(:params) do
+            {
+              install_fonts: false,
+            }
+          end
+
+          it do
+            is_expected.to contain_file('/usr/local/src/phabricator/resources/font/impact.ttf')
+              .with_ensure('absent')
+              .that_requires('Vcsrepo[phabricator]')
+          end
+        end
+
+        context 'when $install_fonts is enabled' do
+          let(:params) do
+            {
+              install_fonts: true,
+            }
+          end
+
+          it do
+            is_expected.to contain_debconf('msttcorefonts/accepted-mscorefonts-eula')
+              .with_ensure('present')
+              .with_package('ttf-mscorefonts-installer')
+              .with_type('select')
+              .with_value('true')
+              .that_comes_before('Package[ttf-mscorefonts-installer]')
+          end
+
+          it do
+            is_expected.to contain_package('ttf-mscorefonts-installer')
+              .with_ensure('latest')
+          end
+
+          it do
+            is_expected.to contain_file('/usr/local/src/phabricator/resources/font/impact.ttf')
+              .with_ensure('link')
+              .with_target('/usr/share/fonts/truetype/msttcorefonts/Impact.ttf')
+              .that_requires('Vcsrepo[phabricator]')
+          end
+        end
       end
     end
   end

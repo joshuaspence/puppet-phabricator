@@ -4,6 +4,7 @@ fixtures:
     apt: 'puppetlabs/apt'
     archive: 'puppet/archive'
     concat: 'puppetlabs/concat'
+    debconf: 'stm/debconf'
     git: 'puppetlabs/git'
     inifile: 'puppetlabs/inifile'
     logrotate: 'puppet/logrotate'

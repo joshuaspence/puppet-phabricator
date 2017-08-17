@@ -7,6 +7,7 @@
 - The [`ws`](https://www.npmjs.com/package/ws) NPM package is no longer pinned
   to version `2.3.1`. See [T12755: Aphlict doesn't work with the latest version
   of `ws`](https://secure.phabricator.com/T12755).
+- Added an `$install_fonts` flag to install optional fonts.
 
 ## 0.5.6
 
