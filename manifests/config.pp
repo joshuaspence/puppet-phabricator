@@ -6,6 +6,15 @@
 class phabricator::config {
   assert_private()
 
+  # TODO: This is dirty, but otherwise `$php::fpm` may not be defined.
+  include php
+
+  if $php::fpm {
+    $notify = Class['php::fpm::service']
+  } else {
+    $notify = []
+  }
+
   group { $phabricator::group:
     ensure => 'present',
     system => true,
@@ -51,6 +60,7 @@ class phabricator::config {
       ensure  => 'file',
       path    => "${phabricator::install_dir}/phabricator/conf/local/local.json",
       mode    => '0640',
+      notify  => $notify,
       require => Vcsrepo['phabricator'],
 
       # TODO: Use an EPP template instead of an ERB template.
@@ -107,9 +117,6 @@ class phabricator::config {
       ),
     }
     # lint:endignore
-
-    # TODO: This is dirty, but otherwise `$php::fpm` may not be defined.
-    include php
 
     if $php::fpm {
       include php::params

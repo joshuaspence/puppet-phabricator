@@ -13,6 +13,12 @@ class phabricator::install {
   include git
   include php
 
+  if $php::fpm {
+    $notify = Class['php::fpm::service']
+  } else {
+    $notify = []
+  }
+
   php::extension {
     'apcu':
       package_prefix => 'php-';
@@ -26,7 +32,8 @@ class phabricator::install {
   vcsrepo {
     default:
       ensure   => 'latest',
-      provider => 'git';
+      provider => 'git',
+      notify   => $notify;
 
     'arcanist':
       path     => "${phabricator::install_dir}/arcanist",

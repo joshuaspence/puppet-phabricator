@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.8 (UNRELEASED)
+
+## Bug Fixes
+
+- Restart PHP-FPM when the Phabricator code base is updated.
+
 ## 0.5.7
 
 ## Features

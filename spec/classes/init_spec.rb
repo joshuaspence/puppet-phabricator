@@ -69,6 +69,7 @@ RSpec.describe 'phabricator', type: :class do
             .with_owner('root')
             .with_group('phabricator')
             .with_mode('0640')
+            .that_notifies('Class[php::fpm::service]')
             .that_requires('Vcsrepo[phabricator]')
         end
 
@@ -261,13 +262,13 @@ RSpec.describe 'phabricator', type: :class do
 
         %w[arcanist libphutil phabricator].each do |repo|
           it do
-            is_expected.to contain_vcsrepo(repo).only_with(
-              ensure: 'latest',
-              provider: 'git',
-              path: "/usr/local/src/#{repo}",
-              source: "https://github.com/phacility/#{repo}.git",
-              revision: 'stable',
-            )
+            is_expected.to contain_vcsrepo(repo)
+              .with_ensure('latest')
+              .with_provider('git')
+              .with_path("/usr/local/src/#{repo}")
+              .with_source("https://github.com/phacility/#{repo}.git")
+              .with_revision('stable')
+              .that_notifies('Class[Php::Fpm::Service]')
           end
         end
 
