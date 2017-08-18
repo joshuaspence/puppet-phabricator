@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.8 (UNRELEASED)
+## 0.5.8
 
 ## Bug Fixes
 

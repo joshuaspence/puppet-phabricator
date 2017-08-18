@@ -1,6 +1,6 @@
 {
   "name": "joshuaspence-phabricator",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "author": "Joshua Spence",
   "license": "MIT",
   "summary": "Module to install and configure Phabricator, a suite of web-based software development collaboration tools.",
