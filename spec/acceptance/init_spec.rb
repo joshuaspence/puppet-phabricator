@@ -259,6 +259,7 @@ RSpec.describe 'phabricator' do
 
     context file('/usr/local/src/phabricator/resources/font/impact.ttf') do
       it { is_expected.to be_symlink }
+      it { is_expected.to be_linked_to('/usr/share/fonts/truetype/msttcorefonts/Impact.ttf') }
     end
   end
 end
