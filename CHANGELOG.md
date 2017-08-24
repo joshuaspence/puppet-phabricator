@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.9 (UNRELEASED)
+
+## Features
+
+- Mark the `Exec['bin/storage upgrade']` command as sensitive to ensure that
+  database credentials are written to the console.
+
 ## 0.5.8
 
 ## Bug Fixes

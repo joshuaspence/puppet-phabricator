@@ -78,7 +78,7 @@ class phabricator::config {
 
     # TODO: We should possibly use `onlyif` or `unless` instead of `refreshonly`.
     exec { 'bin/storage upgrade':
-      command     => "${phabricator::install_dir}/phabricator/bin/storage upgrade ${storage_upgrade_flags}",
+      command     => Sensitive.new("${phabricator::install_dir}/phabricator/bin/storage upgrade ${storage_upgrade_flags}"),
       refreshonly => true,
       timeout     => 0,
       require     => [
