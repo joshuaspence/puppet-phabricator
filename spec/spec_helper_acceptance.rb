@@ -26,7 +26,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     default[:default_apply_opts] ||= {}
     default[:default_apply_opts][:strict_variables] = nil
-    default[:default_apply_opts][:order] = ENV['ORDERING'] if ENV['ORDERING']
+    default[:default_apply_opts][:ordering] = ENV['ORDERING'] if ENV['ORDERING']
   end
 
   # Install and configure resources which are required for the acceptance tests.
