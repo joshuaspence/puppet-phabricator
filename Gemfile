@@ -38,6 +38,9 @@ group :development do
   gem 'puppet-lint-unquoted_string-check', require: false
   gem 'puppet-lint-version_comparison-check', require: false
   gem 'puppet-lint-world_writable_files-check', require: false
+
+  # `mixlib-config` is a dependency of `mdl`.
+  gem 'mixlib-config', '< 2.2.5', require: false if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.2')
 end
 
 group :system_tests do
