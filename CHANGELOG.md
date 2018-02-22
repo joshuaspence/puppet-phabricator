@@ -2,6 +2,10 @@
 
 ## 0.5.9 (UNRELEASED)
 
+## Breaking changes
+
+- Bumped version requirement for `puppet/logrotate`.
+
 ## Features
 
 - Mark the `Exec['bin/storage upgrade']` command as sensitive to ensure that

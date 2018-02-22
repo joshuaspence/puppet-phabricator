@@ -118,7 +118,6 @@ class phabricator::aphlict(
     missingok     => true,
     rotate        => 7,
     rotate_every  => 'day',
-    su            => true,
     su_owner      => 'root',
     su_group      => $phabricator::group,
   }

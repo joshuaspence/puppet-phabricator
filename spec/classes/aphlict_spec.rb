@@ -107,7 +107,6 @@ RSpec.describe 'phabricator::aphlict', type: :class do
           .with_missingok(true)
           .with_rotate(7)
           .with_rotate_every('day')
-          .with_su(true)
           .with_su_owner('root')
           .with_su_group('phabricator')
       end
