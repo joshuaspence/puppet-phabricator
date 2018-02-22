@@ -9,6 +9,7 @@
 ## Bug fixes
 
 - Bump version requirement for `puppetlabs/apt`.
+- Bump version requirement for `puppet/nodejs`.
 
 ## Features
 
