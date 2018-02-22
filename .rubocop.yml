@@ -20,12 +20,18 @@ Layout/FirstMethodArgumentLineBreak:
 Layout/FirstMethodParameterLineBreak:
   Enabled: true
 
+Lint/MissingCopEnableDirective:
+  Enabled: false
+
 Metrics/BlockLength:
   Enabled: false
 
 Metrics/LineLength:
   # TODO: Reduce this value.
-  Max: 95
+  Max: 108
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
 
 RSpec/DescribeClass:
   Exclude:
@@ -46,6 +52,9 @@ Style/CollectionMethods:
 
 Style/DocumentationMethod:
   Enabled: true
+
+Style/FormatStringToken:
+  Enabled: false
 
 Style/ImplicitRuntimeError:
   Enabled: true
@@ -82,6 +91,9 @@ Style/OptionHash:
 
 Style/StringMethods:
   Enabled: true
+
+Style/SymbolArray:
+  Enabled: false
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: 'comma'

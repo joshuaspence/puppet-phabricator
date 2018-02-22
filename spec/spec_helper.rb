@@ -2,7 +2,9 @@ require 'fuubar'
 require 'puppetlabs_spec_helper/module_spec_helper'
 require 'rspec-puppet-facts'
 
+# rubocop:disable Style/MixinUsage
 include RspecPuppetFacts
+# rubocop:enable Style/MixinUsage
 
 # Require all support files.
 Dir['./spec/support/**/*.rb'].each { |file| require file }

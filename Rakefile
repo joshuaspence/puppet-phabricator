@@ -35,10 +35,7 @@ end
 
 Rake::Task[:default].clear
 task default: [
-  # Syntax
   :syntax,
-
-  # Lint
   :lint,
   :rubocop,
   :metadata_lint,

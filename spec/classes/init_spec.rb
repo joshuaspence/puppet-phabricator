@@ -9,7 +9,7 @@ RSpec.describe 'phabricator', type: :class do
 
       it { is_expected.to compile.with_all_deps }
 
-      context 'phabricator::config' do
+      describe 'phabricator::config' do
         it do
           is_expected.to contain_group('phabricator')
             .with_ensure('present')
@@ -251,7 +251,7 @@ RSpec.describe 'phabricator', type: :class do
         end
       end
 
-      context 'phabricator::install' do
+      describe 'phabricator::install' do
         it { is_expected.to contain_class('git') }
         it { is_expected.to contain_class('php') }
         it { is_expected.to contain_php__extension('apcu').with_package_prefix('php-') }
