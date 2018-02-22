@@ -10,6 +10,7 @@
 
 - Bump version requirement for `puppetlabs/apt`.
 - Bump version requirement for `puppet/nodejs`.
+- Bump version requirement for `saz/sudo`.
 
 ## Features
 
