@@ -4,7 +4,11 @@
 
 ## Breaking changes
 
-- Bumped version requirement for `puppet/logrotate`.
+- Bump version requirement for `puppet/logrotate`.
+
+## Bug fixes
+
+- Bump version requirement for `puppetlabs/apt`.
 
 ## Features
 
