@@ -29,6 +29,9 @@ class phabricator::install {
       so_name => 'mysqli';
   }
 
+  # Ensure that the CLI is installed before any extensions are installed. 
+  Class['php::cli'] -> Php::Extension <| |>
+
   vcsrepo {
     default:
       ensure   => 'latest',

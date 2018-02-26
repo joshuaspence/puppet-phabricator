@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.10 (UNRELEASED)
+
+# Bug fixes
+
+- Add a dependency to ensure that PHP CLI is installed before any PHP
+  extensions are configured.
+
 ## 0.5.9
 
 ## Breaking changes
