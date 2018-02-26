@@ -61,7 +61,7 @@ RSpec.describe 'phabricator::daemons' do
     it { is_expected.to be_running }
   end
 
-  context command('/usr/local/src/phabricator/bin/phd status --local') do
+  context command('/usr/local/src/phabricator/bin/phd status') do
     its(:exit_status) { is_expected.to be_zero }
   end
 
