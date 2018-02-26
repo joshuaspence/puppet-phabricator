@@ -101,9 +101,11 @@ class phabricator::aphlict(
       File[$phabricator::pid_dir],
       Group[$phabricator::group],
       User[$user],
+      Vcsrepo['arcanist'],
     ],
     subscribe => [
       Class['nodejs::install'],
+      Vcsrepo['libphutil'],
       Vcsrepo['phabricator'],
     ],
   }

@@ -92,7 +92,9 @@ RSpec.describe 'phabricator::aphlict', type: :class do
           .that_requires('File[/run/phabricator]')
           .that_requires('Group[phabricator]')
           .that_requires('User[aphlict]')
+          .that_requires('Vcsrepo[arcanist]')
           .that_subscribes_to('Class[nodejs::install]')
+          .that_subscribes_to('Vcsrepo[libphutil]')
           .that_subscribes_to('Vcsrepo[phabricator]')
       end
 

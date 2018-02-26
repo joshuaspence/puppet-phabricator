@@ -12,6 +12,7 @@
 - Bump version requirement for `puppet/nodejs`.
 - Bump version requirement for `saz/sudo`.
 - Bump version requirement for `camptocamp/systemd`.
+- Add some missing dependencies.
 
 ## Features
 
