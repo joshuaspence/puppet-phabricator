@@ -2,18 +2,18 @@
 
 ## 0.5.10 (UNRELEASED)
 
-# Bug fixes
+### Bug fixes
 
 - Add a dependency to ensure that PHP CLI is installed before any PHP
   extensions are configured.
 
 ## 0.5.9
 
-## Breaking changes
+### Breaking changes
 
 - Bump version requirement for `puppet/logrotate`.
 
-## Bug fixes
+### Bug fixes
 
 - Bump version requirement for `puppetlabs/apt`.
 - Bump version requirement for `puppet/nodejs`.
@@ -21,20 +21,20 @@
 - Bump version requirement for `camptocamp/systemd`.
 - Add some missing dependencies.
 
-## Features
+### Features
 
 - Mark the `Exec['bin/storage upgrade']` command as sensitive to ensure that
   database credentials are written to the console.
 
 ## 0.5.8
 
-## Bug Fixes
+### Bug Fixes
 
 - Restart PHP-FPM when the Phabricator code base is updated.
 
 ## 0.5.7
 
-## Features
+### Features
 
 - The [`ws`](https://www.npmjs.com/package/ws) NPM package is no longer pinned
   to version `2.3.1`. See [T12755: Aphlict doesn't work with the latest version
@@ -43,43 +43,43 @@
 
 ## 0.5.6
 
-## Features
+### Features
 
 - Added a `logrotate` rule for `phd`.
 - Added support for Puppet 4.7 and 4.8.
 
 ## 0.5.5
 
-## Breaking Changes
+### Breaking Changes
 
 - Changed the `lookup_options` for `phabricator::config_hash` from `deep` to
   `hash`.
 
-## Bug Fixes
+### Bug Fixes
 
 - Grant `sudo` permissions to `/usr/bin/git` for the `diffusion` and `www-data`
   users.
 
 ## 0.5.4
 
-## Features
+### Features
 
 - Add support for specifying cluster peers in the Aphlict configuration file.
 
 ## 0.5.3
 
-## Breaking Changes
+### Breaking Changes
 
 - Changed the home directory for the daemon user to be
   `/usr/local/src/phabricator/support/empty`.
 
-## Bug Fixes
+### Bug Fixes
 
 - Fix a typo in Hiera data.
 
 ## 0.5.2
 
-## Features
+### Features
 
 - Allow `--identify-as` to be passed to `bin/almanac register`.
 
