@@ -6,6 +6,7 @@
 
 - Add a dependency to ensure that PHP CLI is installed before any PHP
   extensions are configured.
+- Fix warning text for unsupported PHP version.
 
 ## 0.5.9
 

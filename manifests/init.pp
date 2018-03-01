@@ -85,7 +85,7 @@ class phabricator(
   # TODO: It's not currently possible to test for warnings with `rspec-puppet`.
   # See https://github.com/rodjek/rspec-puppet/issues/108.
   if $facts['phpversion'] != undef and versioncmp($facts['phpversion'], '7.0.0') >= 0 and versioncmp($facts['phpversion'], '7.1.0') < 0 {
-    warning('Phabricator does not support PHP 7.1. See https://secure.phabricator.com/T12101.')
+    warning('Phabricator does not support PHP 7.0. See https://secure.phabricator.com/T12101.')
   }
 
   include phabricator::config
