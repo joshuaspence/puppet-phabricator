@@ -13,7 +13,7 @@ RSpec.describe 'phabricator' do
     Class['apt::update'] -> Package <| title != 'apt-transport-https' and title != 'ca-certificates' and title != 'software-properties-common' |>
 
     class { 'php::globals':
-      php_version => '7.1',
+      php_version => '7.2',
     }
 
     class { 'php':

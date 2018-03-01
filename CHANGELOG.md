@@ -8,6 +8,10 @@
   extensions are configured.
 - Fix warning text for unsupported PHP version.
 
+### Development
+
+- Run acceptance tests using PHP 7.2.
+
 ## 0.5.9
 
 ### Breaking changes
