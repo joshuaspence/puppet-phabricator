@@ -104,5 +104,5 @@ Style/TrailingCommaInArguments:
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: 'comma'
 
-Stype/TrailingCommaInHashLiteral:
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
