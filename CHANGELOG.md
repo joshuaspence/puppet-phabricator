@@ -12,6 +12,11 @@
 
 - Run acceptance tests using PHP 7.2.
 
+### Features
+
+- Officially support Puppet 5.1, 5.3, 5.4 and 5.5. Puppet 5.2 is not supported
+  due to [PUP-7952: Types with a trailing comma fail on 5.2.0](https://tickets.puppetlabs.com/browse/PUP-7952).
+
 ## 0.5.9
 
 ### Breaking changes
