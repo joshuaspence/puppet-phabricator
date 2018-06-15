@@ -47,6 +47,9 @@ RSpec/MultipleExpectations:
 RSpec/NestedGroups:
   Max: 5
 
+RSpec/SharedExamples:
+  Enabled: false
+
 Style/CollectionMethods:
   Enabled: true
 
