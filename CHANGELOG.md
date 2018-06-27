@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.11 (unreleased)
+
+### Bug fixes
+
+- Ensure that PHP is installed before starting Aphlict.
+
 ## 0.5.10
 
 ### Bug fixes

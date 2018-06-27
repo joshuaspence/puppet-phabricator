@@ -96,6 +96,7 @@ class phabricator::aphlict(
     ensure    => 'running',
     enable    => true,
     require   => [
+      Class['php::cli'],
       Exec['systemctl-daemon-reload'],
       File[$phabricator::logs_dir],
       File[$phabricator::pid_dir],
