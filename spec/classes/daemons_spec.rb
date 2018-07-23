@@ -22,6 +22,7 @@ RSpec.describe 'phabricator::daemons', type: :class do
           .with_content(%r{^ExecStop=/usr/local/src/phabricator/bin/phd stop$})
           .with_content(/^User=phd$/)
           .with_content(/^Group=phabricator$/)
+          .with_content(/^RuntimeDirectory=phabricator$/)
           .with_content(/^WantedBy=multi-user\.target$/)
           .that_notifies('Service[phd]')
       end
@@ -32,7 +33,6 @@ RSpec.describe 'phabricator::daemons', type: :class do
           .with_enable(true)
           .that_requires('Exec[systemctl-daemon-reload]')
           .that_requires('File[/var/log/phabricator]')
-          .that_requires('File[/run/phabricator]')
           .that_requires('Group[phabricator]')
           .that_requires('User[phd]')
           .that_subscribes_to('Class[php::cli]')

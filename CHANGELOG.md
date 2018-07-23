@@ -10,6 +10,11 @@
 
 - Ensure that PHP is installed before starting Aphlict.
 
+### Features
+
+- Set `RuntimeDirectory` for daemons so that `/run/phabricator` is created
+  automatically. This should mean that daemons survive a system reboot.
+
 ## 0.5.10
 
 ### Bug fixes

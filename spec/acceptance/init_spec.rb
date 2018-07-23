@@ -97,13 +97,6 @@ RSpec.describe 'phabricator' do
       it { is_expected.to be_mode(775) }
     end
 
-    context file('/run/phabricator') do
-      it { is_expected.to be_directory }
-      it { is_expected.to be_owned_by('root') }
-      it { is_expected.to be_grouped_into('phabricator') }
-      it { is_expected.to be_mode(775) }
-    end
-
     context file('/var/repo') do
       it { is_expected.to be_directory }
       it { is_expected.to be_owned_by('phd') }

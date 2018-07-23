@@ -32,10 +32,11 @@ class phabricator::daemons(
   systemd::unit_file { 'phd.service':
     ensure  => 'file',
     content => epp('phabricator/daemons.systemd.epp', {
-      command => "${phabricator::install_dir}/phabricator/bin/phd",
-      daemon  => $daemon,
-      user    => $phabricator::daemon_user,
-      group   => $phabricator::group,
+      command           => "${phabricator::install_dir}/phabricator/bin/phd",
+      daemon            => $daemon,
+      user              => $phabricator::daemon_user,
+      group             => $phabricator::group,
+      runtime_directory => $phabricator::runtime_directory,
     }),
     notify  => Service['phd'],
   }
@@ -50,7 +51,6 @@ class phabricator::daemons(
     require   => [
       Exec['systemctl-daemon-reload'],
       File[$phabricator::logs_dir],
-      File[$phabricator::pid_dir],
       Group[$phabricator::group],
       User[$phabricator::daemon_user],
     ],
