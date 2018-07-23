@@ -1,4 +1,9 @@
-<%- | Stdlib::Unixpath $command, String $user, String $group | -%>
+<%- |
+  Stdlib::Unixpath $command,
+  String $user,
+  String $group,
+  String $runtime_directory,
+| -%>
 [Unit]
 Description=Aphlict
 Documentation=https://secure.phabricator.com/book/phabricator/article/notifications/
@@ -13,6 +18,7 @@ ExecStop=<%= $command %> stop
 Restart=on-failure
 User=<%= $user %>
 Group=<%= $group %>
+RuntimeDirectory=<%= $runtime_directory %>
 
 [Install]
 WantedBy=multi-user.target

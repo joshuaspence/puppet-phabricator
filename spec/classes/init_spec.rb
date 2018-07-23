@@ -47,14 +47,6 @@ RSpec.describe 'phabricator', type: :class do
         end
 
         it do
-          is_expected.to contain_file('/run/phabricator')
-            .with_ensure('directory')
-            .with_owner('root')
-            .with_group('phabricator')
-            .with_mode('0775')
-        end
-
-        it do
           is_expected.to contain_file('/var/repo')
             .with_ensure('directory')
             .with_owner('phd')
@@ -196,6 +188,19 @@ RSpec.describe 'phabricator', type: :class do
           end
         end
 
+        context 'with invalid $pid_dir' do
+          let(:params) do
+            {
+              pid_dir: '/derp',
+            }
+          end
+
+          it do
+            is_expected.to compile
+              .and_raise_error(%r{\$pid_dir must be a descendent of /run})
+          end
+        end
+
         describe 'File[phabricator/conf/local.json]' do
           subject do
             resource = catalogue.resource('file', 'phabricator/conf/local.json')
@@ -234,16 +239,16 @@ RSpec.describe 'phabricator', type: :class do
 
             it do
               is_expected.to eq(
-                'diffusion.ssh-user' => 'diffusion',
-                'environment.append-paths' => ['/usr/lib/git-core'],
-                'log.access.path' => '/var/log/phabricator/access.log',
-                'log.ssh.path' => '/var/log/phabricator/ssh.log',
-                'mysql.host' => config_hash['mysql.host'],
-                'mysql.user' => config_hash['mysql.user'],
-                'mysql.pass' => config_hash['mysql.pass'],
-                'phd.log-directory' => '/var/log/phabricator',
-                'phd.pid-directory' => '/run/phabricator',
-                'phd.user' => 'phd',
+                'diffusion.ssh-user'            => 'diffusion',
+                'environment.append-paths'      => ['/usr/lib/git-core'],
+                'log.access.path'               => '/var/log/phabricator/access.log',
+                'log.ssh.path'                  => '/var/log/phabricator/ssh.log',
+                'mysql.host'                    => config_hash['mysql.host'],
+                'mysql.user'                    => config_hash['mysql.user'],
+                'mysql.pass'                    => config_hash['mysql.pass'],
+                'phd.log-directory'             => '/var/log/phabricator',
+                'phd.pid-directory'             => '/run/phabricator',
+                'phd.user'                      => 'phd',
                 'repository.default-local-path' => '/var/repo',
               )
             end

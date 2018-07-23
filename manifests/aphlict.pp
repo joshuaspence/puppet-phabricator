@@ -68,9 +68,10 @@ class phabricator::aphlict(
   systemd::unit_file { 'aphlict.service':
     ensure  => 'file',
     content => epp('phabricator/aphlict.systemd.epp', {
-      command => "${phabricator::install_dir}/phabricator/bin/aphlict",
-      user    => $user,
-      group   => $phabricator::group,
+      command           => "${phabricator::install_dir}/phabricator/bin/aphlict",
+      user              => $user,
+      group             => $phabricator::group,
+      runtime_directory => $phabricator::runtime_directory,
     }),
     notify  => Service['aphlict'],
   }
@@ -86,7 +87,6 @@ class phabricator::aphlict(
       Class['php::cli'],
       Exec['systemctl-daemon-reload'],
       File[$phabricator::logs_dir],
-      File[$phabricator::pid_dir],
       Group[$phabricator::group],
       User[$user],
       Vcsrepo['arcanist'],

@@ -66,6 +66,12 @@ class phabricator(
     assert_type(String, $storage_upgrade_password)
   }
 
+  if $pid_dir =~ /^\/run\// {
+    $runtime_directory = regsubst($pid_dir, /^\/run\//, '')
+  } else {
+    fail('$pid_dir must be a descendent of /run.')
+  }
+
   $config = merge(
     $config_hash,
     {

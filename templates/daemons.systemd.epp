@@ -3,6 +3,7 @@
   Optional[String] $daemon,
   String $user,
   String $group,
+  String $runtime_directory,
 | -%>
 [Unit]
 Description=Phabricator Daemons
@@ -25,6 +26,7 @@ ExecReload=<%= $command %> restart
 ExecStop=<%= $command %> stop
 User=<%= $user %>
 Group=<%= $group %>
+RuntimeDirectory=<%= $runtime_directory %>
 
 [Install]
 WantedBy=multi-user.target
