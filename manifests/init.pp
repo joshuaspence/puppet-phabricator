@@ -69,13 +69,13 @@ class phabricator(
   $config = merge(
     $config_hash,
     {
-      'diffusion.ssh-user' => $vcs_user,
-      'environment.append-paths' => ['/usr/lib/git-core'],
-      'log.access.path' => "${logs_dir}/access.log",
-      'log.ssh.path' => "${logs_dir}/ssh.log",
-      'phd.log-directory' => $logs_dir,
-      'phd.pid-directory' => $pid_dir,
-      'phd.user' => $daemon_user,
+      'diffusion.ssh-user'            => $vcs_user,
+      'environment.append-paths'      => ['/usr/lib/git-core'],
+      'log.access.path'               => "${logs_dir}/access.log",
+      'log.ssh.path'                  => "${logs_dir}/ssh.log",
+      'phd.log-directory'             => $logs_dir,
+      'phd.pid-directory'             => $pid_dir,
+      'phd.user'                      => $daemon_user,
       'repository.default-local-path' => $repo_dir,
     }
   )
