@@ -89,6 +89,11 @@ class phabricator::aphlict(
   }
   # lint:endignore
 
+  systemd::tmpfile { 'aphlict.conf':
+    ensure  => 'file',
+    content => "d ${phabricator::pid_dir} 0775 ${phabricator::daemon_user} ${phabricator::group}",
+  }
+
   # TODO: Should we also specify `hasrestart => true`? According to the
   # documentation the default value is `false`, although I am somewhat
   # surprised by this.
@@ -98,8 +103,8 @@ class phabricator::aphlict(
     require   => [
       Class['php::cli'],
       Exec['systemctl-daemon-reload'],
+      Exec['systemd-tmpfiles'],
       File[$phabricator::logs_dir],
-      File[$phabricator::pid_dir],
       Group[$phabricator::group],
       User[$user],
       Vcsrepo['arcanist'],

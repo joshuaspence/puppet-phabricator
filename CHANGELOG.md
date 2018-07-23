@@ -2,6 +2,12 @@
 
 ## 0.5.11 (unreleased)
 
+### Features
+
+- Use `systemd-tmpfiles` for managing the `/run/phabricator` directory.
+  This should allow daemons to start correctly even if `/run/phabricator` 
+  does not exist.
+
 ### Bug fixes
 
 - Ensure that PHP is installed before starting Aphlict.

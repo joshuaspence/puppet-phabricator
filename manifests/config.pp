@@ -47,10 +47,6 @@ class phabricator::config {
       ensure => 'directory',
       mode   => '0775';
 
-    $phabricator::pid_dir:
-      ensure => 'directory',
-      mode   => '0775';
-
     $phabricator::repo_dir:
       ensure => 'directory',
       owner  => $phabricator::daemon_user,
