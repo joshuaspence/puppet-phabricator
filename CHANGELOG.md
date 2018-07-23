@@ -2,6 +2,10 @@
 
 ## 0.5.11 (unreleased)
 
+### Breaking changes
+
+- Dropped support for Puppet 4.7 and 4.8.
+
 ### Bug fixes
 
 - Ensure that PHP is installed before starting Aphlict.
@@ -62,7 +66,6 @@
 ### Features
 
 - Added a `logrotate` rule for `phd`.
-- Added support for Puppet 4.7 and 4.8.
 
 ## 0.5.5
 

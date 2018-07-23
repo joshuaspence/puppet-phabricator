@@ -3,8 +3,11 @@ lookup_options:
   phabricator::config_hash:
     merge: 'hash'
 phabricator::almanac::identity: null
+phabricator::aphlict::peers: []
+phabricator::aphlict::user: 'aphlict'
 phabricator::arcanist_revision: 'stable'
 phabricator::config_hash: {}
+phabricator::daemons::daemon: null
 phabricator::daemon_user: 'phd'
 phabricator::group: 'phabricator'
 phabricator::install_dir: '/usr/local/src'
@@ -19,9 +22,6 @@ phabricator::storage_upgrade: false
 phabricator::storage_upgrade_password: null
 phabricator::storage_upgrade_user: null
 phabricator::vcs_user: 'diffusion'
-phabricator::aphlict::peers: []
-phabricator::aphlict::user: 'aphlict'
-phabricator::daemons::daemon: null
 
 # Default servers for Aphlict configuration. This has been copied from
 # `conf/aphlict/aphlict.default.json`.

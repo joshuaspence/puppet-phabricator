@@ -13,23 +13,10 @@
 #   Configuring Aphlict}.
 # @param user
 #
-# TODO: Remove the default values after we drop support for Puppet 4.7.
-#
 class phabricator::aphlict(
-  Array[Phabricator::Aphlict::Server] $servers = [
-    {
-      listen => '0.0.0.0',
-      port   => 22280,
-      type   => 'client',
-    },
-    {
-      listen => '127.0.0.1',
-      port   => 22281,
-      type   => 'admin',
-    },
-  ],
-  Array[Phabricator::Aphlict::Peer] $peers = [],
-  String $user = 'aphlict',
+  Array[Phabricator::Aphlict::Server] $servers,
+  Array[Phabricator::Aphlict::Peer]   $peers,
+  String                              $user,
 ) {
   $config = {
     servers => $servers,

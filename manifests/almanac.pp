@@ -6,17 +6,15 @@
 # Almanac User Guide} for further information.
 #
 # @param device The name of the Almanac device to register.
+# @param identity The name of the Almanac device to identify as.
 # @param private_key The contents of an SSH private key that has been associated
 #   with the specified Almanac device. This SSH key must be manually marked as
 #   trusted using the `./bin/almanac trust-key` command.
-# @param identity The name of the Almanac device to identify as.
-#
-# TODO: Remove the default values after we drop support for Puppet 4.7.
 #
 class phabricator::almanac(
-  String $device,
-  String $private_key,
-  Optional[String] $identity = undef,
+  String           $device,
+  Optional[String] $identity,
+  String           $private_key,
 ) {
   $device_id_path   = "${phabricator::install_dir}/phabricator/conf/keys/device.id"
   $private_key_path = "${phabricator::install_dir}/phabricator/conf/keys/device.key"

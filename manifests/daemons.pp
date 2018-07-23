@@ -22,10 +22,8 @@
 # @param daemon Launch the specified daemon using `./bin/phd launch` instead of
 #   starting all of the daemon daemons.
 #
-# TODO: Remove the default values after we drop support for Puppet 4.7.
-#
 class phabricator::daemons(
-  Optional[String] $daemon = undef,
+  Optional[String] $daemon,
 ) {
   # TODO: The `strict_indent` check doesn't seem to work properly here. See
   # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
