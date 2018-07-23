@@ -97,13 +97,6 @@ RSpec.describe 'phabricator' do
       it { is_expected.to be_mode(775) }
     end
 
-    context file('/run/phabricator') do
-      it { is_expected.to be_directory }
-      it { is_expected.to be_owned_by('root') }
-      it { is_expected.to be_grouped_into('phabricator') }
-      it { is_expected.to be_mode(775) }
-    end
-
     context file('/var/repo') do
       it { is_expected.to be_directory }
       it { is_expected.to be_owned_by('phd') }
@@ -119,16 +112,16 @@ RSpec.describe 'phabricator' do
 
       its(:content_as_json) do
         is_expected.to eq(
-          'diffusion.ssh-user' => 'diffusion',
-          'environment.append-paths' => ['/usr/lib/git-core'],
-          'log.access.path' => '/var/log/phabricator/access.log',
-          'log.ssh.path' => '/var/log/phabricator/ssh.log',
-          'mysql.host' => 'localhost',
-          'mysql.user' => 'root',
-          'mysql.pass' => 'root',
-          'phd.log-directory' => '/var/log/phabricator',
-          'phd.pid-directory' => '/run/phabricator',
-          'phd.user' => 'phd',
+          'diffusion.ssh-user'            => 'diffusion',
+          'environment.append-paths'      => ['/usr/lib/git-core'],
+          'log.access.path'               => '/var/log/phabricator/access.log',
+          'log.ssh.path'                  => '/var/log/phabricator/ssh.log',
+          'mysql.host'                    => 'localhost',
+          'mysql.user'                    => 'root',
+          'mysql.pass'                    => 'root',
+          'phd.log-directory'             => '/var/log/phabricator',
+          'phd.pid-directory'             => '/run/phabricator',
+          'phd.user'                      => 'phd',
           'repository.default-local-path' => '/var/repo',
         )
       end
@@ -139,17 +132,17 @@ RSpec.describe 'phabricator' do
         is_expected.to include(
           'config' => [
             {
-              'key' => 'mysql.host',
-              'source' => 'local',
-              'value' => 'localhost',
-              'status' => 'set',
+              'key'       => 'mysql.host',
+              'source'    => 'local',
+              'value'     => 'localhost',
+              'status'    => 'set',
               'errorInfo' => nil,
             },
             {
-              'key' => 'mysql.host',
-              'source' => 'database',
-              'value' => nil,
-              'status' => 'unset',
+              'key'       => 'mysql.host',
+              'source'    => 'database',
+              'value'     => nil,
+              'status'    => 'unset',
               'errorInfo' => nil,
             },
           ],

@@ -27,12 +27,18 @@ RSpec.describe 'phabricator::daemons', type: :class do
       end
 
       it do
+        is_expected.to contain_systemd__tmpfile('phd.conf')
+          .with_ensure('file')
+          .with_content('d /run/phabricator 0775 phd phabricator')
+      end
+
+      it do
         is_expected.to contain_service('phd')
           .with_ensure('running')
           .with_enable(true)
           .that_requires('Exec[systemctl-daemon-reload]')
+          .that_requires('Exec[systemd-tmpfiles]')
           .that_requires('File[/var/log/phabricator]')
-          .that_requires('File[/run/phabricator]')
           .that_requires('Group[phabricator]')
           .that_requires('User[phd]')
           .that_subscribes_to('Class[php::cli]')

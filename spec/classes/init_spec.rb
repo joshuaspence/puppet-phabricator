@@ -47,14 +47,6 @@ RSpec.describe 'phabricator', type: :class do
         end
 
         it do
-          is_expected.to contain_file('/run/phabricator')
-            .with_ensure('directory')
-            .with_owner('root')
-            .with_group('phabricator')
-            .with_mode('0775')
-        end
-
-        it do
           is_expected.to contain_file('/var/repo')
             .with_ensure('directory')
             .with_owner('phd')
