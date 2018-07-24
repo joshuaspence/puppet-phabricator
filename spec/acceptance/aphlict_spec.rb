@@ -43,7 +43,7 @@ RSpec.describe 'phabricator::aphlict' do
     }
 
     class { 'nodejs':
-      repo_url_suffix => '6.x',
+      repo_url_suffix => '8.x',
     }
 
     include phabricator::aphlict
