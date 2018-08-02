@@ -10,13 +10,9 @@ RSpec.describe 'phabricator::aphlict' do
       package_manage => true,
     }
 
-    # `apt-transport-https` is needed to use `apt` sources with a HTTPS URL.
-    # See https://github.com/puppetlabs/puppetlabs-apt/pull/714.
-    Package['apt-transport-https'] -> Apt::Source <| |>
-
     # Ensure that `apt-get update` is executed before any packages are
     # installed. See https://github.com/puppetlabs/puppetlabs-apt/#adding-new-sources-or-ppas.
-    Class['apt::update'] -> Package <| title != 'apt-transport-https' and title != 'ca-certificates' and title != 'software-properties-common' |>
+    Class['apt::update'] -> Package <||>
 
     # Ensure that NodeJS and NPM are installed before attempting to install
     # any NPM packages.

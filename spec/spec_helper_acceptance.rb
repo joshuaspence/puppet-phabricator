@@ -32,6 +32,18 @@ RSpec.configure do |config|
   # Install and configure resources which are required for the acceptance tests.
   config.before(:suite) do
     hosts.each do
+      if fact_on(host, 'operatingsystem') == 'Ubuntu'
+        # These packages are required by the `apt` module.
+        if fact_on(host, 'operatingsystemrelease') < '14.04'
+          install_package(host, 'python-software-properties')
+        else
+          install_package(host, 'software-properties-common')
+        end
+
+        install_package(host, 'apt-transport-https')
+        install_package(host, 'ca-certificates')
+      end
+
       pp = <<-EOS
         class { 'mysql::server':
           override_options        => {
