@@ -31,7 +31,7 @@ RSpec.configure do |config|
 
   # Install and configure resources which are required for the acceptance tests.
   config.before(:suite) do
-    hosts.each do
+    hosts.each do |host|
       if fact_on(host, 'operatingsystem') == 'Ubuntu'
         # These packages are required by the `apt` module.
         if fact_on(host, 'operatingsystemrelease') < '14.04'
