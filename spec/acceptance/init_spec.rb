@@ -10,7 +10,7 @@ RSpec.describe 'phabricator' do
 
     # Ensure that `apt-get update` is executed before any packages are
     # installed. See https://github.com/puppetlabs/puppetlabs-apt/#adding-new-sources-or-ppas.
-    Class['apt::update'] -> Package <||>
+    Class['apt::update'] -> Package <| title != 'apt-transport-https' and title != 'ca-certificates' and title != 'software-properties-common' |>
 
     class { 'php::globals':
       php_version => '7.2',
