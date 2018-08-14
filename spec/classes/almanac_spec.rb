@@ -25,7 +25,7 @@ RSpec.describe 'phabricator::almanac', type: :class do
           .with_content(params[:private_key])
           .with_owner('phd')
           .with_group('phabricator')
-          .with_mode('0400')
+          .with_mode('0600')
           .that_notifies('Exec[almanac register]')
           .that_requires('Vcsrepo[phabricator]')
       end
@@ -39,6 +39,8 @@ RSpec.describe 'phabricator::almanac', type: :class do
             '--private-key /usr/local/src/phabricator/conf/keys/device.key',
           ].join(' '))
           .with_creates('/usr/local/src/phabricator/conf/keys/device.id')
+          .with_user('phd')
+          .with_group('phabricator')
           .that_requires('Class[php::cli]')
           .that_requires('File[phabricator/conf/local.json]')
           .that_requires('Php::Extension[mysql]')

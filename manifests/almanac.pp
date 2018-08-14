@@ -25,7 +25,7 @@ class phabricator::almanac(
     content => $private_key,
     owner   => $phabricator::daemon_user,
     group   => $phabricator::group,
-    mode    => '0400',
+    mode    => '0600',
     notify  => Exec['almanac register'],
     require => Vcsrepo['phabricator'],
   }
@@ -51,6 +51,8 @@ class phabricator::almanac(
   exec { 'almanac register':
     command => "${phabricator::install_dir}/phabricator/bin/almanac register ${join($options, ' ')}",
     creates => $device_id_path,
+    user    => $phabricator::daemon_user,
+    group   => $phabricator::group,
     require => [
       Class['php::cli'],
       File['phabricator/conf/local.json'],
