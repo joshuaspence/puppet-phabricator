@@ -45,9 +45,11 @@ end
 
 group :system_tests do
   gem 'beaker', require: false
+  gem 'beaker-docker', require: false
   gem 'beaker-module_install_helper', require: false
   gem 'beaker-puppet_install_helper', require: false
   gem 'beaker-rspec', require: false
+  gem 'beaker-vagrant', require: false
   gem 'serverspec', require: false
   gem 'sshkey', require: false
 end
