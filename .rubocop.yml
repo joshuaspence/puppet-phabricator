@@ -41,6 +41,9 @@ RSpec/DescribeClass:
 RSpec/ExampleLength:
   Enabled: false
 
+RSpec/ImplicitSubject:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
 
