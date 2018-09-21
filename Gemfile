@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'puppet', ENV['PUPPET_GEM_VERSION'], require: false
+gem 'puppet', ENV['PUPPET_GEM_VERSION'] || '< 6.0.0', require: false
 
 group :development do
   gem 'fuubar', require: false
