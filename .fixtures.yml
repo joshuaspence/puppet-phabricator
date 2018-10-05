@@ -13,7 +13,9 @@ fixtures:
     ssh: 'saz/ssh'
     stdlib: 'puppetlabs/stdlib'
     sudo: 'saz/sudo'
-    systemd: 'camptocamp/systemd'
+    systemd:
+      repo: 'camptocamp/systemd'
+      ref: '1.1.1'
     vcsrepo: 'puppetlabs/vcsrepo'
   symlinks:
     phabricator: '#{source_dir}'
