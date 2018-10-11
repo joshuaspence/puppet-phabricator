@@ -2,6 +2,10 @@
 
 ## 0.5.12 (UNRELEASED)
 
+### Breaking changes
+
+- Bumped the version requirement for `puppet/logrotate`.
+
 ### Bug fixes
 
 - Run `bin/almanac register` as the daemon user so that the keys don't end up

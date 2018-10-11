@@ -51,7 +51,7 @@ RSpec.describe 'phabricator::daemons', type: :class do
           .with_missingok(true)
           .with_rotate(4)
           .with_rotate_every('week')
-          .with_su_owner('root')
+          .with_su_user('root')
           .with_su_group('phabricator')
       end
 

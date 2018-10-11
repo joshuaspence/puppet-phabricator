@@ -78,7 +78,7 @@ class phabricator::daemons(
     missingok     => true,
     rotate        => 4,
     rotate_every  => 'week',
-    su_owner      => 'root',
+    su_user       => 'root',
     su_group      => $phabricator::group,
   }
 }
