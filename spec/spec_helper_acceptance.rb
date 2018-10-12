@@ -27,6 +27,10 @@ RSpec.configure do |config|
     default[:default_apply_opts] ||= {}
     default[:default_apply_opts][:strict_variables] = nil
     default[:default_apply_opts][:ordering] = ENV['ORDERING'] if ENV['ORDERING']
+
+    hosts.each do |host|
+      host[:default_module_install_opts]['ignore-dependencies'] = nil
+    end
   end
 
   # Install and configure resources which are required for the acceptance tests.
