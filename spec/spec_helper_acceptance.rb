@@ -1,12 +1,6 @@
 require 'beaker-rspec/spec_helper'
-
-require 'beaker/puppet_install_helper'
-run_puppet_install_helper
-
 require 'beaker/module_install_helper'
-install_module
-install_module_dependencies
-install_module_from_forge('puppetlabs-mysql', '~> 6')
+require 'beaker/puppet_install_helper'
 
 RSpec.configure do |config|
   config.default_formatter = :documentation
@@ -31,6 +25,16 @@ RSpec.configure do |config|
     hosts.each do |host|
       host[:default_module_install_opts]['ignore-dependencies'] = nil
     end
+  end
+
+  config.before(:suite) do
+    # Install Puppet.
+    run_puppet_install_helper
+
+    # Install module and dependencies.
+    install_module
+    install_module_dependencies
+    install_module_from_forge('puppetlabs-mysql', '~> 6')
   end
 
   # Install and configure resources which are required for the acceptance tests.
