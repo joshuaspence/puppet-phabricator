@@ -6,7 +6,7 @@ run_puppet_install_helper
 require 'beaker/module_install_helper'
 install_module
 install_module_dependencies
-install_module_from_forge('puppetlabs-mysql', '~> 3')
+install_module_from_forge('puppetlabs-mysql', '~> 6')
 
 RSpec.configure do |config|
   config.default_formatter = :documentation
