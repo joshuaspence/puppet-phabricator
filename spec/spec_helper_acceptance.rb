@@ -23,6 +23,7 @@ RSpec.configure do |config|
     default[:default_apply_opts][:ordering] = ENV['ORDERING'] if ENV['ORDERING']
 
     hosts.each do |host|
+      host[:default_module_install_opts] ||= {}
       host[:default_module_install_opts]['ignore-dependencies'] = nil
     end
   end
