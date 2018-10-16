@@ -1,0 +1,62 @@
+---
+version: '3.7'
+services:
+  database:
+    image: 'mysql:5.7'
+    command:
+      - '--log-error-verbosity=2'
+      - '--max-allowed-packet=32M'
+      - '--sql-mode=STRICT_ALL_TABLES'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    networks:
+      - 'backend'
+    volumes:
+      - 'mysql:/var/lib/mysql'
+
+  nginx:
+    depends_on:
+      - 'phpfpm'
+    image: 'nginx:stable'
+    networks:
+      - 'frontend'
+    ports:
+      - '80:80'
+    volumes:
+      - './files/nginx.conf:/etc/nginx/nginx.conf:ro'
+
+  phpfpm:
+    image: 'joshuaspence/phabricator-phpfpm'
+    build: '.'
+    depends_on:
+      - 'database'
+    entrypoint:
+      - 'sh'
+      - '-c'
+      - |
+        # Configure Phabricator to use the `docker.conf.php` configuration file.
+        echo docker > /usr/local/src/phabricator/conf/local/ENVIRONMENT
+
+        # Apply storage upgrades.
+        /usr/local/src/phabricator/bin/storage upgrade --force
+
+        php-fpm7.2 \
+          -d error_log=stderr \
+          -d opcache.revalidate_freq=0 \
+          -d opcache.validate_timestamps=1 \
+          --nodaemonize
+    environment:
+      PHABRICATOR_DOMAIN: 'phabricator.local'
+      PHABRICATOR_MYSQL_HOST: 'database'
+      PHABRICATOR_MYSQL_PASSWORD: 'root'
+      PHABRICATOR_MYSQL_USER: 'root'
+    networks:
+      - 'backend'
+      - 'frontend'
+    volumes:
+      - './files/config.php:/usr/local/src/phabricator/conf/docker.conf.php'
+networks:
+  backend: {}
+  frontend: {}
+volumes:
+  mysql: {}

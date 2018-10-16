@@ -1,0 +1,9 @@
+forge 'https://forgeapi.puppetlabs.com'
+
+mod 'puppetlabs/dummy_service'
+mod 'puppetlabs/image_build'
+mod 'joshuaspence/phabricator'
+mod 'puppet/php'
+mod 'puppetlabs/stdlib', '< 5'
+
+#exclusion 'puppetlabs/stdlib'

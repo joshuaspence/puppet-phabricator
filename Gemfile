@@ -43,6 +43,10 @@ group :development do
   gem 'mixlib-config', '< 2.2.5', require: false if Gem::Version.new(RUBY_VERSION) < Gem::Version.new('2.2')
 end
 
+group :docker do
+  gem 'librarian-puppet', require: false
+end
+
 group :system_tests do
   gem 'beaker', '< 4', require: false
   gem 'beaker-module_install_helper', require: false

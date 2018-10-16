@@ -1,0 +1,37 @@
+---
+phabricator::install_fonts: false
+phabricator::manage_diffusion: false
+php::composer: false
+php::dev: false
+php::ensure: 'latest'
+php::extensions:
+  opcache:
+    settings:
+      revalidate_freq: 0
+      validate_timestamps: 1
+    settings_prefix: true
+php::fpm: true
+php::fpm::config::error_log: '/proc/self/fd/2'
+php::fpm::settings:
+  PHP/post_max_size: '32M'
+  PHP/upload_max_filesize: '32M'
+php::globals::php_version: '7.2'
+php::manage_repos: true
+php::pear: false
+php::fpm::config::pid_file: '/run/php-fpm.pid'
+
+php::fpm_pools:
+  www:
+    catch_workers_output: 'yes' # check
+    # clear_env: false # See https://github.com/voxpupuli/puppet-php/pull/483
+    env:
+      - 'PATH'
+      - 'PHABRICATOR_DOMAIN'
+      - 'PHABRICATOR_ENV'
+      - 'PHABRICATOR_MYSQL_HOST'
+      - 'PHABRICATOR_MYSQL_PASSWORD'
+      - 'PHABRICATOR_MYSQL_USER'
+    group: 'phabricator'
+    include: null # check
+    listen: '0.0.0.0:8080' # check
+    options: {} # check

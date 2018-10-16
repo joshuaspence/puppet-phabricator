@@ -1,0 +1,55 @@
+task :dockerfile do
+  require 'shellwords'
+
+  # --clean
+  # --strip-dot-git
+  # --destructive
+  # --local
+  sh 'librarian-puppet install --verbose --path modules'
+
+  # --from
+  # --maintainer
+  # --module-path
+  # --squash
+  # --volume
+  flags = [
+    # --cmd
+    # --config-directory
+    # --config-file
+    '--entrypoint', 'php-fpm7.2,--nodaemonize,--force-stderr',
+    '--env', 'LC_CTYPE=C.UTF-8',
+    '--expose', '8080',
+    # --factfile
+    # --from
+    '--hiera-config', './hiera.yaml',
+    '--hiera-data', './hieradata/',
+    '--image-name', 'joshuaspence/phabricator-phpfpm',
+    '--no-inventory',
+    # --labels
+    # --maintainer
+    '--module-path', './modules/',
+    # --os
+    # --os-version
+    '--puppet-agent-version', '5.5.6',
+    # --puppet-debug
+    '--puppetfile', '/dev/null',
+    '--no-show-diff',
+    # --squash
+    # --volume
+  ]
+
+  # --verbose
+  # --debug
+  sh "puppet docker dockerfile #{flags.shelljoin} > Dockerfile"
+end
+
+task :build do
+  sh 'docker login'
+  sh 'docker build --tag joshuaspence/phabricator .'
+  sh 'docker push joshuaspence/phabricator'
+end
+
+task :run do
+  sh 'docker-compose up --build'
+  sh 'docker-compose build'
+end

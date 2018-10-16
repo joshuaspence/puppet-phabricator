@@ -1,0 +1,8 @@
+# librarian-puppet
+/.librarian/
+/modules/
+/Puppetfile.lock
+/.tmp/
+
+# puppetlabs/image_build
+/Dockerfile
