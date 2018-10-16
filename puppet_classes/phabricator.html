@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: phabricator
+  
+    &mdash; Documentation by YARD 0.9.16
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::phabricator";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">phabricator</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: phabricator</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/init.pp
+    </dd>
+  </dl>
+</div>
+
+  <h2>Summary</h2>
+  This class configures and installs Phabricator.
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Class for installing Phabricator.</p>
+
+  </div>
+</div>
+
+
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code>class { &#39;phabricator&#39;:
+  config_hash =&gt; {
+    &#39;mysql.host&#39; =&gt; &#39;localhost&#39;,
+    &#39;mysql.user&#39; =&gt; &#39;user&#39;,
+    &#39;mysql.pass&#39; =&gt; &#39;password&#39;,
+  },
+
+  storage_upgrade          =&gt; true,
+  storage_upgrade_user     =&gt; &#39;root&#39;,
+  storage_upgrade_password =&gt; &#39;password&#39;,
+}</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>arcanist_revision</span>
+      
+      
+        <span class='type'>(<tt>Phabricator::Revision</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The commit hash or branch for Arcanist.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>libphutil_revision</span>
+      
+      
+        <span class='type'>(<tt>Phabricator::Revision</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The commit hash or branch for libphutil.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>phabricator_revision</span>
+      
+      
+        <span class='type'>(<tt>Phabricator::Revision</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The commit hash or branch for Phabricator.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>config_hash</span>
+      
+      
+        <span class='type'>(<tt>Hash[String, Data]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Phabricator configuration. See
+<a href="https://secure.phabricator.com/book/phabricator/article/advanced_configuration/" target="_parent" title="Configuration User Guide: Advanced Configuration">Configuration User Guide: Advanced Configuration</a>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>install_fonts</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to install additional fonts.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>manage_diffusion</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether to configure the host in order to be able to
+serve (either directly or by proxying to another host in the cluster). See
+<a href="https://secure.phabricator.com/book/phabricator/article/diffusion_hosting/" target="_parent" title="Diffusion User Guide: Repository Hosting">Diffusion User Guide: Repository Hosting</a>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>storage_upgrade</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A flag to enable storage upgrades. See
+<a href="https://secure.phabricator.com/book/phabricator/article/configuration_guide/#storage-configuring-mysql" target="_parent" title="Storage: Configuring MySQL">Storage: Configuring MySQL</a>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>storage_upgrade_user</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The MySQL user with which to execute
+<code>bin/storage upgrade</code>.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>storage_upgrade_password</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The MySQL password for the storage upgrade
+user.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>daemon_user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>group</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>install_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>logs_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>pid_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>repo_dir</span>
+      
+      
+        <span class='type'>(<tt>Stdlib::Unixpath</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>vcs_user</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/init.pp', line 45</span>
+
+class phabricator(
+  Phabricator::Revision $arcanist_revision,
+  Phabricator::Revision $libphutil_revision,
+  Phabricator::Revision $phabricator_revision,
+  Hash[String, Data]    $config_hash,
+  Boolean               $install_fonts,
+  Boolean               $manage_diffusion,
+  Boolean               $storage_upgrade,
+  Optional[String]      $storage_upgrade_user,
+  Optional[String]      $storage_upgrade_password,
+
+  String                $daemon_user,
+  String                $group,
+  Stdlib::Unixpath      $install_dir,
+  Stdlib::Unixpath      $logs_dir,
+  Stdlib::Unixpath      $pid_dir,
+  Stdlib::Unixpath      $repo_dir,
+  String                $vcs_user,
+) {
+  if $storage_upgrade {
+    assert_type(String, $storage_upgrade_user)
+    assert_type(String, $storage_upgrade_password)
+  }
+
+  if $pid_dir =~ /^\/run\// {
+    $runtime_directory = regsubst($pid_dir, /^\/run\//, &#39;&#39;)
+  } else {
+    fail(&#39;$pid_dir must be a descendent of /run.&#39;)
+  }
+
+  $config = merge(
+    $config_hash,
+    {
+      &#39;diffusion.ssh-user&#39;            =&gt; $vcs_user,
+      &#39;environment.append-paths&#39;      =&gt; [&#39;/usr/lib/git-core&#39;],
+      &#39;log.access.path&#39;               =&gt; &quot;${logs_dir}/access.log&quot;,
+      &#39;log.ssh.path&#39;                  =&gt; &quot;${logs_dir}/ssh.log&quot;,
+      &#39;phd.log-directory&#39;             =&gt; $logs_dir,
+      &#39;phd.pid-directory&#39;             =&gt; $pid_dir,
+      &#39;phd.user&#39;                      =&gt; $daemon_user,
+      &#39;repository.default-local-path&#39; =&gt; $repo_dir,
+    }
+  )
+
+  # TODO: It&#39;s not currently possible to test for warnings with `rspec-puppet`.
+  # See https://github.com/rodjek/rspec-puppet/issues/108.
+  if $facts[&#39;phpversion&#39;] != undef and versioncmp($facts[&#39;phpversion&#39;], &#39;7.0.0&#39;) &gt;= 0 and versioncmp($facts[&#39;phpversion&#39;], &#39;7.1.0&#39;) &lt; 0 {
+    warning(&#39;Phabricator does not support PHP 7.0. See https://secure.phabricator.com/T12101.&#39;)
+  }
+
+  include phabricator::config
+  include phabricator::install
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Puppet Class: phabricator::daemons
+  
+    &mdash; Documentation by YARD 0.9.16
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "puppet_classes::phabricator::daemons";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../puppet_class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (p)</a> &raquo;
+    <span class='title'><span class='object_link'>Puppet Classes</span></span>
+     &raquo; 
+    <span class="title">phabricator::daemons</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="../puppet_class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Puppet Class: phabricator::daemons</h1>
+<div class="box_info">
+  
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>
+      manifests/daemons.pp
+    </dd>
+  </dl>
+</div>
+
+  <h2>Summary</h2>
+  This class manages Phabricator Daemons. See
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    <p>Class for installing Phabricator Daemons.</p>
+
+<p><a href="https://secure.phabricator.com/book/phabricator/article/managing_daemons/" target="_parent" title="Managing Daemons with phd">Managing Daemons with phd</a>.</p>
+
+  </div>
+</div>
+
+
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code>class { &#39;phabricator&#39;:
+  config_hash =&gt; {
+    &#39;mysql.host&#39; =&gt; &#39;localhost&#39;,
+    &#39;mysql.user&#39; =&gt; &#39;user&#39;,
+    &#39;mysql.pass&#39; =&gt; &#39;password&#39;,
+  },
+
+  storage_upgrade          =&gt; true,
+  storage_upgrade_user     =&gt; &#39;root&#39;,
+  storage_upgrade_password =&gt; &#39;password&#39;,
+}
+
+include phabricator::daemons</code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>daemon</span>
+      
+      
+        <span class='type'>(<tt>Optional[String]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Launch the specified daemon using <code>./bin/phd launch</code> instead of
+starting all of the daemon daemons.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><div class="method_details_list">
+  <table class="source_code">
+    <tr>
+      <td>
+        <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85</pre>
+      </td>
+      <td>
+        <pre class="code"><span class="info file"># File 'manifests/daemons.pp', line 25</span>
+
+class phabricator::daemons(
+  Optional[String] $daemon,
+) {
+  # TODO: The `strict_indent` check doesn&#39;t seem to work properly here. See
+  # https://github.com/relud/puppet-lint-strict_indent-check/issues/11.
+  #
+  # lint:ignore:strict_indent
+  systemd::unit_file { &#39;phd.service&#39;:
+    ensure  =&gt; &#39;file&#39;,
+    content =&gt; epp(&#39;phabricator/daemons.systemd.epp&#39;, {
+      command           =&gt; &quot;${phabricator::install_dir}/phabricator/bin/phd&quot;,
+      daemon            =&gt; $daemon,
+      user              =&gt; $phabricator::daemon_user,
+      group             =&gt; $phabricator::group,
+      runtime_directory =&gt; $phabricator::runtime_directory,
+    }),
+    notify  =&gt; Service[&#39;phd&#39;],
+  }
+  # lint:endignore
+
+  # TODO: Should we also specify `hasrestart =&gt; true`? According to the
+  # documentation the default value is `false`, although I am somewhat
+  # surprised by this.
+  service { &#39;phd&#39;:
+    ensure    =&gt; &#39;running&#39;,
+    enable    =&gt; true,
+    require   =&gt; [
+      Exec[&#39;systemctl-daemon-reload&#39;],
+      File[$phabricator::logs_dir],
+      Group[$phabricator::group],
+      User[$phabricator::daemon_user],
+    ],
+    subscribe =&gt; [
+      Class[&#39;php::cli&#39;],
+      File[&#39;phabricator/conf/local.json&#39;],
+      Vcsrepo[&#39;libphutil&#39;],
+      Vcsrepo[&#39;phabricator&#39;],
+    ],
+  }
+
+  # Restart the daemons if any PHP extensions are updated.
+  Php::Extension &lt;| |&gt; ~&gt; Service[&#39;phd&#39;]
+
+  if $phabricator::storage_upgrade {
+    Exec[&#39;bin/storage upgrade&#39;] -&gt; Service[&#39;phd&#39;]
+  }
+
+  logrotate::rule { &#39;phd&#39;:
+    ensure        =&gt; &#39;present&#39;,
+    path          =&gt; &quot;${phabricator::logs_dir}/daemons.log&quot;,
+    compress      =&gt; true,
+    delaycompress =&gt; true,
+    ifempty       =&gt; false,
+    missingok     =&gt; true,
+    rotate        =&gt; 4,
+    rotate_every  =&gt; &#39;week&#39;,
+    su            =&gt; true,
+    su_user       =&gt; &#39;root&#39;,
+    su_group      =&gt; $phabricator::group,
+  }
+}</pre>
+      </td>
+    </tr>
+  </table>
+</div>
+</div>
+
+      <div id="footer">
+     Generated by <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>.
+</div>
+
+    </div>
+  </body>
+</html>
