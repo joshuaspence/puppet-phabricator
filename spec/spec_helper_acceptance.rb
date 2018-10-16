@@ -21,21 +21,26 @@ RSpec.configure do |config|
     default[:default_apply_opts] ||= {}
     default[:default_apply_opts][:strict_variables] = nil
     default[:default_apply_opts][:ordering] = ENV['ORDERING'] if ENV['ORDERING']
-
-    hosts.each do |host|
-      host[:default_module_install_opts] ||= {}
-      host[:default_module_install_opts]['ignore-dependencies'] = nil
-    end
   end
 
   config.before(:suite) do
     # Install Puppet.
     run_puppet_install_helper
 
+    # Install `librarian-puppet`.
+    hosts.each do |host|
+      install_package(host, 'git')
+      install_package(host, 'rubygems')
+
+      on(host, 'gem install --no-document librarian-puppet')
+    end
+
     # Install module and dependencies.
-    install_module
-    install_module_dependencies
-    install_module_from_forge('puppetlabs-mysql', '~> 6')
+    hosts.each do |host|
+      install_module_on(host)
+      on(host, "cd #{host['distmoduledir']}/phabricator && librarian-puppet install --verbose --clean --path #{host['distmoduledir']}")
+      install_module_from_forge_on(host, 'puppetlabs-mysql', '~> 6')
+    end
   end
 
   # Install and configure resources which are required for the acceptance tests.
