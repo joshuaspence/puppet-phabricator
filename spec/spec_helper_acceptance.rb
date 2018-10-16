@@ -31,15 +31,16 @@ RSpec.configure do |config|
     hosts.each do |host|
       install_package(host, 'git')
       install_package(host, 'rubygems')
-
       on(host, 'gem install --no-document librarian-puppet')
     end
 
     # Install module and dependencies.
+    #
+    # NOTE: I am using `librarian-puppet` because it seems to do a better job at
+    # finding compatible versions of dependencies than `install_module_dependencies`.
     hosts.each do |host|
       install_module_on(host)
-      on(host, "cd #{host['distmoduledir']}/phabricator && librarian-puppet install --verbose --clean --path #{host['distmoduledir']}")
-      install_module_from_forge_on(host, 'puppetlabs-mysql', '~> 6')
+      on(host, "cd #{host['distmoduledir']}/phabricator && librarian-puppet install --verbose --path #{host['distmoduledir']}")
     end
   end
 
@@ -58,6 +59,7 @@ RSpec.configure do |config|
         install_package(host, 'ca-certificates')
       end
 
+      # Install and configure MySQL.
       pp = <<-EOS
         class { 'mysql::server':
           override_options        => {
@@ -74,6 +76,7 @@ RSpec.configure do |config|
         ensure_packages(['login', 'net-tools', 'sudo'])
       EOS
 
+      install_module_from_forge_on(host, 'puppetlabs-mysql', '~> 6')
       apply_manifest(pp, catch_failures: true)
       apply_manifest(pp, catch_changes: true)
     end

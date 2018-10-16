@@ -28,7 +28,7 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   # TODO: Reduce this value.
-  Max: 135
+  Max: 127
 
 Naming/HeredocDelimiterNaming:
   Enabled: false

@@ -1,4 +1,6 @@
 ---
+# TODO: Use `librarian-puppet` to install dependencies from `metadata.json` and
+# remove this file.
 fixtures:
   forge_modules:
     apt: 'puppetlabs/apt'
