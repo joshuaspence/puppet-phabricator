@@ -74,16 +74,16 @@ RSpec.describe 'phabricator::aphlict' do
         'servers' => [
           {
             'listen' => '0.0.0.0',
-            'port' => 22280,
-            'type' => 'client',
+            'port'   => 22280,
+            'type'   => 'client',
           },
           {
             'listen' => '127.0.0.1',
-            'port' => 22281,
-            'type' => 'admin',
+            'port'   => 22281,
+            'type'   => 'admin',
           },
         ],
-        'logs' => [
+        'logs'    => [
           {
             'path' => '/var/log/phabricator/aphlict.log',
           },

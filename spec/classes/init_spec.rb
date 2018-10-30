@@ -211,13 +211,13 @@ RSpec.describe 'phabricator', type: :class do
           context 'with defaults' do
             it do
               is_expected.to eq(
-                'diffusion.ssh-user' => 'diffusion',
-                'environment.append-paths' => ['/usr/lib/git-core'],
-                'log.access.path' => '/var/log/phabricator/access.log',
-                'log.ssh.path' => '/var/log/phabricator/ssh.log',
-                'phd.log-directory' => '/var/log/phabricator',
-                'phd.pid-directory' => '/run/phabricator',
-                'phd.user' => 'phd',
+                'diffusion.ssh-user'            => 'diffusion',
+                'environment.append-paths'      => ['/usr/lib/git-core'],
+                'log.access.path'               => '/var/log/phabricator/access.log',
+                'log.ssh.path'                  => '/var/log/phabricator/ssh.log',
+                'phd.log-directory'             => '/var/log/phabricator',
+                'phd.pid-directory'             => '/run/phabricator',
+                'phd.user'                      => 'phd',
                 'repository.default-local-path' => '/var/repo',
               )
             end

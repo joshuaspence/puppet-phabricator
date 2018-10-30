@@ -8,6 +8,9 @@ AllCops:
     - 'spec/fixtures/**/*'
     - 'vendor/**/*'
 
+Layout/AlignHash:
+  EnforcedHashRocketStyle: 'table'
+
 Layout/FirstArrayElementLineBreak:
   Enabled: true
 
