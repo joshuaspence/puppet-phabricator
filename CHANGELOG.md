@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.13 (UNRELEASED)
+
+### Features
+
+- Officially support Puppet 6.0 and 6.1.
+
 ## 0.5.12
 
 ### Breaking changes
