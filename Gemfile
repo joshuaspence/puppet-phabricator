@@ -6,6 +6,7 @@ group :development do
   gem 'fuubar', require: false
   gem 'mdl', require: false
   gem 'metadata-json-lint', require: false
+  gem 'pdk', '>= 1.4.0', require: false
   gem 'puppet-blacksmith', require: false
   gem 'puppet-strings', require: false
   gem 'puppet-syntax', require: false
