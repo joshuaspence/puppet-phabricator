@@ -1,5 +1,5 @@
 ---
-bundler_args: '--without deployment --without system_tests'
+bundler_args: '--without deployment system_tests'
 cache: 'bundler'
 language: 'ruby'
 script: 'bundle exec rake spec'
