@@ -1,5 +1,5 @@
 ---
-bundler_args: '--without deployment system_tests'
+bundler_args: '--without system_tests'
 cache: 'bundler'
 language: 'ruby'
 script: 'bundle exec rake spec'
@@ -42,8 +42,7 @@ matrix:
       rvm: '2.6'
       script: 'bundle exec rake'
 
-    - bundler_args: '--with deployment --without system_tests'
-      env: 'DEPLOY=yes'
+    - env: 'DEPLOY=yes'
       rvm: '2.6'
       script:
         - 'bundle exec rake build'
