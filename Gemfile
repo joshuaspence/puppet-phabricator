@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'puppet', ENV['PUPPET_GEM_VERSION'], require: false
 
 group :deployment, optional: true do
-  gem 'pdk', require: false if ENV.has_key?('DEPLOY')
+  gem 'pdk', require: false if ENV.key?('DEPLOY')
 end
 
 group :development do
