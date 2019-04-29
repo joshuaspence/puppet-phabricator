@@ -42,7 +42,8 @@ matrix:
       rvm: '2.6'
       script: 'bundle exec rake'
 
-    - env: 'DEPLOY=yes'
+    - bundler_args: '--with deployment --without system_tests'
+      env: 'DEPLOY=yes'
       rvm: '2.6'
       script:
         - 'bundle exec rake build'
