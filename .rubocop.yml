@@ -65,6 +65,10 @@ Style/DocumentationMethod:
 Style/FormatStringToken:
   Enabled: false
 
+# TODO: Remove this.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/ImplicitRuntimeError:
   Enabled: true
 
