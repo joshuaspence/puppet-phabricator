@@ -116,7 +116,6 @@ RSpec.describe 'phabricator' do
           'mysql.user'                    => 'root',
           'mysql.pass'                    => 'root',
           'phd.log-directory'             => '/var/log/phabricator',
-          'phd.pid-directory'             => '/run/phabricator',
           'phd.user'                      => 'phd',
           'repository.default-local-path' => '/var/repo',
         )

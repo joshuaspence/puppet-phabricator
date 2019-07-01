@@ -80,7 +80,6 @@ class phabricator(
       'log.access.path'               => "${logs_dir}/access.log",
       'log.ssh.path'                  => "${logs_dir}/ssh.log",
       'phd.log-directory'             => $logs_dir,
-      'phd.pid-directory'             => $pid_dir,
       'phd.user'                      => $daemon_user,
       'repository.default-local-path' => $repo_dir,
     }
